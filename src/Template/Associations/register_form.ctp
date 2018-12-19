@@ -1,5 +1,5 @@
 <?php
-$this->Flash->render();
+echo '<p style="color:red">'.$this->Flash->render().'</p>';
 echo $this->Form->create(
     $assoc,
     [

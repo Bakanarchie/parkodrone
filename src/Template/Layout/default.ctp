@@ -45,7 +45,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
                 </div>
                 <div class="six wide column">
                     <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
-                    <input class="ui action input" placeholder="Rechercher une association, une compétition...">
+                     <input class="ui action input" placeholder="Rechercher une association, une compétition..." name="content">
                     <button class="ui gray button icon"><i class="search icon"></i></button>
                     <?= $this->Form->end(); ?>
                 </div>

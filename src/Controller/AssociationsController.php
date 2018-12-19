@@ -83,4 +83,16 @@ class AssociationsController extends AppController
         }
 
     }
+
+    public function search(){
+        $data = $this->getRequest()->getData();
+        $assoc = $this->Associations->find()->select()->where(['Nom'=>$data['content']]);
+        $comp = $this->Associations->Competitions->find()->select()->where(['NomCompetition'=>$data['content']]);
+        $this->set(
+            compact('assoc')
+        );
+        $this->set(
+            compact('comp')
+        );
+    }
 }

@@ -51,10 +51,10 @@
                                     }
                                 }
                                 if($buttonRegister){
-                                    echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="button icon"><i class="plus icon"></i></button></a>';
+                                    echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="ui black button">Inscrire mon équipe</button></a>';
                                 }
                                 else{
-                                    echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="check icon"><i class="plus icon"></i></button></a>';
+                                    echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="ui black button icon"><i class="check icon"></i></button></a>';
                                 }
                             }
                         echo '</td>';
@@ -79,20 +79,6 @@
                     echo '<h4 class="ui image header"><div class="content">'.$compTemp->NomCompetition;
                     echo '<div class="sub header"> A eu lieu le '.$compTemp->DateCompet;
                     echo '</div></div>';
-                    if(!($this->request->getSession()->read('currUser') == null)){
-                        $buttonRegister = true;
-                        foreach($compTemp->associations as $assocTemp){
-                            if($assocTemp->id == $this->request->getSession()->read('currUser')){
-                                $buttonRegister = false;
-                            }
-                        }
-                        if($buttonRegister){
-                            echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="button icon"><i class="plus icon"></i></button></a>';
-                        }
-                        else{
-                            echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="check icon"><i class="plus icon"></i></button></a>';
-                        }
-                    }
                     echo '</td>';
                     echo '</tr>';
                 }
