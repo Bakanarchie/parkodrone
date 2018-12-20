@@ -28,9 +28,10 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('../semantic/semantic.css') ?>
+    <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') ?>
     <?= $this->Html->css('addition.css') ?>
-    <?= $this->Html->script('../semantic/semantic.js') ?>
+    <?= $this->Html->script("https://code.jquery.com/jquery-3.2.1.min.js") ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -49,7 +50,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
                     <button class="ui gray button icon"><i class="search icon"></i></button>
                     <?= $this->Form->end(); ?>
                 </div>
-                <div class=" three wide column">
+                <div class="three wide column">
                     <?php
                     if($this->request->getSession()->read('currUser') != null){
                         echo $this->Html->link('<button class="ui black button">Votre Profil</button>', ['controller'=>'associations', 'action'=>'showProfile'], ['escape'=>false]);
@@ -75,6 +76,10 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->Flash->render() ?>
     <div class="ui container">
         <?= $this->fetch('content') ?>
+
+
+
+
     </div>
     <footer>
     </footer>

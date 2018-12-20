@@ -1,6 +1,18 @@
-<p style="color:red"><?= $this->Flash->render(); ?></p>
-
 <?php
+$err = $this->Flash->render();
+
+    if($err != null){
+        $err = explode('>',$err);
+        $err = explode('<',$err[1]);
+        dd($err);
+        echo '<div class="ui red message">
+        <i class="close icon"></i>
+        <div class="header">
+            Il y a eu un problème lors de la connexion.
+        </div>
+        <p>'.$err[0].'</p>
+    </div>';
+    }
 
 echo $this->Form->create(
     $assoc,
@@ -37,3 +49,16 @@ echo $this->Form->button(
 );
 
 echo  $this->Form->end();
+
+?>
+
+<script>
+    $('.message .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+            ;
+        })
+    ;
+</script>
