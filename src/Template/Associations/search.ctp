@@ -1,3 +1,6 @@
+
+<div class="ui container">
+
 <div class="ui tabular menu">
     <div class="item" data-tab="tab-name">Entreprises</div>
     <div class="item" data-tab="tab-name2">Compétitions</div>
@@ -43,3 +46,4 @@
 <script>$('.menu .item')
         .tab()
     ;</script>
+</div>

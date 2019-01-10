@@ -41,7 +41,7 @@ class AssociationsController extends AppController
     {
         $data = $this->getRequest()->getData();
         foreach($data as $key=>$dat){
-            preg_replace('<script>[a-zA-Z0-9]*</script>', '', $data[$key]);
+            preg_replace('<script>', '', $data[$key]);
         }
         $data['MDP'] = hash("sha256", $data['MDP']);
         $assocTemp = $this->Associations->find()
@@ -55,7 +55,7 @@ class AssociationsController extends AppController
             ->first();
         if($assocTemp != null){
             $this->request->getSession()->write('currUser', $assocTemp->id);
-            if($assocTemp->rank == 'admin'){
+            if(trim(strtolower($assocTemp->Groupe)) == 'admin'){
                 $this->request->getSession()->write('isAdmin', true);
             }
             else{
@@ -89,7 +89,7 @@ class AssociationsController extends AppController
     public function register(){
         $data = $this->getRequest()->getData();
         foreach($data as $key=>$dat){
-            preg_replace('<script>[a-zA-Z0-9]*</script>', '', $data[$key]);
+            preg_replace('<script>', '', $data[$key]);
         }
         if($data['MDP'] != $data['confmdp']){
             $this->Flash->error('Erreur lors de la confirmation de votre mot de passe.');

@@ -1,3 +1,4 @@
+<div class="ui container">
 <div class="ui stackable two column grid">
     <div class="ui computer only eight wide column">
         <table class="ui celled stripped table">
@@ -10,12 +11,12 @@
                 foreach($associations as $assocTemp){
                     echo '<tr>';
                         echo '<td>';
-                            echo '<h4 class="ui header"><div class="content">'.$assocTemp->Nom;
-                            if($assocTemp->Classement == 1){
-                                echo '<div class="sub header">'.$assocTemp->Classement.'er';
+                            echo '<h4 class="ui header"><div class="content">'.$assocTemp->nom;
+                            if($assocTemp->classement == 1){
+                                echo '<div class="sub header">'.$assocTemp->classement.'er';
                             }
                             else{
-                                echo '<div class="sub header">'.$assocTemp->Classement.'ème';
+                                echo '<div class="sub header">'.$assocTemp->classement.'ème';
                             }
                             echo '</div></div></h4>';
                         echo '</td>';
@@ -83,4 +84,5 @@
             ?>
         </table>
 	</div>
+</div>
 </div>

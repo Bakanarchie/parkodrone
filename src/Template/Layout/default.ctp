@@ -46,8 +46,9 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         </div>
         <div class="item">
                 <?php
+
                 if($this->request->getSession()->read('currUser') != null){
-                    echo $this->Html->link('<button class="ui white button">Votre Profil</button>', ['/profil/'.$this->request->getSession()->read('currUser')], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
                     echo $this->Html->link('<button class="ui white button">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
                 }
                 else{
@@ -60,11 +61,8 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     </div>
 
     <div>
+        <br>
         <?= $this->fetch('content') ?>
-
-
-
-
     </div>
     <footer>
     </footer>
