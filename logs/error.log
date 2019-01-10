@@ -7050,3 +7050,6 @@ Stack Trace:
 
 
 2018-12-19 14:05:16 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-10 15:09:04 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-10 15:09:33 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-10 15:10:19 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.

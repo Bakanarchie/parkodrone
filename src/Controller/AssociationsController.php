@@ -40,6 +40,9 @@ class AssociationsController extends AppController
     public function connect()
     {
         $data = $this->getRequest()->getData();
+        foreach($data as $key=>$dat){
+            preg_replace('<script>[a-zA-Z0-9]*</script>', '', $data[$key]);
+        }
         $data['MDP'] = hash("sha256", $data['MDP']);
         $assocTemp = $this->Associations->find()
             ->select()
@@ -58,7 +61,13 @@ class AssociationsController extends AppController
             else{
                 $this->request->getSession()->write('isAdmin', false);
             }
-            $this->redirect('/');
+            if($this->request->getSession()->read('isAdmin')){
+                $this->redirect('/admin/');
+            }
+            else{
+                $this->redirect('/');
+            }
+
         }
         else{
             $this->Flash->error('La combinaison nom/mot de passe n\'existe pas.');
@@ -79,25 +88,35 @@ class AssociationsController extends AppController
 
     public function register(){
         $data = $this->getRequest()->getData();
-        $data['MDP'] = hash("sha256", $data['MDP']);
-        $toSave = $this->Associations->newEntity($data);
-        $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
-        if($assoc_new == null){
-            if(!$this->Associations->save($toSave)){
-                $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
-                $this->redirect($this->referer());
-            }
-            else{
-                $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
-                $this->request->getSession()->write('currUser', $assoc_new->id);
-                $this->request->getSession()->write('isAdmin', false);
-                $this->redirect('/');
-            }
+        foreach($data as $key=>$dat){
+            preg_replace('<script>[a-zA-Z0-9]*</script>', '', $data[$key]);
         }
-        else{
-            $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+        if($data['MDP'] != $data['confmdp']){
+            $this->Flash->error('Erreur lors de la confirmation de votre mot de passe.');
             $this->redirect($this->referer());
         }
+        else{
+            $data['MDP'] = hash("sha256", $data['MDP']);
+            $toSave = $this->Associations->newEntity($data);
+            $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
+            if($assoc_new == null){
+                if(!$this->Associations->save($toSave)){
+                    $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
+                    $this->request->getSession()->write('currUser', $assoc_new->id);
+                    $this->request->getSession()->write('isAdmin', false);
+                    $this->redirect('/');
+                }
+            }
+            else{
+                $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+                $this->redirect($this->referer());
+            }
+        }
+
 
     }
 

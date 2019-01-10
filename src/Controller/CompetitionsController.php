@@ -16,6 +16,6 @@ class CompetitionsController extends AppController
         $currComp = $this->Competitions->get($id);
     }
 
-    
+
 
 }
