@@ -48,6 +48,14 @@ CREATE TABLE associations_competitions(
     CONSTRAINT FOREIGN KEY(competition_id) REFERENCES competitions(id)
 );
 
+CREATE TABLE duel(
+	assocOne int,
+    assocTwo int,
+    duelDate datetime,
+    CONSTRAINT FOREIGN KEY(assocOne) REFERENCES associations(id),
+    CONSTRAINT FOREIGN KEY(assocTwo) REFERENCES associations(id)
+);
+
 DROP TRIGGER IF EXISTS updateClassement;
 DROP TRIGGER IF EXISTS newClassement;
 DROP TRIGGER IF EXISTS updateScore;

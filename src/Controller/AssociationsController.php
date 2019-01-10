@@ -19,6 +19,15 @@ class AssociationsController extends AppController
     }
 
     public function registerToComp($idComp){
+        if($this->request->getSession()->read('currUser') != null){
+            $this->Associations->Competitions->link($this->Associations->get($this->request->getSession()->read('currUser')), [$this->Associations->Competitions->get($idComp)]);
+            $this->redirect('/');
+        }
+        else{
+            $this->Flash->error('Veuillez vous connecter avant d\'accéder à cette page.');
+                $this->redirect(['controller'=>'associations', 'action'=>'connectForm']);
+        }
+
 
     }
 
@@ -43,6 +52,12 @@ class AssociationsController extends AppController
             ->first();
         if($assocTemp != null){
             $this->request->getSession()->write('currUser', $assocTemp->id);
+            if($assocTemp->rank == 'admin'){
+                $this->request->getSession()->write('isAdmin', true);
+            }
+            else{
+                $this->request->getSession()->write('isAdmin', false);
+            }
             $this->redirect('/');
         }
         else{
@@ -53,6 +68,7 @@ class AssociationsController extends AppController
 
     public function disconnect(){
         $this->request->getSession()->delete('currUser');
+        $this->request->getSession()->write('isAdmin', false);
         $this->redirect('/');
     }
 
@@ -74,6 +90,7 @@ class AssociationsController extends AppController
             else{
                 $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
                 $this->request->getSession()->write('currUser', $assoc_new->id);
+                $this->request->getSession()->write('isAdmin', false);
                 $this->redirect('/');
             }
         }
@@ -86,13 +103,24 @@ class AssociationsController extends AppController
 
     public function search(){
         $data = $this->getRequest()->getData();
-        $assoc = $this->Associations->find()->select()->where(['Nom'=>$data['content']])->toArray();
-        $comp = $this->Associations->Competitions->find()->select()->where(['NomCompetition'=>$data['content']])->toArray();
+        $assoc = $this->Associations->find()->select()->where(['Nom LIKE'=>'%'.$data['content'].'%'])->toArray();
+        $comp = $this->Associations->Competitions->find()->select()->where(['NomCompetition LIKE'=>'%'.$data['content'].'%'])->toArray();
         $this->set(
             compact('assoc')
         );
         $this->set(
             compact('comp')
         );
+    }
+
+    public function showProfile($id)
+    {
+        $assocActu = $this->Associations->get($id);
+        if($assocActu == null){
+            $this->redirect('/');
+        }
+        else{
+            $this->set(compact('assocActu'));
+        }
     }
 }
