@@ -1,6 +1,6 @@
 <div class="ui container">
 <div class="ui stackable two column grid">
-    <div class="ui computer only eight wide column">
+    <div class="ui computer only laptop only eight wide column">
         <table class="ui celled stripped table">
             <thead>
             <tr>

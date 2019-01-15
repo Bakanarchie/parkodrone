@@ -15,7 +15,7 @@
             foreach($assoc as $assTemp){
                 echo '<tr>';
                     echo '<td>';
-                        echo $this->Html->link($assTemp->Nom, '/profil/'.$assTemp->id);
+                        echo $this->Html->link($assTemp->nom, '/profil/'.$assTemp->id);
                     echo '</td>';
                 echo '</tr>';
             }
