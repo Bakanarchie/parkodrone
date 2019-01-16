@@ -43,6 +43,27 @@ Router::scope('/', function (RouteBuilder $routes) {
             ],
             'id'=>'[0-9]+'
         ]);
-
+    $routes->connect('/admin', ['controller'=>'Associations','action'=>'admin']);
+    $routes->connect('/admin/ban/:id', ['controller' => 'Associations', 'action' => 'ban'],
+        [
+            'pass'=>[
+                'id'
+            ],
+            'id'=>'[0-9]+'
+        ]);
+    $routes->connect('/admin/promote/:id', ['controller' => 'Associations', 'action' => 'promote'],
+        [
+            'pass'=>[
+                'id'
+            ],
+            'id'=>'[0-9]+'
+        ]);
+    $routes->connect('/admin/retrograde/:id', ['controller' => 'Associations', 'action' => 'retrograde'],
+        [
+            'pass'=>[
+                'id'
+            ],
+            'id'=>'[0-9]+'
+        ]);
     $routes->fallbacks(DashedRoute::class);
 });
