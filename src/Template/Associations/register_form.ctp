@@ -1,19 +1,5 @@
 <div class="ui container">
 <?php
-$err = $this->Flash->render();
-
-if($err != null){
-    $err = explode('>',$err);
-    $err = explode('<',$err[1]);
-    $err[0] = utf8_encode($err[0]);
-    echo '<div class="ui red message">
-        <i class="close icon"></i>
-        <div class="header">
-            Il y a eu un problème lors de la connexion.
-        </div>
-        <p>'.$err[0].'</p>
-    </div>';
-}
 echo $this->Form->create(
     $assoc,
     [
@@ -26,7 +12,7 @@ echo $this->Form->create(
 );
 
 echo $this->Form->control(
-    'Nom',
+    'nom',
     [
         'class'=>'ui input',
         'label'=>'Nom de votre entreprise :',
@@ -37,7 +23,7 @@ echo $this->Form->control(
 
 
 echo $this->Form->control(
-    'Description',
+    'description',
     [
         'class'=>'ui input',
         'label'=>'Décrivez-vous en quelques mots :',
@@ -46,7 +32,7 @@ echo $this->Form->control(
 );
 
 echo $this->Form->control(
-    'Domaine',
+    'domaine',
     [
         'class'=>'ui input',
         'label'=>'Dans quel domaine travaillez-vous ?',
@@ -55,10 +41,20 @@ echo $this->Form->control(
 );
 
 echo $this->Form->control(
-    'MDP',
+    'mdp',
     [
         'class'=>'ui input',
         'label'=>'Votre Mot de Passe :',
+        'type'=>'password',
+        'maxlength'=>'64'
+    ]
+);
+
+echo $this->Form->control(
+    'website',
+    [
+        'class'=>'ui input',
+        'label'=>'Site Web de votre Entreprise :',
         'type'=>'password',
         'maxlength'=>'64'
     ]
