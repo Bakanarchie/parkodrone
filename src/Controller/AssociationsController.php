@@ -172,14 +172,79 @@ class AssociationsController extends AppController
     }
 
     public function promote($id){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else{
+            $association = $this->Associations->get($id);
+            if($association->nom == "Park'O'Drone"){
+                $this->Flash->error('Erreur : Cette entreprise est intouchable.');
+                $this->redirect($this->referer());
+            }
+            else{
+                if($association->groupe == "admin"){
+                    $this->Flash->error('Erreur : Ce membre est déjà un administrateur.');
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $association->groupe = "admin";
+                    if(!($this->Associations->save($association))){
+                        $this->Flash->error('Il y a eu une erreur lors de la sauvegarde.');
+                    }
+                    $this->redirect($this->referer());
+                }
+            }
+
+        }
 
     }
 
     public function retrograde($id){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else{
+            $association = $this->Associations->get($id);
+            if($association->nom == "Park'O'Drone"){
+                $this->Flash->error('Erreur : Cette entreprise est intouchable.');
+                $this->redirect($this->referer());
+            }
+            else{
+                if($association->groupe == "user"){
+                    $this->Flash->error('Erreur : Ce membre est déjà un utilisateur.');
+                    $this->redirect($this->referer());
+                }
+                else{
+                    $association->groupe = "user";
 
+                    if(!($this->Associations->save($association))){
+                        $this->Flash->error('Il y a eu une erreur lors de la sauvegarde.');
+                    }
+                    $this->redirect($this->referer());
+                }
+            }
+
+        }
     }
 
     public function ban($id){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else{
+            $association = $this->Associations->get($id);
+            if($association->nom == "Park'O'Drone"){
+                $this->Flash->error('Erreur : Cette entreprise est intouchable.');
+                $this->redirect($this->referer());
+            }
+            else{
+                $this->Associations->delete($association);
+                $this->redirect('/');
+            }
 
+        }
     }
 }

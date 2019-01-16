@@ -23,7 +23,7 @@
                                     <i class="dropdown icon"></i>
                                     <div class="menu">';
                                 if(!($assocActu->nom == "Park'O'Drone")){
-                                    echo '<div class="item"><a href="/admin/ban/'.$assocActu->id.'">Bannir</a></div>';
+                                    echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black']).'</div>';
                                 }
 
 
@@ -31,10 +31,10 @@
                                         <div class="item">Ajouter score</div>';
                                 if(!($assocActu->nom == "Park'O'Drone")){
                                     if($assocActu->groupe == "admin"){
-                                        echo '<div class="item"><a href="/admin/retrograde/'.$assocActu->id.'">Rétrograder au rang d\'utilisateur</a></div>';
+                                        echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
                                     }
                                     else{
-                                        echo '<div class="item"><a href="/admin/promote/'.$assocActu->id.'">Promouvoir au rang d\'administrateur</a></div>';
+                                        echo '<div class="item">'.$this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black'] ).'</div>';
                                     }
                                 }
                                     echo '</div>
