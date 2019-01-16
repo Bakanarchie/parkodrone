@@ -22,7 +22,7 @@ class CompetitionsController extends AppController
             $this->redirect('/');
         }
         $newCompetition = $this->Competitions->newEntity();
-        set(compact('newCompetition'));
+        $this->set(compact('newCompetition'));
     }
 
 }
