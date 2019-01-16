@@ -12,4 +12,10 @@ namespace App\Controller;
 class CompetitionsController extends AppController
 {
 
+    public function declareAsOver($id){
+        $currComp = $this->Competitions->get($id);
+    }
+
+
+
 }

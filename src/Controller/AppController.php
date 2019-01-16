@@ -52,4 +52,12 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+    public function beforeRender(Event $event)
+    {
+        return parent::beforeRender($event);
+        $this->loadModel('Associations');
+        $assocSearch = $this->Associations->find('all')->toArray();
+        $this->set('assocSearch', $assocSearch);
+    }
 }

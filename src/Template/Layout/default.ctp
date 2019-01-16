@@ -21,59 +21,47 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= $cakeDescription ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('../semantic/semantic.css') ?>
+    <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') ?>
     <?= $this->Html->css('addition.css') ?>
-    <?= $this->Html->script('../semantic/semantic.js') ?>
+    <?= $this->Html->script("https://code.jquery.com/jquery-3.2.1.min.js") ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="ui fluid inverted menu" data-topbar role="navigation">
-            <div class="ui  four column stackable grid">
-                <div class="one wide column"></div>
-                <div class=" two wide column">
-                    <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'alt'=>'Logo du site']),'/',['escape'=>false, 'class'=>'ui center aligned ']) ?>
-                </div>
-                <div class="six wide column">
-                    <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
-                    <input class="ui action input" placeholder="Rechercher une association, une compétition...">
-                    <button class="ui gray button icon"><i class="search icon"></i></button>
-                    <?= $this->Form->end(); ?>
-                </div>
-                <div class=" three wide column">
-                    <?php
-                    if($this->request->getSession()->read('currUser') != null){
-                        echo $this->Html->link('<button class="ui black button">Votre Profil</button>', ['controller'=>'associations', 'action'=>'showProfile'], ['escape'=>false]);
-                    }
-                    else{
-                        echo $this->Html->link('<button class="ui black button">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
-                    }
+    <div class="ui three item grey stackable container inverted secondary menu">
+        <div class="item">
+            <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'alt'=>'Logo du site']),'/',['escape'=>false, 'class'=>'ui center aligned']) ?>
+        </div>
+        <div class="item">
+            <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
+            <input class="ui action input" placeholder="Rechercher une association, une compétition..." name="content">
+            <button class="ui gray button icon"><i class="search icon"></i></button>
+            <?= $this->Form->end(); ?>
+        </div>
+        <div class="item">
+                <?php
 
-                    ?>
-                </div>
-                <div class="three wide column">
-                    <?php
-                    if($this->request->getSession()->read('currUser') != null){
-                        echo $this->Html->link('<button class="ui black button">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
-                    }
-                    else{
-                        echo $this->Html->link('<button class="ui black button">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
-                    }
-                    ?>
-                </div>
-            </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="ui container">
+                if($this->request->getSession()->read('currUser') != null){
+                    echo $this->Html->link('<button class="ui white button">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+                }
+                else{
+                    echo $this->Html->link('<button class="ui white button">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
+                }
+
+                ?>
+        </div>
+    </div>
+
+    <div>
+        <br>
         <?= $this->fetch('content') ?>
     </div>
     <footer>

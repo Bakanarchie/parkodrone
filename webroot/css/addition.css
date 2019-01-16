@@ -1,13 +1,12 @@
-nav{
-	background-color:#1B1C1D;
-    padding-top: 1%;
-}
-
 body{
-	background-color:#434343;
-	color:white;
+	background-color:#f2f2f2;
+    color: black;
 }
 
 label{
-	color:white;
+	color:black;
+}
+
+table a{
+    color:black;
 }

@@ -1,18 +1,26 @@
 use p1703235;
 SET SQL_SAFE_UPDATES = 0;
 
-DROP TABLE IF EXISTS associations_achievements, associations_competitions, achievements, associations, competitions;
+DROP TABLE IF EXISTS 
+resultat, 
+duels,
+associations_achievements, 
+associations_competitions, 
+achievements, 
+associations, 
+competitions;
 
 CREATE TABLE associations(
 	id INT NOT NULL AUTO_INCREMENT,
-    Nom Varchar(254),
-    Description Text,
-    Domaine Text,
-    MDP Varchar(64),
-    Score int,
-    Classement int DEFAULT 0,
-    Groupe text,
+    nom varchar(100),
+    description varchar(500),
+    domaine varchar(50),
+    mdp Varchar(64),
+    score int,
+    classement int DEFAULT 0,
+    groupe text,
     filename text,
+    website varchar(100),
     PRIMARY KEY(id)
 );
 
@@ -46,6 +54,29 @@ CREATE TABLE associations_competitions(
     PRIMARY KEY(association_id, competition_id),
     CONSTRAINT FOREIGN KEY(association_id) REFERENCES associations(id),
     CONSTRAINT FOREIGN KEY(competition_id) REFERENCES competitions(id)
+);
+
+CREATE TABLE duels(
+	id int not null auto_increment,
+	assocOne int,
+    assocTwo int,
+    duelDate datetime,
+    message text,
+    CONSTRAINT FOREIGN KEY(assocOne) REFERENCES associations(id),
+    CONSTRAINT FOREIGN KEY(assocTwo) REFERENCES associations(id),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE resultat(
+	assocId int not null,
+    isDuel boolean,
+    score int,
+    compId int,
+    duelId int,
+    CONSTRAINT FOREIGN KEY(assocId) REFERENCES associations(id),
+    CONSTRAINT FOREIGN KEY(compId) REFERENCES competitions(id),
+    CONSTRAINT FOREIGN KEY(duelId) REFERENCES duels(id),
+    PRIMARY KEY (assocId, score, isDuel)
 );
 
 DROP TRIGGER IF EXISTS updateClassement;
@@ -85,7 +116,7 @@ BEGIN
     END IF;
 END$
  
-  INSERT INTO associations VALUES(null, "Park'O'Drone", "Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.", "Séminaires", "2ee61124a8695f5f3491df998d58a9160d7acac1ee28ec3578d158a1ff026ed4", 0, 1,'admin', 'Park\'o\'Drone.png')$
+  INSERT INTO associations VALUES(null, "Park'O'Drone", "Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.", "Séminaires", "2ee61124a8695f5f3491df998d58a9160d7acac1ee28ec3578d158a1ff026ed4", 0, 1,'admin', 'Park\'o\'Drone.png', 'http://www.parkodrone.fr/')$
  
  CREATE TRIGGER newClassement BEFORE INSERT ON associations
  FOR EACH ROW
@@ -96,9 +127,9 @@ END$
  
  DELIMITER ;
  
-INSERT INTO associations VALUES(null, "IUT Lyon 1", "L'Excellence Technologique", "Enseignement", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'IUTLYON1.jpg');
+INSERT INTO associations VALUES(null, "IUT Lyon 1", "L'Excellence Technologique", "Enseignement", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'IUTLYON1.jpg', 'https://iut.univ-lyon1.fr/');
 
 INSERT INTO competitions VALUES(null, "Compétition Test", "Bourg-en-Bresse", "2018-12-25, 00:00:00", 0);
 INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00", 1);
  
- SELECT * FROM associations;
+ SELECT * FROM associations_competitions;
