@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
@@ -12,7 +13,6 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-
 $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,6 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         </div>
         <div class="item" style="background-color: #1f1f21 ; border-color: #1f1f21" >
                 <?php
-
                 if($this->request->getSession()->read('currUser') != null){
                     echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
                     echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
@@ -55,7 +54,6 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
                     echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
                     echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
                 }
-
                 ?>
         </div>
     </div>
@@ -65,7 +63,6 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         <div class="ui container">
             <?php
             $err = $this->Flash->render();
-
             if($err != null){
                 $err = explode('>',$err);
                 $err = explode('<',$err[1]);
@@ -82,7 +79,15 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         <br>
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    </footer>
+    <!--<footer style="background-color: #1f1f21; text-align:center;">
+        <span style="color:white">Copyright (c) - </span><span style="color:white" id="currYear"></span>
+    </footer>-->
+
+
+<script>
+    document.getElementById('currYear').innerHTML = (new Date()).getFullYear();
+</script>
 </body>
 </html>
+
+
