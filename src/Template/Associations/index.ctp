@@ -4,14 +4,14 @@
         <table class="ui celled stripped table">
             <thead>
             <tr>
-                <th>Associations / Classement</th>
+                <th style="background-color: #e4e4e5">Associations / Classement</th>
             </tr>
             </thead>
             <?php
                 foreach($associations as $assocTemp){
                     echo '<tr>';
                         echo '<td>';
-                            echo '<h4 class="ui header"><div class="content">'.$assocTemp->nom;
+                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
                                 echo '<div class="sub header">'.$assocTemp->classement.'er';
                             }
@@ -29,7 +29,7 @@
         <table class="ui celled stripped table">
             <thead>
             <tr>
-                <th>Compétitions à venir</th>
+                <th style="background-color: #e4e4e5">Compétitions à venir</th>
             </tr>
             </thead>
             <?php
@@ -38,7 +38,7 @@
                 if(!$compTemp->terminee){
                     echo '<tr>';
                         echo '<td>';
-                            echo '<h4 class="ui header"><div class="content">'.$compTemp->NomCompetition;
+                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/competition/'.$compTemp->id);
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';
                             if(!($this->request->getSession()->read('currUser') == null)){
@@ -52,7 +52,7 @@
                                     echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="ui black button">Inscrire mon équipe</button></a>';
                                 }
                                 else{
-                                    echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="ui black button icon"><i class="check icon"></i></button></a>';
+                                    echo '<a href="./associations/unregisterFromComp/'.$compTemp->id.'"><button class="ui black button icon"><i class="check icon"></i></button></a>';
                                 }
                             }
                         echo '</td>';
@@ -65,7 +65,7 @@
         <table class="ui celled stripped table">
             <thead>
             <tr>
-                <th>Compétitions terminées</th>
+                <th style="background-color: #e4e4e5">Compétitions terminées</th>
             </tr>
             </thead>
             <?php
@@ -74,7 +74,7 @@
                 if($compTemp->terminee){
                     echo '<tr>';
                     echo '<td>';
-                    echo '<h4 class="ui header"><div class="content">'.$compTemp->NomCompetition;
+                    echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                     echo '<div class="sub header"> A eu lieu le '.$compTemp->DateCompet;
                     echo '</div></div></h4>';
                     echo '</td>';
