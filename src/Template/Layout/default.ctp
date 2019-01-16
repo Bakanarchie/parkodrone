@@ -79,9 +79,9 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         <br>
         <?= $this->fetch('content') ?>
     </div>
-    <footer style="background-color: #1f1f21; text-align:center;">
+    <!--<footer style="background-color: #1f1f21; text-align:center;">
         <span style="color:white">Copyright (c) - </span><span style="color:white" id="currYear"></span>
-    </footer>
+    </footer>-->
 
 
 <script>
