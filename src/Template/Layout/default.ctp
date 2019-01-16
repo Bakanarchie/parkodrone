@@ -1,3 +1,4 @@
+
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
@@ -12,7 +13,6 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-
 $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 ?>
 <!DOCTYPE html>
@@ -34,37 +34,60 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <div class="ui three item grey stackable container inverted secondary menu">
+    <div class="ui three item grey stackable container inverted secondary menu" style="background-color: #1f1f21 ">
         <div class="item">
-            <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'alt'=>'Logo du site']),'/',['escape'=>false, 'class'=>'ui center aligned']) ?>
+            <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'style'=>'margin-top = 0px', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
         </div>
         <div class="item">
             <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
-            <input class="ui action input" placeholder="Rechercher une association, une compétition..." name="content">
+            <input class="ui action input" placeholder="Rechercher une entreprise, une compétition..." name="content">
             <button class="ui gray button icon"><i class="search icon"></i></button>
             <?= $this->Form->end(); ?>
         </div>
-        <div class="item">
+        <div class="item" style="background-color: #1f1f21 ; border-color: #1f1f21" >
                 <?php
-
                 if($this->request->getSession()->read('currUser') != null){
-                    echo $this->Html->link('<button class="ui white button">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui white button">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
                 }
                 else{
-                    echo $this->Html->link('<button class="ui white button">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui white button">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
                 }
-
                 ?>
         </div>
     </div>
 
     <div>
         <br>
+        <div class="ui container">
+            <?php
+            $err = $this->Flash->render();
+            if($err != null){
+                $err = explode('>',$err);
+                $err = explode('<',$err[1]);
+                $err[0]=mb_convert_encoding($err[0],"UTF-8","auto");
+                echo '<div class="ui red message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Un problème a été rencontré ! :(
+                </div>
+                <p>'.$err[0].'</p>
+            </div>';
+            } ?>
+        </div>
+        <br>
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
+    <footer style="background-color: #1f1f21; text-align:center;">
+        <span style="color:white">Copyright (c) - </span><span style="color:white" id="currYear"></span>
     </footer>
+
+
+<script>
+    document.getElementById('currYear').innerHTML = (new Date()).getFullYear();
+</script>
 </body>
 </html>
+
+
