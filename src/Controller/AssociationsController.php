@@ -27,8 +27,17 @@ class AssociationsController extends AppController
             $this->Flash->error('Veuillez vous connecter avant d\'accéder à cette page.');
                 $this->redirect(['controller'=>'associations', 'action'=>'connectForm']);
         }
+    }
 
-
+    public function  unregisterFromComp($idComp){
+        if($this->request->getSession()->read('currUser') != null){
+            $this->Associations->Competitions->unlink($this->Associations->get($this->request->getSession()->read('currUser')), [$this->Associations->Competitions->get($idComp)]);
+            $this->redirect('/');
+        }
+        else{
+            $this->Flash->error('Veuillez vous connecter avant d\'accéder à cette page.');
+            $this->redirect(['controller'=>'associations', 'action'=>'connectForm']);
+        }
     }
 
     public function connectForm()
@@ -55,7 +64,7 @@ class AssociationsController extends AppController
             ->first();
         if($assocTemp != null){
             $this->request->getSession()->write('currUser', $assocTemp->id);
-            if(trim(strtolower($assocTemp->Groupe)) == 'admin'){
+            if(trim(strtolower($assocTemp->groupe)) == 'admin'){
                 $this->request->getSession()->write('isAdmin', true);
             }
             else{
@@ -89,23 +98,24 @@ class AssociationsController extends AppController
     public function register(){
         $data = $this->getRequest()->getData();
         foreach($data as $key=>$dat){
-            preg_replace('<script>', '', $data[$key]);
+            $data[$key] = htmlspecialchars($data[$key]);
         }
-        if($data['MDP'] != $data['confmdp']){
+        if(trim($data['mdp']) != trim($data['confmdp'])){
             $this->Flash->error('Erreur lors de la confirmation de votre mot de passe.');
             $this->redirect($this->referer());
         }
         else{
-            $data['MDP'] = hash("sha256", $data['MDP']);
+            $data['mdp'] = hash("sha256", $data['mdp']);
             $toSave = $this->Associations->newEntity($data);
-            $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
+            $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
             if($assoc_new == null){
                 if(!$this->Associations->save($toSave)){
+                    dd($toSave);
                     $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
                     $this->redirect($this->referer());
                 }
                 else{
-                    $assoc_new = $this->Associations->find()->select()->where(['Nom'=>$data['Nom']])->first();
+                    $assoc_new = $this->Associations->find()->select()->where(['nom'=>$data['nom']])->first();
                     $this->request->getSession()->write('currUser', $assoc_new->id);
                     $this->request->getSession()->write('isAdmin', false);
                     $this->redirect('/');
@@ -122,8 +132,8 @@ class AssociationsController extends AppController
 
     public function search(){
         $data = $this->getRequest()->getData();
-        $assoc = $this->Associations->find()->select()->where(['Nom LIKE'=>'%'.$data['content'].'%'])->toArray();
-        $comp = $this->Associations->Competitions->find()->select()->where(['NomCompetition LIKE'=>'%'.$data['content'].'%'])->toArray();
+        $assoc = $this->Associations->find()->select()->where(['LOWER(Nom) LIKE'=>'%'.strtolower($data['content']).'%'])->toArray();
+        $comp = $this->Associations->Competitions->find()->select()->where(['LOWER(NomCompetition) LIKE'=>'%'.strtolower($data['content']).'%'])->toArray();
         $this->set(
             compact('assoc')
         );
@@ -134,12 +144,42 @@ class AssociationsController extends AppController
 
     public function showProfile($id)
     {
-        $assocActu = $this->Associations->get($id);
+        $assocActu = $this->Associations->get($id);//->contain(['achivements']);
+        //$duels = $this->Associations->Duels->find()->select()->where([['assocOne', 'assocTwo']=>$id]);
         if($assocActu == null){
             $this->redirect('/');
         }
         else{
             $this->set(compact('assocActu'));
         }
+    }
+
+    public function admin(){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else{
+            $associations = $this->Associations->find('all')->toArray();
+            $competitions = $this->Associations->Competitions->find('all')->toArray();
+            $this->set(
+                compact('associations')
+            );
+            $this->set(
+                compact('competitions')
+            );
+        }
+    }
+
+    public function promote($id){
+
+    }
+
+    public function retrograde($id){
+
+    }
+
+    public function ban($id){
+
     }
 }

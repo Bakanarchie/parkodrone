@@ -62,6 +62,24 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 
     <div>
         <br>
+        <div class="ui container">
+            <?php
+            $err = $this->Flash->render();
+
+            if($err != null){
+                $err = explode('>',$err);
+                $err = explode('<',$err[1]);
+                $err[0]=mb_convert_encoding($err[0],"UTF-8","auto");
+                echo '<div class="ui red message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Un problème a été rencontré ! :(
+                </div>
+                <p>'.$err[0].'</p>
+            </div>';
+            } ?>
+        </div>
+        <br>
         <?= $this->fetch('content') ?>
     </div>
     <footer>
