@@ -1,7 +1,14 @@
 use p1703235;
 SET SQL_SAFE_UPDATES = 0;
 
-DROP TABLE IF EXISTS duel, associations_achievements, associations_competitions, achievements, associations, competitions;
+DROP TABLE IF EXISTS 
+resultat, 
+duels,
+associations_achievements, 
+associations_competitions, 
+achievements, 
+associations, 
+competitions;
 
 CREATE TABLE associations(
 	id INT NOT NULL AUTO_INCREMENT,
@@ -49,12 +56,27 @@ CREATE TABLE associations_competitions(
     CONSTRAINT FOREIGN KEY(competition_id) REFERENCES competitions(id)
 );
 
-CREATE TABLE duel(
+CREATE TABLE duels(
+	id int not null auto_increment,
 	assocOne int,
     assocTwo int,
     duelDate datetime,
+    message text,
     CONSTRAINT FOREIGN KEY(assocOne) REFERENCES associations(id),
-    CONSTRAINT FOREIGN KEY(assocTwo) REFERENCES associations(id)
+    CONSTRAINT FOREIGN KEY(assocTwo) REFERENCES associations(id),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE resultat(
+	assocId int not null,
+    isDuel boolean,
+    score int,
+    compId int,
+    duelId int,
+    CONSTRAINT FOREIGN KEY(assocId) REFERENCES associations(id),
+    CONSTRAINT FOREIGN KEY(compId) REFERENCES competitions(id),
+    CONSTRAINT FOREIGN KEY(duelId) REFERENCES duels(id),
+    PRIMARY KEY (assocId, score, isDuel)
 );
 
 DROP TRIGGER IF EXISTS updateClassement;
@@ -110,4 +132,4 @@ INSERT INTO associations VALUES(null, "IUT Lyon 1", "L'Excellence Technologique"
 INSERT INTO competitions VALUES(null, "Compétition Test", "Bourg-en-Bresse", "2018-12-25, 00:00:00", 0);
 INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00", 1);
  
- SELECT * FROM associations;
+ SELECT * FROM associations_competitions;
