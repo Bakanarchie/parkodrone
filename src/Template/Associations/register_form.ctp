@@ -56,6 +56,16 @@ echo $this->Form->control(
 );
 
 echo $this->Form->control(
+    'website',
+    [
+        'class'=>'ui input',
+        'label'=>'Site Web de votre Entreprise :',
+        'type'=>'password',
+        'maxlength'=>'64'
+    ]
+);
+
+echo $this->Form->control(
     'confmdp',
     [
         'class'=>'ui input',

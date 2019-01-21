@@ -18,7 +18,6 @@
                     echo '</td>';
 
                         echo '<td>';
-
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
                                 echo '<div class="sub header">'.$assocTemp->classement.'er';
@@ -52,7 +51,7 @@
 	</div>
 	<div class="ui eight wide column">
         <table class="ui celled stripped table">
-            <thead>
+            <thead
             <tr style="background-color: #e4e4e5">
                 <th style="background-color: #e4e4e5">Compétitions à venir</th>
             </tr>
@@ -64,6 +63,7 @@
                     echo '<tr>';
                         echo '<td>';
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
+
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';
                             if(!($this->request->getSession()->read('currUser') == null)){
@@ -88,7 +88,7 @@
         </table>
 
         <table class="ui celled stripped table">
-            <thead>
+            <thead
             <tr style="background-color: #e4e4e5">
                 <th style="background-color: #e4e4e5">Compétitions terminées</th>
             </tr>
@@ -100,6 +100,7 @@
                     echo '<tr>';
                     echo '<td>';
                     echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
+
                     echo '<div class="sub header"> A eu lieu le '.$compTemp->DateCompet;
                     echo '</div></div></h4>';
                     echo '</td>';
