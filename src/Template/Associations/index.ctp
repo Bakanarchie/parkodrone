@@ -1,22 +1,15 @@
 <div class="ui container">
 <div class="ui stackable two column grid">
     <div class="ui computer only laptop only eight wide column">
-        <table class="ui single line table">
+        <table class="ui celled stripped table">
             <thead>
-            <tr style="background-color: #e4e4e5">
-                <th colspan="4" ; style="background-color: #e4e4e5"> Associations / Classement</th>
+            <tr>
+                <th style="background-color: #e4e4e5">Associations / Classement</th>
             </tr>
             </thead>
-
             <?php
                 foreach($associations as $assocTemp){
                     echo '<tr>';
-                    echo '<td>';
-                        echo '<h4 class="ui header"><div class="content">'.$this->Html->image($assocTemp->filename, ['class'=>'ui tiny image' ,'style'=>'width:40px; height:40px;']);
-                    echo '</div>';
-
-                    echo '</td>';
-
                         echo '<td>';
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
@@ -27,23 +20,6 @@
                             }
                             echo '</div></div></h4>';
                         echo '</td>';
-
-
-                    echo '<td>';
-
-                    echo '<h4 class="ui header"><div class="content">'.' ';
-
-                    echo '</div></div></h4>';
-                    echo'</td>';
-
-                    echo '<td>';
-
-                    echo '<h4 class="ui header"><div class="content">'.$assocTemp->score.' pts';
-
-                    echo '</div></div></h4>';
-                    echo'</td>';
-                    echo '</div>';
-
                     echo '</tr>';
                 }
             ?>
@@ -51,8 +27,8 @@
 	</div>
 	<div class="ui eight wide column">
         <table class="ui celled stripped table">
-            <thead
-            <tr style="background-color: #e4e4e5">
+            <thead>
+            <tr>
                 <th style="background-color: #e4e4e5">Compétitions à venir</th>
             </tr>
             </thead>
@@ -62,8 +38,7 @@
                 if(!$compTemp->terminee){
                     echo '<tr>';
                         echo '<td>';
-                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
-
+                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/competition/'.$compTemp->id);
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';
                             if(!($this->request->getSession()->read('currUser') == null)){
@@ -88,8 +63,8 @@
         </table>
 
         <table class="ui celled stripped table">
-            <thead
-            <tr style="background-color: #e4e4e5">
+            <thead>
+            <tr>
                 <th style="background-color: #e4e4e5">Compétitions terminées</th>
             </tr>
             </thead>
@@ -99,8 +74,7 @@
                 if($compTemp->terminee){
                     echo '<tr>';
                     echo '<td>';
-                    echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
-
+                    echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                     echo '<div class="sub header"> A eu lieu le '.$compTemp->DateCompet;
                     echo '</div></div></h4>';
                     echo '</td>';
