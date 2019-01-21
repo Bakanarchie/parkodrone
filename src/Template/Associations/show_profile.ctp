@@ -1,3 +1,4 @@
+
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
@@ -26,28 +27,23 @@
                                     <i class="dropdown icon"></i>
                                     <div class="menu">';
                                 if(!($assocActu->nom == "Park'O'Drone")){
-                                    echo $this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black', 'class'=>'item']);
+                                    echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black']).'</div>';
                                 }
-
-
                                 echo '<div class="item">Ajouter temps</div>
                                         <div class="item">Ajouter score</div>';
                                 if(!($assocActu->nom == "Park'O'Drone")){
                                     if($assocActu->groupe == "admin"){
-                                        echo $this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black', 'class'=>'item']);
+                                        echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
                                     }
                                     else{
-                                        echo $this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black', 'class'=>'item'] );
+                                        echo '<div class="item">'.$this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black'] ).'</div>';
                                     }
                                 }
-                                    echo '</div>
+                                echo '</div>
                                 </div>
                             </div>';
                             }
-
                             ?>
-
-
                         </div>
 
                         <div class="column" style="text-align: center">
@@ -75,19 +71,14 @@
         <br>
         <div class="two column row">
             <div class=" six wide column">
-                <div class="inline" style="text-align:right">
-                    <h3>Score total :</h3>
-                    <span>
-                        <?= $assocActu->score ?>
-                    </span>
+                <div class="inline" style="text-align:left ; width = auto">
+                    <?php
+                     echo '<p><span><t style="font-size:large"> Score total : </t>  <t style="font-size:xx-large ; font-weight:900">' , $assocActu->score ,'</t> <t style="font-size:large ; font-weight:100">( ', $assocActu->score ,' ème )</t></span></p>';
+
+                    ?>
                 </div>
 
-                <div class="inline" style="text-align:right">
-                    <h3>Classement global :</h3>
-                    <span>
-                        <?= $assocActu->score ?> ème
-                    </span>
-                </div>
+
                 <table class="ui yellow celled table">
                     <thead>
                         <th>Derniers duels</th>
