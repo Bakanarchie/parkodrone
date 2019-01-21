@@ -38,7 +38,6 @@
                     echo '</td>';
 
                         echo '<td>';
-
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
                                 echo '<div class="sub header">'.$assocTemp->classement.'er';
@@ -106,7 +105,6 @@
             }
             ?>
         </table>
-
         <table class="ui selectable celled stripped table">
             <thead>
             <tr style="background-color: #e4e4e5">
