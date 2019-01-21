@@ -1,4 +1,4 @@
-<div  style="width: 100% ; height: auto; background-color: #383839 ; margin-bottom: 3%">
+<div  style="width: 100% ; height: auto; background-color: #272728 ; margin-bottom: 3%">
     <div class="ui stackable grid">
         <div class="ten wide column" style="color: white ; margin-left: 5% ; text-align: justify">
             <p>Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.
@@ -6,7 +6,7 @@
             Aujourd’hui c’est plus de 10 000 pilotes qui ont déjà testé le concept.</p>
             <p style="text-align: center">
             <div class="ui inverted horizontal divider"> </div>
-                <button class="inverted yellow ui button" onclick="location.href='http://www.parkodrone.fr/'">En savoir plus...</button>
+                <button class=" basic inverted yellow ui button" style="width: 100% ;vertical-align: bottom" onclick="location.href='http://www.parkodrone.fr/'">En savoir plus...</button>
             </p>
 
         </div>
@@ -19,12 +19,12 @@
 
 <div class="ui container">
 
-<div class="ui  stackable two column grid">
+<div class="ui stackable two column grid">
     <div class="ui computer only laptop only eight wide column">
         <table class="ui  selectable compact  single line table">
             <thead>
             <tr style="background-color: #e4e4e5">
-                <th colspan="4" ; style="background-color: #747475 "><p style="font-size:large ; color:white">Classement Général</p></th>
+                <th colspan="4" ; style="background-color: #454546 "><p style="font-size:large ; color:#fefeff">Classement Général</p></th>
             </tr>
             </thead>
 
@@ -39,7 +39,7 @@
 
                         echo '<td>';
 
-                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
+                            echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
                                 echo '<div class="sub header">'.$assocTemp->classement.'er';
                             }
@@ -73,8 +73,8 @@
 	<div class="ui eight wide column">
         <table class="ui selectable celled stripped table">
             <thead>
-            <tr style="background-color: #626263">
-                <th style="background-color: #747475 "><p style="font-size:large ; color:white">Compétitions à venir</p></th>
+            <tr style="background-color: #454546">
+                <th style="background-color: #454546 "><p style="font-size:large ; color:white">Compétitions à venir</p></th>
             </tr>
             </thead>
             <?php
@@ -109,8 +109,8 @@
 
         <table class="ui selectable celled stripped table">
             <thead>
-            <tr style="background-color: #e4e4e5">
-                <th style="background-color: #747475 "><p style="font-size:large ; color:white">Dernières compétitions</p></th>
+            <tr style="background-color: #454546">
+                <th style="background-color: #454546 "><p style="font-size:large ; color:white">Dernières compétitions</p></th>
             </tr>
             </thead>
             <?php
