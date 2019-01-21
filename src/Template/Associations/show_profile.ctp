@@ -1,4 +1,3 @@
-
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
