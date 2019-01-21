@@ -16,20 +16,18 @@ echo $this->Form->control(
     [
         'class'=>'ui input',
         'label'=>'Nom de votre entreprise :',
-        'maxlength'=>'100',
-        'style'=>'margin-bottom:5px'
+        'maxlength'=>'100'
     ]
 );
 
 
-echo 'Décrivez votre activté en quelques mots:';
-echo $this->Form->textarea(
+
+echo $this->Form->control(
     'description',
     [
         'class'=>'ui input',
         'label'=>'Décrivez-vous en quelques mots :',
-        'maxlength'=>'800',
-        'style'=>'height:150px ; margin-bottom:5px'
+        'maxlength'=>'800'
     ]
 );
 
@@ -38,8 +36,7 @@ echo $this->Form->control(
     [
         'class'=>'ui input',
         'label'=>'Dans quel domaine travaillez-vous ?',
-        'maxlength'=>'50',
-        'style'=>'margin-bottom:30px '
+        'maxlength'=>'50'
     ]
 );
 
@@ -49,9 +46,7 @@ echo $this->Form->control(
         'class'=>'ui input',
         'label'=>'Votre Mot de Passe :',
         'type'=>'password',
-        'maxlength'=>'64',
-        'size'=>'15',
-        'style'=>'margin-bottom:5px'
+        'maxlength'=>'64'
     ]
 );
 
@@ -61,9 +56,7 @@ echo $this->Form->control(
         'class'=>'ui input',
         'label'=>'Confirmez votre mot de passe :',
         'type'=>'password',
-        'maxlength'=>'64',
-        'size'=>'15',
-        'style'=>'margin-bottom:20px'
+        'maxlength'=>'64'
     ]
 );
 

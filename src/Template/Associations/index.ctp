@@ -27,16 +27,9 @@
                 <th colspan="4" ; style="background-color: #747475 "><p style="font-size:large ; color:white">Classement Général</p></th>
             </tr>
             </thead>
-
             <?php
                 foreach($associations as $assocTemp){
                     echo '<tr>';
-                    echo '<td>';
-                        echo '<h4 class="ui header"><div class="content">'.$this->Html->image($assocTemp->filename, ['class'=>'ui tiny image' ,'style'=>'width:40px; height:40px;']);
-                    echo '</div>';
-
-                    echo '</td>';
-
                         echo '<td>';
 
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
@@ -48,23 +41,6 @@
                             }
                             echo '</div></div></h4>';
                         echo '</td>';
-
-
-                    echo '<td>';
-
-                    echo '<h4 class="ui header"><div class="content">'.' ';
-
-                    echo '</div></div></h4>';
-                    echo'</td>';
-
-                    echo '<td>';
-
-                    echo '<h4 class="ui header"><div class="content">'.$assocTemp->score.' pts';
-
-                    echo '</div></div></h4>';
-                    echo'</td>';
-                    echo '</div>';
-
                     echo '</tr>';
                 }
             ?>
@@ -106,7 +82,6 @@
             }
             ?>
         </table>
-
         <table class="ui selectable celled stripped table">
             <thead>
             <tr style="background-color: #e4e4e5">
