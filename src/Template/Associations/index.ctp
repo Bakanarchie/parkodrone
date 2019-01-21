@@ -1,10 +1,30 @@
+<div  style="width: 100% ; height: auto; background-color: #383839 ; margin-bottom: 3%">
+    <div class="ui stackable grid">
+        <div class="ten wide column" style="color: white ; margin-left: 5% ; text-align: justify">
+            <p>Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.
+            L’objectif est de prendre du plaisir dès les 30 premières secondes avec le pilotage de drones (roulants et volants) en immersion.
+            Aujourd’hui c’est plus de 10 000 pilotes qui ont déjà testé le concept.</p>
+            <p style="text-align: center">
+            <div class="ui inverted horizontal divider"> </div>
+                <button class="inverted yellow ui button" onclick="location.href='http://www.parkodrone.fr/'">En savoir plus...</button>
+            </p>
+
+        </div>
+
+        <div  class="  one wide column" style="text-align: center" > <iframe width="auto" height="auto" src="https://www.youtube.com/embed/RwLnN4eSnik" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+    </div>
+</div>
+
+
 <div class="ui container">
-<div class="ui stackable two column grid">
+
+<div class="ui  stackable two column grid">
     <div class="ui computer only laptop only eight wide column">
-        <table class="ui single line table">
+        <table class="ui  selectable compact  single line table">
             <thead>
             <tr style="background-color: #e4e4e5">
-                <th colspan="4" ; style="background-color: #e4e4e5"> Associations / Classement</th>
+                <th colspan="4" ; style="background-color: #747475 "><p style="font-size:large ; color:white">Classement Général</p></th>
             </tr>
             </thead>
 
@@ -50,10 +70,10 @@
         </table>
 	</div>
 	<div class="ui eight wide column">
-        <table class="ui celled stripped table">
-            <thead
-            <tr style="background-color: #e4e4e5">
-                <th style="background-color: #e4e4e5">Compétitions à venir</th>
+        <table class="ui selectable celled stripped table">
+            <thead>
+            <tr style="background-color: #626263">
+                <th style="background-color: #747475 "><p style="font-size:large ; color:white">Compétitions à venir</p></th>
             </tr>
             </thead>
             <?php
@@ -62,8 +82,7 @@
                 if(!$compTemp->terminee){
                     echo '<tr>';
                         echo '<td>';
-                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
-
+                            echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';
                             if(!($this->request->getSession()->read('currUser') == null)){
@@ -86,11 +105,10 @@
             }
             ?>
         </table>
-
-        <table class="ui celled stripped table">
-            <thead
+        <table class="ui selectable celled stripped table">
+            <thead>
             <tr style="background-color: #e4e4e5">
-                <th style="background-color: #e4e4e5">Compétitions terminées</th>
+                <th style="background-color: #747475 "><p style="font-size:large ; color:white">Dernières compétitions</p></th>
             </tr>
             </thead>
             <?php
@@ -99,8 +117,7 @@
                 if($compTemp->terminee){
                     echo '<tr>';
                     echo '<td>';
-                    echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
-
+                    echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                     echo '<div class="sub header"> A eu lieu le '.$compTemp->DateCompet;
                     echo '</div></div></h4>';
                     echo '</td>';

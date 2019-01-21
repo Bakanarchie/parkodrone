@@ -19,7 +19,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 <html>
 <head>
     <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         <?= $cakeDescription ?>
     </title>
@@ -34,7 +34,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <div class="ui three item grey stackable container inverted secondary menu" style="background-color: #1f1f21 ">
+    <div class="ui three item grey stackable container inverted secondary menu" style="background-color: #101011 ; margin-bottom: 0%">
         <div class="item">
             <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'style'=>'margin-top = 0px', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
         </div>
@@ -44,15 +44,15 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
             <button class="ui gray button icon"><i class="search icon"></i></button>
             <?= $this->Form->end(); ?>
         </div>
-        <div class="item" style="background-color: #1f1f21 ; border-color: #1f1f21" >
+        <div class="item" style="background-color: #101011 ; border-color: #101011" >
                 <?php
                 if($this->request->getSession()->read('currUser') != null){
-                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #101011 ; border-color: #101011">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #101011 ; border-color: #101011">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
                 }
                 else{
-                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #1f1f21 ; border-color: #1f1f21">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #101011 ; border-color: #101011">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui white button" style="color: white ;background-color: #101011 ; border-color: #101011">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
                 }
                 ?>
         </div>

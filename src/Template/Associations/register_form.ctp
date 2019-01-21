@@ -21,8 +21,7 @@ echo $this->Form->control(
     ]
 );
 
-echo '<p>Logo de votre entreprise:</p>';
-echo $this->Form->file('file');
+
 
 echo 'Décrivez votre activté en quelques mots:';
 echo $this->Form->textarea(
@@ -78,8 +77,12 @@ echo $this->Form->control(
         'style'=>'margin-bottom:20px'
     ]
 );
-
-
+ echo '<br>';
+  
+  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
+  
+  echo '<br>';
+  
 echo $this->Form->button(
     'Confirmer l\'inscription',
     [

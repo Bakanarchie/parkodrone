@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: p1703235
- * Date: 17/12/2018
- * Time: 11:04
+ * Date: 21/01/2019
+ * Time: 10:04
  */
 
 namespace App\Model\Entity;
@@ -11,7 +11,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-class Association extends Entity
+class Duel extends Entityty
 {
 
 }

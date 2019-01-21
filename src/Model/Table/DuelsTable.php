@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: p1703235
- * Date: 17/12/2018
- * Time: 11:05
+ * Date: 21/01/2019
+ * Time: 10:08
  */
 
 namespace App\Model\Table;
@@ -11,7 +11,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class CompetitionsTable extends Table
+class DuelsTable extends Table
 {
 
     public function initialize(array $config)
