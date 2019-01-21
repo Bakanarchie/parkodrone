@@ -78,7 +78,7 @@ echo $this->Form->control(
     ]
 );
  echo '<br>';
-  
+  echo 'Veuillez uploader la photo de votre entreprise:';
   echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
   
   echo '<br>';
