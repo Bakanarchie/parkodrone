@@ -2,7 +2,12 @@
     <?php
         echo $this->Form->create(
             $newCompetition,
-            ['class'=>'ui form']
+            [
+                    'url'=>[
+                'controller'=>'competition',
+                'action'=>'saveNewComp'],
+                    'class'=>'ui form'
+            ]
         );
 
         echo $this->Form->control(

@@ -25,11 +25,14 @@ class CompetitionsController extends AppController
         $this->set(compact('newCompetition'));
     }
 
-    public function saveNewNomp(){
+    public function saveNewComp(){
         $data = $this->getRequest()->getData();
         if(is_empty($data)){
             $this->Flash->error("Informations manquantes, vérifiez que vous n'avez rien oublié");
             $this->redirect($this->referer());
+        }
+        else{
+            
         }
     }
 
