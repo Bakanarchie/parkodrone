@@ -1,19 +1,22 @@
-
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
-            <div class="ui four wide column" style="margin-left: auto">
-                <?= $this->Html->image($assocActu->filename, ['class'=>'ui small image']); ?>
+            <div class="ui four wide column">
+                <?= $this->Html->image($assocActu->filename, ['style'=>'width:100%; height:auto;']); ?>
             </div>
             <div class="twelve wide column">
                 <div class="ui fluid stackable grid container">
-                    <div class="four column row">
-                        <div class="column" style="font-weight: bold; text-align: center">
-                           <?=$assocActu->nom?>
+
+
+
+                    <div class="three column row">
+
+
+                        <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px">
+                            <?=$assocActu->nom?>
                         </div>
-                        <div class="column" style="text-align: center">
-                            <?= $assocActu->domaine ?>
-                        </div>
+
+
                         <div class="column">
                             <?php
                             if($this->request->getSession()->read('isAdmin')){
@@ -46,28 +49,34 @@
 
 
                         </div>
+
                         <div class="column" style="text-align: center">
                             <?php
                             if(trim($assocActu->website) != ""){
-                                echo $this->Html->link('<button class="ui gray circular button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank']);
-                            }
+                                echo $this->Html->link('<button class="ui gray circular button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank', 'style'=>'margin-top: 10px']);
+                            } ?>
+                        </div>
 
-
-                            ?>
+                    <div class="one column row">
+                        <div class="column" style="text-align: left ; width: 200px ; margin-left: 3px">
+                            <?= $assocActu->domaine ?>
                         </div>
                     </div>
                 </div>
 
-                <div class="row" style="text-align: justify; margin: 5%; "><?= $assocActu->description ?></div>
+                <div class="row" style="text-align: justify;  "><?= $assocActu->description ?></div>
             </div>
         </div>
+
+
+        </div>
+
+
         <br>
         <div class="two column row">
             <div class=" six wide column">
                 <div class="inline" style="text-align:right">
-                    <span>
-                         <h3>Score total :</h3>
-                    </span>
+                    <h3>Score total :</h3>
                     <span>
                         <?= $assocActu->score ?>
                     </span>
@@ -79,7 +88,7 @@
                         <?= $assocActu->score ?> ème
                     </span>
                 </div>
-                <table class="ui celled table">
+                <table class="ui yellow celled table">
                     <thead>
                         <th>Derniers duels</th>
                     </thead>
@@ -103,5 +112,5 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
