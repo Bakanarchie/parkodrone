@@ -7209,3 +7209,53 @@ Stack Trace:
 #15 {main}
 
 
+2019-01-21 10:21:35 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:21:36 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:21:36 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Img could not be found.
+Exception Attributes: array (
+  'class' => 'Img',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /img/yt.png
+Referer URL: http://iutbg-lamp.univ-lyon1.fr/p1712854/public_html/parkodrone/
+Stack Trace:
+#0 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(39): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(91): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/BaseApplication.php(235): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Middleware/CsrfProtectionMiddleware.php(107): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\Middleware\CsrfProtectionMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(156): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(97): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(98): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/vendor/cakephp/cakephp/src/Http/Server.php(98): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home1/UNIV-LYON1/p1712854/public_html/parkodrone/webroot/index.php(40): Cake\Http\Server->run()
+#15 {main}
+
+
+2019-01-21 10:22:30 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:29:03 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:29:11 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:29:11 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:29:39 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:29:42 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:32:34 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:32:34 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:32:35 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:34:40 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:34:41 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:34:44 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:35:57 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:35:59 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:39:04 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:39:04 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:39:05 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:39:35 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:40:18 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
+2019-01-21 10:41:24 Warning: DebugKit is disabling itself as your host `iutbg-lamp.univ-lyon1.fr` is not in the known safe list of top-level-domains (localhost, dev, invalid, test, example, local). If you would like to force DebugKit on use the `DebugKit.forceEnable` Configure option.
