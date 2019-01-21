@@ -14,4 +14,5 @@ use Cake\ORM\Entity;
 class Duel extends Entityty
 {
 
+
 }

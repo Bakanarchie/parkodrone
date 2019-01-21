@@ -13,5 +13,4 @@ class DuelsController extends AppController
 {
 
 
-
 }
