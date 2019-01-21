@@ -76,7 +76,9 @@
         <div class="two column row">
             <div class=" six wide column">
                 <div class="inline" style="text-align:right">
-                    <h3>Score total :</h3>
+                    <span>
+                         <h3>Score total :</h3>
+                    </span>
                     <span>
                         <?= $assocActu->score ?>
                     </span>
