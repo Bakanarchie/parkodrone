@@ -17,8 +17,9 @@ echo $this->Form->control(
     'Nom',
     [
         'class'=>'ui input',
-        'label'=>'Votre Nom : ',
-        'maxlength'=>'100'
+        'label'=>'Le nom de votre Entreprise : ',
+        'maxlength'=>'100',
+        'style'=>'margin-bottom:10px'
     ]
 );
 
@@ -28,7 +29,8 @@ echo $this->Form->control(
         'class'=>'ui input',
         'label'=>'Votre Mot de Passe : ',
         'type'=>'password',
-        'maxlength'=>'64'
+        'maxlength'=>'64',
+        'style'=>'margin-bottom:20px'
     ]
 );
 
