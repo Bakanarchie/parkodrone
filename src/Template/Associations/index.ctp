@@ -1,10 +1,10 @@
 <div class="ui container">
-<div class="ui stackable two column grid">
+<div class="ui  stackable two column grid">
     <div class="ui computer only laptop only eight wide column">
-        <table class="ui single line table">
+        <table class="ui selectable compact  single line table">
             <thead>
             <tr style="background-color: #e4e4e5">
-                <th colspan="4" ; style="background-color: #e4e4e5"> Associations / Classement</th>
+                <th colspan="4" ; style="background-color: #747475 "><p style="font-size:large ; color:white">Classement Général</p></th>
             </tr>
             </thead>
 
@@ -18,6 +18,7 @@
                     echo '</td>';
 
                         echo '<td>';
+
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
                                 echo '<div class="sub header">'.$assocTemp->classement.'er';
@@ -50,10 +51,10 @@
         </table>
 	</div>
 	<div class="ui eight wide column">
-        <table class="ui celled stripped table">
-            <thead
-            <tr style="background-color: #e4e4e5">
-                <th style="background-color: #e4e4e5">Compétitions à venir</th>
+        <table class="ui selectable celled stripped table">
+            <thead>
+            <tr style="background-color: #626263">
+                <th style="background-color: #747475 "><p style="font-size:large ; color:white">Compétitions à venir</p></th>
             </tr>
             </thead>
             <?php
@@ -63,7 +64,6 @@
                     echo '<tr>';
                         echo '<td>';
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
-
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';
                             if(!($this->request->getSession()->read('currUser') == null)){
@@ -87,10 +87,10 @@
             ?>
         </table>
 
-        <table class="ui celled stripped table">
-            <thead
+        <table class="ui selectable celled stripped table">
+            <thead>
             <tr style="background-color: #e4e4e5">
-                <th style="background-color: #e4e4e5">Compétitions terminées</th>
+                <th style="background-color: #747475 "><p style="font-size:large ; color:white">Dernières compétitions</p></th>
             </tr>
             </thead>
             <?php
@@ -100,7 +100,6 @@
                     echo '<tr>';
                     echo '<td>';
                     echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->NomCompetition);
-
                     echo '<div class="sub header"> A eu lieu le '.$compTemp->DateCompet;
                     echo '</div></div></h4>';
                     echo '</td>';
