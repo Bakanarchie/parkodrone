@@ -24,4 +24,5 @@ class CompetitionsController extends AppController
         $newCompetition = $this->Competitions->newEntity();
         $this->set(compact('newCompetition'));
     }
+
 }
