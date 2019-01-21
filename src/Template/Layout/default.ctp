@@ -17,7 +17,14 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
+    <style>
+        @font-face {
+            font-family: Oswald; src: url('font/Oswald-Light.ttf');
+        }
+
+    </style>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
@@ -33,7 +40,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
-<body>
+<body style="background-image:url(img/bg.png) ; margin-top: 0px">
     <div class="ui vertically fitted three item  stackable compact inverted secondary menu" style="background-color: #101011 ; margin-bottom: 0px; ">
         <div class="left yellow item">
             <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'style'=>'height:100%', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
@@ -48,12 +55,12 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
                 <?php
 
                 if($this->request->getSession()->read('currUser') != null){
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white ;background-color: #101011 ; border-color: #101011">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ; border-color: #101011">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white ;background-color: #101011 ; border-color: #101011">VOTRE PROFIL</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ; border-color: #101011">VOUS DECONNECTER</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
                 }
                 else{
-                    echo $this->Html->link('<button class="ui inverted basic yellow  button">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style=" margin-left: 10px;">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow  button" ; style="font-family: Oswald,SansSerif">VOUS CONNECTER</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="margin-left: 10px; font-family: Oswald,SansSerif">VOUS INSCRIRE</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
                 }
 
                 ?>
@@ -79,10 +86,20 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
             </div>';
             } ?>
         </div>
-        <br>
+
         <?= $this->fetch('content') ?>
     </div>
+
+
+
+
+
+
     <footer>
+
+        <div class="container fluid" style="background-color: #101011 ; margin-top: 5%; height: 50px">
+
+        </div>
     </footer>
 </body>
 </html>

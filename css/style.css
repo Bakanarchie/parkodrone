@@ -23,7 +23,7 @@ a {
 
 header {
     background-color: #D33C44;
-    color: #ffffff;
+    color: #ffef01;
     font-size: 30px;
     height: 84px;
     line-height: 64px;
@@ -95,7 +95,7 @@ ul.pagination li a {
 
 ul.pagination li.active a {
     background-color: #DCE47E;
-    color: #FFF;
+    color: #ffbb00;
     font-weight: bold;
     cursor: default;
 }

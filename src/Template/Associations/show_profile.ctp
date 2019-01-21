@@ -3,10 +3,10 @@
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
             <div class="ui four wide column">
-                <?= $this->Html->image($assocActu->filename, ['style'=>'width:100%; height:auto;']); ?>
+                <?= $this->Html->image($assocActu->filename, ['style'=>'width:auto; height:auto']); ?>
             </div>
             <div class="twelve wide column">
-                <div class="ui fluid stackable grid container">
+                <div class="ui fluid grid container">
 
 
 
