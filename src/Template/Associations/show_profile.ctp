@@ -16,8 +16,6 @@
                         <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px">
                             <?=$assocActu->nom?>
                         </div>
-
-
                         <div class="column">
                             <?php
                             if($this->request->getSession()->read('isAdmin')){
@@ -59,7 +57,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row" style="text-align: justify;  "><?= $assocActu->description ?></div>
             </div>
         </div>
@@ -77,9 +74,6 @@
 
                     ?>
                 </div>
-
-
-                <table class="ui yellow celled table">
                     <thead>
                         <th>Derniers duels</th>
                     </thead>
@@ -103,5 +97,4 @@
                 </div>
             </div>
         </div>
-
 </div>
