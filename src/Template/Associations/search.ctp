@@ -2,10 +2,10 @@
 <div class="ui container">
 
 <div class="ui tabular menu">
-    <div class="item" data-tab="tab-name">Entreprises</div>
+    <div id="item1" class="item toAdd" data-tab="tab-name">Entreprises</div>
     <div class="item" data-tab="tab-name2">Compétitions</div>
 </div>
-<div class="ui tab" data-tab="tab-name">
+<div class="ui tab toAdd" data-tab="tab-name">
     <table class="ui stripped table">
         <?php
         if(empty($assoc)){
@@ -46,4 +46,9 @@
 <script>$('.menu .item')
         .tab()
     ;</script>
+
+    <script>
+        $('.toAdd').addClass('active');
+        $('toAdd').removeClass('toAdd');
+    </script>
 </div>
