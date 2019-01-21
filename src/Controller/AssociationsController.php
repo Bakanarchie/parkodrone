@@ -98,6 +98,7 @@ class AssociationsController extends AppController
     public function register(){
         $data = $this->getRequest()->getData();
         foreach($data as $key=>$dat){
+            if($key != 'file')
             $data[$key] = htmlspecialchars($data[$key]);
         }
         if((trim($data['mdp']) != trim($data['confmdp'])) || empty($data['mdp'])){
@@ -110,28 +111,38 @@ class AssociationsController extends AppController
                 $this->redirect($this->referer());
             }
             else{
-                $data['mdp'] = hash("sha256", $data['mdp']);
-                $toSave = $this->Associations->newEntity($data);
-                $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
-                if($assoc_new == null){
-                    if(!$this->Associations->save($toSave)){
-                        dd($toSave);
-                        $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
-                        $this->redirect($this->referer());
-                    }
-                    else{
-                        $assoc_new = $this->Associations->find()->select()->where(['nom'=>$data['nom']])->first();
-                        $this->request->getSession()->write('currUser', $assoc_new->id);
-                        $this->request->getSession()->write('isAdmin', false);
-                        $this->redirect('/');
-                    }
-                }
-                else{
-                    $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+                if($data['file']['type'] != 'image/jpeg' && $data['file']['type'] != 'image/png'){
+                    $this->Flash->error('Veuillez choisir un image de type .jpg ou .jpeg ou .png');
                     $this->redirect($this->referer());
                 }
-            }
+                else{
+                    //dd($data);
+                    move_uploaded_file($data['file']['tmp_name'],
+                        WWW_ROOT.'img/'.strtolower($data['file']['name']));
+                    $data['mdp'] = hash("sha256", $data['mdp']);
+                    $data['filename'] = strtolower($data['file']['name']);
+                    $toSave = $this->Associations->newEntity($data);
+                    $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
+                    if($assoc_new == null){
+                        if(!$this->Associations->save($toSave)){
+                            dd($toSave);
+                            $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
+                            $this->redirect($this->referer());
+                        }
+                        else{
+                            $assoc_new = $this->Associations->find()->select()->where(['nom'=>$data['nom']])->first();
+                            $this->request->getSession()->write('currUser', $assoc_new->id);
+                            $this->request->getSession()->write('isAdmin', false);
+                            $this->redirect('/');
+                        }
+                    }
+                    else{
+                        $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+                        $this->redirect($this->referer());
+                    }
+                }
 
+            }
         }
 
 
