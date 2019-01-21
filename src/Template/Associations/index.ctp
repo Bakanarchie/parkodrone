@@ -1,5 +1,6 @@
 <div  style="width: 100% ; height: auto; background-color: #272728 ; margin-bottom: 3%">
     <div class="ui stackable grid">
+
         <div class="ten wide column" style="color: white ; margin-left: 5% ; text-align: justify">
             <p>Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.
             L’objectif est de prendre du plaisir dès les 30 premières secondes avec le pilotage de drones (roulants et volants) en immersion.
@@ -16,52 +17,93 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    <!--
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.style.display == 'block')
+            e.style.display = 'none';
+        else
+            e.style.display = 'block';
+    }
+    //-->
+</script>
 
-<div class="ui container">
+
+
+
+
+<button class=" simple tiny ui mobile only large fluid button container grid" href="#"  style="height = 50 px" onclick="toggle_visibility('foo');">
+    Masquer/Afficher
+</button>
+
 
 <div class="ui stackable two column grid">
-    <div class="ui computer only laptop only eight wide column">
-        <table class="ui  selectable compact  single line table">
-            <thead>
-            <tr style="background-color: #e4e4e5">
+
+    <div class="ui eight wide column"  style="overflow-y: scroll ; height: 640px" id="foo">
+
+        <div>
+
+        <table class="ui  selectable compact  single line table" style="margin-right: 0px" >
+            <thead >
+            <tr style="background-color: #454546">
                 <th colspan="4" ; style="background-color: #454546 "><p style="font-size:large ; color:#fefeff">Classement Général</p></th>
             </tr>
-            </thead>
-
-            <?php
+            </thead >
+                 <?php
                 foreach($associations as $assocTemp){
-                    echo '<tr>';
+                    echo '<tr >';
                     echo '<td>';
-                        echo '<h4 class="ui header"><div class="content">'.$this->Html->image($assocTemp->filename, ['class'=>'ui tiny image' ,'style'=>'width:40px; height:40px;']);
-                    echo '</div>';
+                        echo '<h4 class="ui header" ><div class="content">'.$this->Html->image($assocTemp->filename, ['class'=>'ui tiny image' ,'style'=>'width:40px; height:40px;']);
 
-                    echo '</td>';
+
+                    echo '</td >';
 
                         echo '<td>';
 
-                            echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                             if($assocTemp->classement == 1){
-                                echo '<div class="sub header">'.$assocTemp->classement.'er';
+                                echo '<h4 class="ui header"><div class="content" ><font color="#daa520">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id),'</font>';
+                                echo '<div class="sub header"><font color="#daa520"><b>'.$assocTemp->classement.'er</b></font>';
+                            }
+                            else if($assocTemp->classement == 2){
+                                echo '<h4 class="ui header"><div class="content" ><font color="silver">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id),'</font>';
+                                echo '<div class="sub header"><font color="silver"><b>'.$assocTemp->classement.'ème</b></font>';
+                            }
+                            else if($assocTemp->classement == 3){
+                                echo '<h4 class="ui header"><div class="content" ><font color="##bc8f8f">'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id),'</font>';
+                                echo '<div class="sub header"><font color="#bc8f8f"><b>'.$assocTemp->classement.'ème</b></font>';
                             }
                             else{
+                                echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                                 echo '<div class="sub header">'.$assocTemp->classement.'ème';
                             }
-                            echo '</div></div></h4>';
+
                         echo '</td>';
 
 
                     echo '<td>';
 
-                    echo '<h4 class="ui header"><div class="content">'.' ';
+                    echo '<h4><div class="content">'.' ';
 
-                    echo '</div></div></h4>';
+
                     echo'</td>';
 
                     echo '<td>';
 
-                    echo '<h4 class="ui header"><div class="content">'.$assocTemp->score.' pts';
+                    if($assocTemp->classement == 1){
+                        echo '<h4><div class="content"><font color="#daa520" size=5>'.$assocTemp->score.' pts</font>';
+                    }
+                    else if($assocTemp->classement == 2){
+                        echo '<h4><div class="content"><font color="silver" size=5>'.$assocTemp->score.' pts</font>';
+                    }
+                    else if($assocTemp->classement == 3){
+                        echo '<h4><div class="content"><font color="#bc8f8f" size=5>'.$assocTemp->score.' pts</font>';
+                    }
+                    else{
+                        echo '<h4><div class="content"><font size=4>'.$assocTemp->score.' pts</font>';
+                    }
 
-                    echo '</div></div></h4>';
+
                     echo'</td>';
                     echo '</div>';
 
@@ -69,8 +111,9 @@
                 }
             ?>
         </table>
+        </div>
 	</div>
-	<div class="ui eight wide column">
+	<div class="ui center aligned eight wide column">
         <table class="ui selectable celled stripped table">
             <thead>
             <tr style="background-color: #454546">
@@ -130,4 +173,6 @@
         </table>
 	</div>
 </div>
+
+
 </div>
