@@ -2,9 +2,10 @@ use p1703235;
 SET SQL_SAFE_UPDATES = 0;
 
 DROP TABLE IF EXISTS 
-resultat, 
+resultat,
+duels_associations,
 duels,
-associations_achievements, 
+achievements_associations, 
 associations_competitions, 
 achievements, 
 associations, 
@@ -39,7 +40,7 @@ CREATE TABLE achievements(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE associations_achievements(
+CREATE TABLE achievements_associations(
 	association_id int,
     achievement_id int,
     date_obtention datetime,
@@ -58,25 +59,17 @@ CREATE TABLE associations_competitions(
 
 CREATE TABLE duels(
 	id int not null auto_increment,
-	assocOne int,
-    assocTwo int,
     duelDate datetime,
     message text,
-    CONSTRAINT FOREIGN KEY(assocOne) REFERENCES associations(id),
-    CONSTRAINT FOREIGN KEY(assocTwo) REFERENCES associations(id),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE resultat(
-	assocId int not null,
-    isDuel boolean,
-    score int,
-    compId int,
-    duelId int,
-    CONSTRAINT FOREIGN KEY(assocId) REFERENCES associations(id),
-    CONSTRAINT FOREIGN KEY(compId) REFERENCES competitions(id),
-    CONSTRAINT FOREIGN KEY(duelId) REFERENCES duels(id),
-    PRIMARY KEY (assocId, score, isDuel)
+CREATE TABLE duels_associations(
+	duelId int not null,
+    assocId int not null,
+    FOREIGN KEY (duelId) REFERENCES duels(id),
+    FOREIGN KEY (assocId) REFERENCES associations(id),
+    PRIMARY KEY (duelId, assocId)
 );
 
 DROP TRIGGER IF EXISTS updateClassement;

@@ -1,19 +1,6 @@
 <div class="ui container">
 <?php
-$err = $this->Flash->render();
 
-    if($err != null){
-        $err = explode('>',$err);
-        $err = explode('<',$err[1]);
-        $err[0] = utf8_encode($err[0]);
-        echo '<div class="ui red message">
-        <i class="close icon"></i>
-        <div class="header">
-            Il y a eu un problème lors de la connexion.
-        </div>
-        <p>'.$err[0].'</p>
-    </div>';
-    }
 
 echo $this->Form->create(
     $assoc,
@@ -30,8 +17,9 @@ echo $this->Form->control(
     'Nom',
     [
         'class'=>'ui input',
-        'label'=>'Votre Nom : ',
-        'maxlength'=>'100'
+        'label'=>'Le nom de votre Entreprise : ',
+        'maxlength'=>'100',
+        'style'=>'margin-bottom:10px'
     ]
 );
 
@@ -41,7 +29,8 @@ echo $this->Form->control(
         'class'=>'ui input',
         'label'=>'Votre Mot de Passe : ',
         'type'=>'password',
-        'maxlength'=>'64'
+        'maxlength'=>'64',
+        'style'=>'margin-bottom:20px'
     ]
 );
 
