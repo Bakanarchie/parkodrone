@@ -100,31 +100,38 @@ class AssociationsController extends AppController
         foreach($data as $key=>$dat){
             $data[$key] = htmlspecialchars($data[$key]);
         }
-        if(trim($data['mdp']) != trim($data['confmdp'])){
+        if((trim($data['mdp']) != trim($data['confmdp'])) || empty($data['mdp'])){
             $this->Flash->error('Erreur lors de la confirmation de votre mot de passe.');
             $this->redirect($this->referer());
         }
         else{
-            $data['mdp'] = hash("sha256", $data['mdp']);
-            $toSave = $this->Associations->newEntity($data);
-            $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
-            if($assoc_new == null){
-                if(!$this->Associations->save($toSave)){
-                    dd($toSave);
-                    $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
-                    $this->redirect($this->referer());
-                }
-                else{
-                    $assoc_new = $this->Associations->find()->select()->where(['nom'=>$data['nom']])->first();
-                    $this->request->getSession()->write('currUser', $assoc_new->id);
-                    $this->request->getSession()->write('isAdmin', false);
-                    $this->redirect('/');
-                }
-            }
-            else{
-                $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+            if(strlen($data['nom']) < 4){
+                $this->Flash->error('Erreur : Veuillez entrer plus de quatre caractères dans le champ nom.');
                 $this->redirect($this->referer());
             }
+            else{
+                $data['mdp'] = hash("sha256", $data['mdp']);
+                $toSave = $this->Associations->newEntity($data);
+                $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
+                if($assoc_new == null){
+                    if(!$this->Associations->save($toSave)){
+                        dd($toSave);
+                        $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
+                        $this->redirect($this->referer());
+                    }
+                    else{
+                        $assoc_new = $this->Associations->find()->select()->where(['nom'=>$data['nom']])->first();
+                        $this->request->getSession()->write('currUser', $assoc_new->id);
+                        $this->request->getSession()->write('isAdmin', false);
+                        $this->redirect('/');
+                    }
+                }
+                else{
+                    $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+                    $this->redirect($this->referer());
+                }
+            }
+
         }
 
 
@@ -207,7 +214,7 @@ class AssociationsController extends AppController
         }
         else{
             $association = $this->Associations->get($id);
-            if($association->nom == "Park'O'Drone"){
+            if($association->nom == "Park'O'Drone" || $association->id == $this->request->getSession()->read('currUser')){
                 $this->Flash->error('Erreur : Cette entreprise est intouchable.');
                 $this->redirect($this->referer());
             }
@@ -236,7 +243,7 @@ class AssociationsController extends AppController
         }
         else{
             $association = $this->Associations->get($id);
-            if($association->nom == "Park'O'Drone"){
+            if($association->nom == "Park'O'Drone" || $association->id == $this->request->getSession()->read('currUser')){
                 $this->Flash->error('Erreur : Cette entreprise est intouchable.');
                 $this->redirect($this->referer());
             }

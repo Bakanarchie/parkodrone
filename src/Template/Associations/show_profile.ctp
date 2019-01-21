@@ -1,4 +1,3 @@
-
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
@@ -27,23 +26,28 @@
                                     <i class="dropdown icon"></i>
                                     <div class="menu">';
                                 if(!($assocActu->nom == "Park'O'Drone")){
-                                    echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black']).'</div>';
+                                    echo $this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black', 'class'=>'item']);
                                 }
+
+
                                 echo '<div class="item">Ajouter temps</div>
                                         <div class="item">Ajouter score</div>';
                                 if(!($assocActu->nom == "Park'O'Drone")){
                                     if($assocActu->groupe == "admin"){
-                                        echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
+                                        echo $this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black', 'class'=>'item']);
                                     }
                                     else{
-                                        echo '<div class="item">'.$this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black'] ).'</div>';
+                                        echo $this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black', 'class'=>'item'] );
                                     }
                                 }
-                                echo '</div>
+                                    echo '</div>
                                 </div>
                             </div>';
                             }
+
                             ?>
+
+
                         </div>
 
                         <div class="column" style="text-align: center">
