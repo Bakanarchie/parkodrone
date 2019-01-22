@@ -49,7 +49,7 @@ echo $this->Form->control(
 );
 
 echo $this->Form->button(
-  'Vous connecter',
+  '<p style="font-family: Oswald">Vous connecter</p>',
   [
       'class'=>'ui black button'
   ]

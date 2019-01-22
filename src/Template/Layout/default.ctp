@@ -40,22 +40,22 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 </head>
 <style>
     @font-face {
-        font-family: Oswald; src: url('font/Oswald-Light.ttf');
+        font-family: Oswald; src: url('font/Oswald-Regular.ttf');
     }
 
 </style>
-<body style="margin-top: 0px ; background-image: url(../img/bg.png)">
+<body style="margin-top: 0px ; background-image: url(../img/bg.png)" >
     <div class="ui vertically fitted three item  stackable compact inverted secondary menu" style="background-color: #101011 ; margin-bottom: 0px; ">
-        <div class="left yellow item">
-            <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'style'=>'height:100%', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
+        <div class="left yellow item " >
+            <?= $this->Html->link($this->Html->image('logo.png', ['class'=>'ui image', 'style'=>'height:60px ; width:270px', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
         </div>
         <div class=" yellow item">
-            <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
+            <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input', 'style'=>'margin-bottom:3px']) ?>
             <input class="ui action input" placeholder="Rechercher une entreprise, une compétition..."  name="content">
             <button class="ui gray button icon"><i class="search icon"></i></button>
             <?= $this->Form->end(); ?>
         </div>
-        <div class="right yellow item" style="background-color: #101011 ; border-color: #101011" >
+        <div class="right yellow item" style="background-color: #101011 ; border-color: #101011 ; margin-bottom: 10px ; vertical-align: top" >
                 <?php
 
                 if($this->request->getSession()->read('currUser') != null){

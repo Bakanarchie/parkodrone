@@ -83,8 +83,10 @@ echo $this->Form->control(
     ]
 );
 
+  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :'])
+  
 echo $this->Form->button(
-    'Confirmer l\'inscription',
+    '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
     [
         'class'=>'ui black button'
     ]
