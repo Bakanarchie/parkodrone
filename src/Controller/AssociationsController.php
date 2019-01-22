@@ -262,4 +262,31 @@ class AssociationsController extends AppController
 
         }
     }
+
+    public function addScoreForm($id){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else {
+            $toEdit = $this->Associations->get($id);
+            $this->set(compact('toEdit'));
+        }
+
+    }
+
+    public function addScore(){
+
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else {
+            $data = $this->getRequest()->getData();
+            $toEdit = $this->Associations->get($data['id']);
+            $toEdit->score = $data['Associations']['score'];
+            $this->Associations->save($toEdit);
+        }
+
+    }
 }
