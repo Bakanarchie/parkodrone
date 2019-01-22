@@ -1,4 +1,3 @@
-
 <div class="ui container">
 <?php
 

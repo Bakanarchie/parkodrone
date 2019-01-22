@@ -15,7 +15,6 @@ class CompetitionsController extends AppController
     public function declareAsOver($id){
         $currComp = $this->Competitions->get($id);
     }
-
     public function createComp(){
         if(!($this->request->getSession()->read('isAdmin'))){
             $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
