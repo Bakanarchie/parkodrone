@@ -1,13 +1,17 @@
-<div class="ui container">
+<div style="background-image: url(../img/bg.png); margin-right: 5%; margin-left: 5%">
+    <div class="ui fluid container" style="background-image: url(../img/whitebg.png)" >
+<div style="margin-left: 10%; margin-right: 10%">
 <?php
+echo '<br>';
 echo $this->Form->create(
     $assoc,
-    [   'type' => 'file',
+    [
         'url'=>[
             'controller'=>'associations',
             'action'=>'register'
         ],
-        'class'=>'ui form'
+        'class'=>'ui form',
+        'type' => 'file'
     ]
 );
 
@@ -22,7 +26,6 @@ echo $this->Form->control(
 );
 
 
-
 echo 'Décrivez votre activté en quelques mots:';
 echo $this->Form->textarea(
     'description',
@@ -34,15 +37,17 @@ echo $this->Form->textarea(
     ]
 );
 
+echo '<br>';
 echo $this->Form->control(
-    'website',
-    [
-        'class'=>'ui input',
-        'label'=>'Site Web de votre Entreprise :',
-        'maxlength'=>'64'
-    ]
+  'website',
+        [
+            'class'=>'ui input',
+            'label'=>'Site web de votre entreprise :',
+            'maxlength'=>'100',
+            'style'=>'margin-bottom:5px'
+        ]
 );
-
+echo '</br>';
 
 echo $this->Form->control(
     'domaine',
@@ -77,14 +82,11 @@ echo $this->Form->control(
         'style'=>'margin-bottom:20px'
     ]
 );
- echo '<br>';
-  
+
   echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
   
-  echo '<br>';
-  
 echo $this->Form->button(
-    'Confirmer l\'inscription',
+    '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
     [
         'class'=>'ui black button'
     ]
@@ -92,5 +94,6 @@ echo $this->Form->button(
 
 echo  $this->Form->end();
 
+echo '<br>';
 ?>
-</div>
+</div></div></div>

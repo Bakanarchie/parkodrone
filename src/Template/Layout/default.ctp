@@ -1,4 +1,3 @@
-
 <?php
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
@@ -13,11 +12,14 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
 $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
@@ -32,37 +34,48 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->fetch('charset') ?>
+
+
 </head>
-<body>
+<style>
+    @font-face {
+        font-family: Oswald; src: url('font/Oswald-Regular.ttf');
+    }
+
+</style>
+<body style="margin-top: 0px ; background-image: url(../img/bg.png)" >
     <div class="ui vertically fitted three item  stackable compact inverted secondary menu" style="background-color: #101011 ; margin-bottom: 0px; ">
-        <div class="left yellow item">
-            <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'style'=>'height:100%', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
+        <div class="left yellow item " >
+            <?= $this->Html->link($this->Html->image('logo.png', ['class'=>'ui image', 'style'=>'height:60px ; width:270px', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
         </div>
         <div class=" yellow item">
-            <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
+            <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input', 'style'=>'margin-bottom:3px']) ?>
             <input class="ui action input" placeholder="Rechercher une entreprise, une compétition..."  name="content">
             <button class="ui gray button icon"><i class="search icon"></i></button>
             <?= $this->Form->end(); ?>
         </div>
-        <div class="right yellow item" style="background-color: #101011 ; border-color: #101011" >
+        <div class="right yellow item" style="background-color: #101011 ; border-color: #101011 ; margin-bottom: 10px ; vertical-align: top" >
                 <?php
+
                 if($this->request->getSession()->read('currUser') != null){
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white ;background-color: #101011 ; border-color: #101011">Votre Profil</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ; border-color: #101011">Vous Déconnecter</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOTRE PROFIL</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOUS DECONNECTER</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
                 }
                 else{
-                    echo $this->Html->link('<button class="ui inverted basic yellow  button">Vous Connecter</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style=" margin-left: 10px;">Vous Inscrire</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow  button" ; style="font-family: Oswald;">VOUS CONNECTER</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="margin-left: 10px; font-family: Oswald;">VOUS INSCRIRE</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
                 }
+
                 ?>
         </div>
     </div>
 
     <div>
-        <br>
         <div class="ui container">
             <?php
             $err = $this->Flash->render();
+
             if($err != null){
                 $err = explode('>',$err);
                 $err = explode('<',$err[1]);
@@ -76,18 +89,19 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
             </div>';
             } ?>
         </div>
-        <br>
-        <?= $this->fetch('content') ?>
+         <div class="container yellow fluid" style="background-color: #fff600 ; height: 5px"></div>
+            <?= $this->fetch('content') ?>
     </div>
-    <!--<footer style="background-color: #1f1f21; text-align:center;">
-        <span style="color:white">Copyright (c) - </span><span style="color:white" id="currYear"></span>
-    </footer>-->
 
 
-<script>
-    document.getElementById('currYear').innerHTML = (new Date()).getFullYear();
-</script>
+
+
+
+
+    <footer>
+        <div class="container fluid" style="background-color: #101011 ;height: 50px">
+
+        </div>
+    </footer>
 </body>
 </html>
-
-
