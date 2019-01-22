@@ -11,8 +11,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-class Duel extends Entityty
+class Duel extends Entity
 {
-
 
 }

@@ -1,4 +1,3 @@
-
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
@@ -86,7 +85,27 @@
             <div class=" eight wide column">
                 <div class="ui stackable grid">
                     <div class="four column row">
+                        <div class="column" style="text-align: right">
+                        </div>
+                        <div class="column" style="text-align: right">
+                            <button class="ui rounded button">Statistiques</button>
+                        </div>
+                        <div class="column" style="text-align: right">
+                            <?php if($assocActu->id != $this->request->getSession()->read('currUser') && $this->request->getSession()->read('currUser') != null) echo $this->Html->link('<button class="ui rounded button">Défier</button>','/defier/'.$assocActu->id,['escape'=>false]); ?>
+                        </div>
+                        <div class="column" style="text-align: right">
+                            <button class="ui rounded button">
+                                <div class="ui dropdown">
+                                    Plus
+                                    <i class="ui dropdown icon"></i>
+                                    <div class="ui vertical divider"></div>
+                                    <div class="menu">
+                                        <div class="item">Toast</div>
+                                    </div>
+                                </div>
+                            </button>
 
+                        </div>
                     </div>
                     <table>
 
