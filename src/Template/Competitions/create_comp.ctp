@@ -33,6 +33,14 @@
         ]
     );
 
+    echo $this->Form->control(
+        'Description',
+        [
+            'class'=>'ui input',
+            'label'=>'Description de la compétition : '
+        ]
+    );
+
     echo '<br>';
     echo 'Ajoutez une image pour la compétition : ';
     echo $this->Form->file('file', ['Image pour la compétition']);
