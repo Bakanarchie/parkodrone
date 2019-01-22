@@ -20,7 +20,10 @@ echo $this->Form->control(
     'Duels.duelDate',
     [
         'class' => 'ui input',
-        'lang' => 'fr'
+        'lang' => 'fr',
+        'dateFormat' => 'YMD',
+        'minYear' => date('Y'),
+        'maxYear' => date('Y') + 5,
     ]
 );
 

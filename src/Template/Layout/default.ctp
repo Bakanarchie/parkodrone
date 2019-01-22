@@ -91,8 +91,6 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         </div>
          <div class="container yellow fluid" style="background-color: #fff600 ; height: 5px"></div>
             <?= $this->fetch('content') ?>
-
-
     </div>
 
 
@@ -101,7 +99,6 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 
 
     <footer>
-
         <div class="container fluid" style="background-color: #101011 ;height: 50px">
 
         </div>
