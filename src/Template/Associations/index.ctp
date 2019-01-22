@@ -1,10 +1,13 @@
+
 <div style="background-image: url(img/bg.png)">
+
 
 
 <div  style="width: 100% ; height: auto; background-image: url(img/blocbg.png) ; margin-bottom: 3%">
     <div class="ui stackable grid">
 
         <div class="ten wide column" style="color: white ; margin-left: 5% ; text-align: justify">
+            <br>
             <p>Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.
             L’objectif est de prendre du plaisir dès les 30 premières secondes avec le pilotage de drones (roulants et volants) en immersion.
             Aujourd’hui c’est plus de 10 000 pilotes qui ont déjà testé le concept.</p>
@@ -37,7 +40,7 @@
 
 
 <button class="ui    mobile only    center aligned    large menu grid   fluid " href="#"  style="height = 40 px" onclick="toggle_visibility('foo');">
-    Masquer/Afficher
+    Masquer/Afficher les classements
 </button>
 
 
@@ -52,8 +55,8 @@
 
         <table class="ui  selectable compact  single line table" >
             <thead >
-            <tr style="background-color: #454546">
-                <th colspan="4" ; style="background-color: #454546 "><p style="font-size:large; font-family: Oswald, sans-serif ; color:#fefeff">CLASSEMENT GÉNÉRAL</p></th>
+            <tr style="background-image:url(img/banner.png)">
+                <th colspan="4" ; style="background-image:url(img/banner.png)"><p style="font-size:large; font-family: Oswald, sans-serif ; color:#fefeff">CLASSEMENT GÉNÉRAL</p></th>
             </tr>
             </thead >
                  <?php
@@ -122,8 +125,8 @@
 	<div class="ui center aligned eight wide column">
         <table class="ui selectable celled stripped table">
             <thead>
-            <tr style="background-color: #454546">
-                <th style="background-color: #454546 "><p style="font-size:large ;font-family: Oswald, sans-serif ; color:white">COMPÉTITIONS À VENIR</p></th>
+            <tr style="background-image:url(img/banner.png)">
+                <th style="background-image:url(img/banner.png)"><p style="font-size:large ;font-family: Oswald, sans-serif ; color:white">COMPÉTITIONS À VENIR</p></th>
             </tr>
             </thead>
             <?php
@@ -158,8 +161,8 @@
 
         <table class="ui selectable celled stripped table">
             <thead>
-            <tr style="background-color: #454546">
-                <th style="background-color: #454546 "><p style="font-size:large ; font-family: Oswald, sans-serif; color:white">DERNIÈRES COMPÉTITIONS</p></th>
+            <tr style="background-image:url(img/banner.png)">
+                <th style="background-image:url(img/banner.png)"><p style="font-size:large ; font-family: Oswald, sans-serif; color:white">DERNIÈRES COMPÉTITIONS</p></th>
             </tr>
             </thead>
             <?php

@@ -1,5 +1,9 @@
-<div class="ui container">
+
+<div style="background-image: url(../img/bg.png); margin-right: 5%; margin-left: 5%">
+    <div class="ui fluid container" style="background-image: url(../img/whitebg.png)" >
+<div style="margin-left: 10%; margin-right: 10%">
 <?php
+echo '<br>';
 echo $this->Form->create(
     $assoc,
     [
@@ -66,11 +70,7 @@ echo $this->Form->control(
         'style'=>'margin-bottom:20px'
     ]
 );
- echo '<br>';
-  echo 'Veuillez uploader la photo de votre entreprise:';
-  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
-  
-  echo '<br>';
+
 echo $this->Form->button(
     'Confirmer l\'inscription',
     [
@@ -80,5 +80,6 @@ echo $this->Form->button(
 
 echo  $this->Form->end();
 
+echo '<br>';
 ?>
-</div>
+</div></div></div>
