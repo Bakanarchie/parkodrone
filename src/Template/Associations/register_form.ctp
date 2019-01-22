@@ -72,7 +72,7 @@ echo $this->Form->control(
 );
 
 echo $this->Form->button(
-    'Confirmer l\'inscription',
+    '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
     [
         'class'=>'ui black button'
     ]
