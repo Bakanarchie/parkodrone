@@ -1,7 +1,7 @@
 
 <div class="ui container">
 
-<div class="ui tabular menu">
+<div class="ui attached tabular menu">
     <div id="item1" class="item toAdd" data-tab="tab-name">Entreprises</div>
     <div class="item" data-tab="tab-name2">Compétitions</div>
 </div>

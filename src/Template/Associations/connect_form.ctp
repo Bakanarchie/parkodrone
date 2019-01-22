@@ -1,5 +1,18 @@
+<div class="ui fluid container" style="background-image: url(../img/whitebg.png)" >
 <div class="ui container">
-<?php
+<br>
+<style>
+    #misenpage{
+        font-size: large;
+
+    }
+
+
+</style>
+
+
+    <div id="misenpage">
+    <?php
 
 
 echo $this->Form->create(
@@ -44,7 +57,8 @@ echo $this->Form->button(
 echo  $this->Form->end();
 
 ?>
-</div>
+
+
 <script>
     $('.message .close')
         .on('click', function() {
@@ -55,3 +69,5 @@ echo  $this->Form->end();
         })
     ;
 </script>
+    <br>
+    </div></div></div>
