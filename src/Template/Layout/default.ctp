@@ -100,12 +100,11 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 
 
 
-    <footer style="background-color: #101011">
+    <footer>
 
         <div class="container fluid" style="background-color: #101011 ;height: 50px">
 
         </div>
-
     </footer>
 </body>
 </html>

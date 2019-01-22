@@ -1,12 +1,15 @@
+<div style="background-image: url(../img/bg.png); margin-right: 5%; margin-left: 5%">
+    <div class="ui fluid container" style="background-image: url(../img/whitebg.png)" >
+<br>
 
 <div class="ui container">
 
-<div class="ui attached tabular menu">
-    <div id="item1" class="item toAdd" data-tab="tab-name">Entreprises</div>
-    <div class="item" data-tab="tab-name2">Compétitions</div>
+<div class="ui two item pointing attached menu">
+    <div id="item1" class="item toAdd" data-tab="tab-name" style="font-family: Oswald  ; font-weight: 900; font-size: larger">Entreprises</div>
+    <div class="item" data-tab="tab-name2" style="font-family: Oswald ; font-weight: 900; font-size: larger">Compétitions</div>
 </div>
 <div class="ui tab toAdd" data-tab="tab-name">
-    <table class="ui stripped table">
+    <table class="ui selectable stripped table">
         <?php
         if(empty($assoc)){
             echo '<tr><td><p>Il n\'y a pas d\'entreprises correspondant à votre recherche. :-(</p></td></tr>';
@@ -24,7 +27,7 @@
     </table>
 </div>
 <div class="ui tab" data-tab="tab-name2">
-    <table class="ui table">
+    <table class="ui selectable stripped table">
         <?php
 
         if(empty($comp)){
@@ -52,3 +55,4 @@
         $('toAdd').removeClass('toAdd');
     </script>
 </div>
+<br>

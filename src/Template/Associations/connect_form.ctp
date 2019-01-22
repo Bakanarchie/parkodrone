@@ -1,3 +1,4 @@
+<div style="background-image: url(../img/bg.png); margin-right: 5%; margin-left: 5%">
 <div class="ui fluid container" style="background-image: url(../img/whitebg.png)" >
 <div class="ui container">
 <br>
