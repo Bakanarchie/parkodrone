@@ -5,7 +5,7 @@
         <div class="two column row" style="background-color: #b9b9b9">
 
             <div class="ui four wide column">
-                <?= $this->Html->image($image->filename, ['style'=>'width:100%; height:auto;']); ?>
+                <?= $this->Html->image($compet->Image, ['style'=>'width:100%; height:auto;']); ?>
             </div>
 
             <div class="twelve wide column">
