@@ -4,7 +4,7 @@
             $newCompetition,
             [
                     'url'=>[
-                'controller'=>'competition',
+                'controller'=>'competitions',
                 'action'=>'saveNewComp'],
                     'class'=>'ui form',
                 'type' => 'file'
@@ -22,7 +22,7 @@
         'DateCompet',
         [
             'class'=>'ui input',
-            'label'=>'Date de la compétition (format AAAA-MM-JJ) : '
+            'label'=>'Date de la compétition (format AAAA-MOMO-JJ HH:MiMi) : '
         ]
     );
     echo $this->Form->control(

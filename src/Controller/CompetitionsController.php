@@ -26,38 +26,35 @@ class CompetitionsController extends AppController
 
     public function saveNewComp(){
         $data = $this->getRequest()->getData();
-        if(is_empty($data)){
-            $this->Flash->error("Informations manquantes, vérifiez que vous n'avez rien oublié");
+        foreach($data as $key=>$dat){
+            if($key != 'file')
+            $data[$key] = htmlspecialchars($data[$key]);
+        }
+        dd($data);
+        if($data['file']['type'] != 'image/jpeg' || $data['file']['type'] != 'image/png'){
+            $this->Flash->error('Veuillez choisir une image de type .jpeg ou .png!');
             $this->redirect($this->referer());
         }
-        else{
-            dd($data);
-            move_uploaded_file($data['file']['tmp_name'],
-                WWW_ROOT.'img/'.strtolower($data['file']['name']));
-            $comp = $this->Competitions
-                ->find()
-                ->where(['NomCompetition' => $data['NomCompet']])
-                ->first();
-            $data['terminee'] = 0;
-            $data['Image'] = strtolower($data['file']['name']);
-            $tosave = $this->Competitions->newEntity($data);
-            if($comp == null){
-                if(!$this->Competition->save($tosave)){
-                    $this->Flash->error('Il y a eu une erreur lors de la sauvegarde des données.');
-                    $this->redirect($this->referer());
-                }
+        move_uploaded_file($data['file']['tmp_name'],
+            WWW_ROOT.'img/'.strtolower($data['file']['name']));
+        $comp = $this->Competitions
+            ->find()
+            ->where(['NomCompetition' => $data['NomCompet']])
+            ->first();
+        $data['terminee'] = 0;
+        $data['Image'] = strtolower($data['file']['name']);
+        $tosave = $this->Competitions->newEntity($data);
+        if($comp == null){
+            if(!$this->Competition->save($tosave)){
+                $this->Flash->error('Il y a eu une erreur lors de la sauvegarde des données.');
+                $this->redirect($this->referer());
             }
         }
+
     }
 
     public function affichedetail($id){
         $compet = $this->Competitions->get($id);
-        $image = $this->Competitions->Associations
-            ->find()
-            ->where(['nom =' => "Park'O'Drone"])
-            ->first();
-
         $this->set(compact('compet'));
-        $this->set(compact('image'));
     }
 }

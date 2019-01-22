@@ -34,6 +34,18 @@ echo $this->Form->textarea(
     ]
 );
 
+echo '<br>';
+echo $this->Form->control(
+  'website',
+        [
+            'class'=>'ui input',
+            'label'=>'Site web de votre entreprise :',
+            'maxlength'=>'100',
+            'style'=>'margin-bottom:5px'
+        ]
+);
+echo '</br>';
+
 echo $this->Form->control(
     'domaine',
     [
