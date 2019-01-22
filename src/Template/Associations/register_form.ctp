@@ -1,4 +1,3 @@
-
 <div style="background-image: url(../img/bg.png); margin-right: 5%; margin-left: 5%">
     <div class="ui fluid container" style="background-image: url(../img/whitebg.png)" >
 <div style="margin-left: 10%; margin-right: 10%">
@@ -11,7 +10,8 @@ echo $this->Form->create(
             'controller'=>'associations',
             'action'=>'register'
         ],
-        'class'=>'ui form'
+        'class'=>'ui form',
+        'type' => 'file'
     ]
 );
 
@@ -36,6 +36,18 @@ echo $this->Form->textarea(
         'style'=>'height:150px ; margin-bottom:5px'
     ]
 );
+
+echo '<br>';
+echo $this->Form->control(
+  'website',
+        [
+            'class'=>'ui input',
+            'label'=>'Site web de votre entreprise :',
+            'maxlength'=>'100',
+            'style'=>'margin-bottom:5px'
+        ]
+);
+echo '</br>';
 
 echo $this->Form->control(
     'domaine',
@@ -71,6 +83,8 @@ echo $this->Form->control(
     ]
 );
 
+  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :'])
+  
 echo $this->Form->button(
     '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
     [

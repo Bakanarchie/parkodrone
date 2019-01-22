@@ -108,7 +108,7 @@ CREATE TRIGGER updateScore BEFORE UPDATE ON associations
 FOR EACH ROW
 BEGIN
 	IF NOT (NEW.Score = OLD.Score) THEN
-			SET NEW.Classement = getFirstAssocScore(NEW.Score);
+			SET NEW.Classement = getFirstAssocScore(NEW.Score, NEW.Classement);
     END IF;
 END$
  
@@ -149,5 +149,3 @@ INSERT INTO competitions VALUES(null, "Compétition Tutoriel", "Bordeaux", "2018
 INSERT INTO competitions VALUES(null, "Festival Tutoriel", "Nantes", "2019-7-24, 0:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 0);
 INSERT INTO competitions VALUES(null, "Course Spécial", "Nice", "2018-6-16, 21:30:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 1);
 INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 1);
- 
-SELECT * FROM associations_competitions;

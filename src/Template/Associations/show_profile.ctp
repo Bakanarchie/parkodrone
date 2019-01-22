@@ -1,3 +1,4 @@
+
 <br>
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
@@ -11,8 +12,6 @@
 
 
                     <div class="three column row">
-
-
                         <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px ; font-family: Oswald">
                             <?=$assocActu->nom?>
                         </div>
@@ -29,8 +28,8 @@
                                 if(!($assocActu->nom == "Park'O'Drone")){
                                     echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black']).'</div>';
                                 }
-                                echo '<div class="item">Ajouter temps</div>
-                                        <div class="item">Ajouter score</div>';
+                                echo '<div class="item">Ajouter temps</div>';
+                                echo '<div class="item">'.$this->Html->link('Ajouter Score','/admin/ajouterscore/'.$assocActu->id,['style'=>'color: black']).'</div>';
                                 if(!($assocActu->nom == "Park'O'Drone")){
                                     if($assocActu->groupe == "admin"){
                                         echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
@@ -75,7 +74,7 @@
                     <?php
                      echo '<p><span><t style="font-size:large"> Score total : </t>  <t style="font-size:xx-large ; font-weight:900; font-family: Oswald">' , $assocActu->score ,' pts</t> <t style="font-size:large ; font-weight:100;font-family: Oswald">( X', $assocActu->position ,' ème )</t></span></p>';
 
-                    ?>
+                   ?>
                 </div>
 
 
@@ -89,10 +88,30 @@
                     ?>
                 </table>
             </div>
-            <div class=" eight wide column">
+             <div class=" eight wide column">
                 <div class="ui stackable grid">
                     <div class="four column row">
+                        <div class="column" style="text-align: right">
+                        </div>
+                        <div class="column" style="text-align: right">
+                            <button class="ui rounded button">Statistiques</button>
+                        </div>
+                        <div class="column" style="text-align: right">
+                            <?php if($assocActu->id != $this->request->getSession()->read('currUser') && $this->request->getSession()->read('currUser') != null) echo $this->Html->link('<button class="ui rounded button">Défier</button>','/defier/'.$assocActu->id,['escape'=>false]); ?>
+                        </div>
+                        <div class="column" style="text-align: right">
+                            <button class="ui rounded button">
+                                <div class="ui dropdown">
+                                    Plus
+                                    <i class="ui dropdown icon"></i>
+                                    <div class="ui vertical divider"></div>
+                                    <div class="menu">
+                                        <div class="item">Toast</div>
+                                    </div>
+                                </div>
+                            </button>
 
+                        </div>
                     </div>
                     <table>
 
