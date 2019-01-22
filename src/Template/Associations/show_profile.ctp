@@ -1,6 +1,8 @@
+
+<br>
 <div class="ui container">
     <div class="ui fluid stackable grid container" >
-        <div class="two column row" style="background-color: #b9b9b9">
+        <div class="two column  row" style="background-image: url(../img/whitebg.png)">
             <div class="ui four wide column">
                 <?= $this->Html->image($assocActu->filename, ['style'=>'width:auto; height:auto']); ?>
             </div>
@@ -10,9 +12,7 @@
 
 
                     <div class="three column row">
-
-
-                        <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px">
+                        <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px ; font-family: Oswald">
                             <?=$assocActu->nom?>
                         </div>
 
@@ -48,7 +48,7 @@
                         <div class="column" style="text-align: center">
                             <?php
                             if(trim($assocActu->website) != ""){
-                                echo $this->Html->link('<button class="ui gray circular button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank', 'style'=>'margin-top: 10px']);
+                                echo $this->Html->link('<button class="ui simple black circular button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank', 'style'=>'margin-top: 10px']);
                             } ?>
                         </div>
 
@@ -72,13 +72,13 @@
             <div class=" six wide column">
                 <div class="inline" style="text-align:left ; width = auto">
                     <?php
-                     echo '<p><span><t style="font-size:large"> Score total : </t>  <t style="font-size:xx-large ; font-weight:900">' , $assocActu->score ,'</t> <t style="font-size:large ; font-weight:100">( ', $assocActu->score ,' ème )</t></span></p>';
+                     echo '<p><span><t style="font-size:large"> Score total : </t>  <t style="font-size:xx-large ; font-weight:900; font-family: Oswald">' , $assocActu->score ,' pts</t> <t style="font-size:large ; font-weight:100;font-family: Oswald">( X', $assocActu->position ,' ème )</t></span></p>';
 
-                    ?>
+                   ?>
                 </div>
 
 
-                <table class="ui yellow celled table">
+                <table class="ui celled table">
                     <thead>
                         <th>Derniers duels</th>
                     </thead>
@@ -124,3 +124,4 @@
         </div>
 
 </div>
+    <br>

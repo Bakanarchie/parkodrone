@@ -1,23 +1,19 @@
 body{
-    background-color:#f2f2f2;
+	background-color: rgb(181, 184, 179);
+    background-image: url(../img/bg.png);
     color: black;
+
 }
 
 label{
-    color:black;
+	color:black;
 }
 
 table a{
     color:black;
 }
 
-footer {
-    position:-ms-device-fixed;
-    bottom:0;
-    width:100%;
-    height:5%;   /* Height of the footer */
+@font-face {
+    font-family: Oswald; src: url(../font/Oswald-Light.ttf);
 }
 
-footer span{
-    margin-top: 50%;
-}
