@@ -32,7 +32,7 @@ class CompetitionsController extends AppController
             $this->redirect($this->referer());
         }
         else{
-            
+
         }
     }
 
