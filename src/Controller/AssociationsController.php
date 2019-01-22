@@ -125,7 +125,7 @@ class AssociationsController extends AppController
                     $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
                     if($assoc_new == null){
                         if(!$this->Associations->save($toSave)){
-                            dd($toSave);
+                            //dd($toSave);
                             $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
                             $this->redirect($this->referer());
                         }

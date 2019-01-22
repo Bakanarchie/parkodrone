@@ -11,7 +11,7 @@
         );
 
         echo $this->Form->control(
-            'NomCompet',
+            'NomCompetition',
             [
                 'class'=>'ui input',
                 'label'=>'Nom de la compétition : '

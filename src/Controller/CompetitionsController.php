@@ -32,7 +32,18 @@ class CompetitionsController extends AppController
             $this->redirect($this->referer());
         }
         else{
-
+            $comp = $this->Competitions
+                ->find()
+                ->where(['NomCompetition' => $data['NomCompet']])
+                ->first();
+            $data['terminee'] = 0;
+            $tosave = $this->Competitions->newEntity($data);
+            if($comp == null){
+                if(!$this->Competition->save($tosave)){
+                    $this->Flash->error('Il y a eu une erreur lors de la sauvegarde des données.');
+                    $this->redirect($this->referer());
+                }
+            }
         }
     }
 
