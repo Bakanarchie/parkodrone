@@ -67,11 +67,12 @@ CREATE TABLE duels(
 );
 
 CREATE TABLE associations_duels(
-	duelId int not null,
-    assocId int not null,
-    FOREIGN KEY (duelId) REFERENCES duels(id),
-    FOREIGN KEY (assocId) REFERENCES associations(id),
-    PRIMARY KEY (duelId, assocId)
+	duel_id int not null,
+    association_id int not null,
+    PRIMARY KEY (association_id, duel_id),
+    FOREIGN KEY (duel_id) REFERENCES duels(id),
+    FOREIGN KEY (association_id) REFERENCES associations(id)	
+    
 );
 
 DROP TRIGGER IF EXISTS updateClassement;
