@@ -119,7 +119,15 @@ END$
  BEGIN
 	SET NEW.Score = 0;
     SET NEW.Classement = (SELECT Classement FROM associations ORDER BY Classement DESC LIMIT 1)+1;
+    SET NEW.groupe = 'user';
  END$
+ 
+ CREATE TRIGGER updtClass AFTER DELETE ON associations
+ FOR EACH ROW
+ BEGIN
+	UPDATE Associations SET Classement = Classement+1 WHERE Classement >= OLD.Classement;
+    
+    END$
  
  DELIMITER ;
  
