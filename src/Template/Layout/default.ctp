@@ -49,13 +49,13 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
         <div class="left yellow item">
             <?= $this->Html->link($this->Html->image('Park\'o\'Drone.png', ['class'=>'ui small image', 'style'=>'height:100%', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
         </div>
-        <div class=" yellow item">
+        <div class="item">
             <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input']) ?>
-            <input class="ui action input" placeholder="Rechercher une entreprise, une compétition..."  name="content">
+            <input class="ui action input" placeholder="Rechercher une entreprise, une compétition..." name="content">
             <button class="ui gray button icon"><i class="search icon"></i></button>
             <?= $this->Form->end(); ?>
         </div>
-        <div class="right yellow item" style="background-color: #101011 ; border-color: #101011" >
+        <div class="item" style="background-color: #101011 ; border-color: #101011" >
                 <?php
 
                 if($this->request->getSession()->read('currUser') != null){

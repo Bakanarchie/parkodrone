@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -20,4 +19,5 @@ class DuelsTable extends Table
         parent::initialize($config);
         $this->belongsToMany('Associations');
     }
+
 }

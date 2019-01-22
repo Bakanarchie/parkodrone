@@ -1,5 +1,4 @@
-<div class="ui container" style="background-image: url(img/blocbg.png)" >
-
+<div class="ui container">
 <?php
 echo $this->Form->create(
     $assoc,
@@ -67,7 +66,11 @@ echo $this->Form->control(
         'style'=>'margin-bottom:20px'
     ]
 );
-
+ echo '<br>';
+  echo 'Veuillez uploader la photo de votre entreprise:';
+  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
+  
+  echo '<br>';
 echo $this->Form->button(
     'Confirmer l\'inscription',
     [
