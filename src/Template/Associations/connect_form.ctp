@@ -1,6 +1,7 @@
 
 <div class="ui container">
-<?php
+
+    <?php
 
 
 echo $this->Form->create(
