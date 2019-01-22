@@ -2,10 +2,10 @@
     <div class="ui fluid stackable grid container" >
         <div class="two column row" style="background-color: #b9b9b9">
             <div class="ui four wide column">
-                <?= $this->Html->image($assocActu->filename, ['style'=>'width:100%; height:auto;']); ?>
+                <?= $this->Html->image($assocActu->filename, ['style'=>'width:auto; height:auto']); ?>
             </div>
             <div class="twelve wide column">
-                <div class="ui fluid stackable grid container">
+                <div class="ui fluid grid container">
 
 
 
@@ -15,6 +15,8 @@
                         <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px">
                             <?=$assocActu->nom?>
                         </div>
+
+
                         <div class="column">
                             <?php
                             if($this->request->getSession()->read('isAdmin')){
@@ -56,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row" style="text-align: justify;  "><?= $assocActu->description ?></div>
             </div>
         </div>
@@ -73,6 +76,9 @@
 
                     ?>
                 </div>
+
+
+                <table class="ui yellow celled table">
                     <thead>
                         <th>Derniers duels</th>
                     </thead>
@@ -82,7 +88,7 @@
                     ?>
                 </table>
             </div>
-            <div class=" eight wide column">
+             <div class=" eight wide column">
                 <div class="ui stackable grid">
                     <div class="four column row">
                         <div class="column" style="text-align: right">
@@ -116,4 +122,5 @@
                 </div>
             </div>
         </div>
+
 </div>

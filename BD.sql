@@ -2,10 +2,9 @@ use p1703235;
 SET SQL_SAFE_UPDATES = 0;
 
 DROP TABLE IF EXISTS 
-resultat,
-duels_associations,
+resultat, 
 duels,
-achievements_associations, 
+associations_achievements, 
 associations_competitions, 
 achievements, 
 associations, 
@@ -30,7 +29,6 @@ CREATE TABLE competitions(
     NomCompetition Text,
     Lieu Text,
     DateCompet datetime,
-    Description Text,
     terminee bool,
     PRIMARY KEY(id)
 );
@@ -41,7 +39,7 @@ CREATE TABLE achievements(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE achievements_associations(
+CREATE TABLE associations_achievements(
 	association_id int,
     achievement_id int,
     date_obtention datetime,
@@ -60,17 +58,25 @@ CREATE TABLE associations_competitions(
 
 CREATE TABLE duels(
 	id int not null auto_increment,
+	assocOne int,
+    assocTwo int,
     duelDate datetime,
     message text,
+    CONSTRAINT FOREIGN KEY(assocOne) REFERENCES associations(id),
+    CONSTRAINT FOREIGN KEY(assocTwo) REFERENCES associations(id),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE duels_associations(
-	duelId int not null,
-    assocId int not null,
-    FOREIGN KEY (duelId) REFERENCES duels(id),
-    FOREIGN KEY (assocId) REFERENCES associations(id),
-    PRIMARY KEY (duelId, assocId)
+CREATE TABLE resultat(
+	assocId int not null,
+    isDuel boolean,
+    score int,
+    compId int,
+    duelId int,
+    CONSTRAINT FOREIGN KEY(assocId) REFERENCES associations(id),
+    CONSTRAINT FOREIGN KEY(compId) REFERENCES competitions(id),
+    CONSTRAINT FOREIGN KEY(duelId) REFERENCES duels(id),
+    PRIMARY KEY (assocId, score, isDuel)
 );
 
 DROP TRIGGER IF EXISTS updateClassement;
@@ -129,14 +135,10 @@ INSERT INTO associations VALUES(null, "NeoAgri", "Lorem ipsum dolor sit amet, co
 
 
 /*LIGNE GENEREE AUTOMATIQUEMENT*/
-INSERT INTO competitions VALUES(null, "Festival Turbo", "Lyon", "2018-5-27, 3:15:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 1);
-INSERT INTO competitions VALUES(null, "Compétition Turbo", "Paris", "2019-7-21, 5:45:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 0);
-INSERT INTO competitions VALUES(null, "Course Expert", "Lyon", "2018-0-20, 1:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 1);
-INSERT INTO competitions VALUES(null, "Festival Eclair", "Nice", "2019-9-22, 4:15:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 0);
-INSERT INTO competitions VALUES(null, "Grand Prix Eclair", "Bourg-en-Bresse", "2019-8-6, 1:15:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 0);
-INSERT INTO competitions VALUES(null, "Compétition Tutoriel", "Bordeaux", "2018-11-6, 6:30:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 1);
-INSERT INTO competitions VALUES(null, "Festival Tutoriel", "Nantes", "2019-7-24, 0:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 0);
-INSERT INTO competitions VALUES(null, "Course Spécial", "Nice", "2018-6-16, 21:30:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 1);
-INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", 1);
+INSERT INTO competitions VALUES(null, "Festival Turbo", "Lyon", "2018-5-27, 3:15:00", 1);INSERT INTO competitions VALUES(null, "Compétition Turbo", "Paris", "2019-7-21, 5:45:00", 0);INSERT INTO competitions VALUES(null, "Course Expert", "Lyon", "2018-0-20, 1:00:00", 1);INSERT INTO competitions VALUES(null, "Festival Eclair", "Nice", "2019-9-22, 4:15:00", 0);INSERT INTO competitions VALUES(null, "Grand Prix Eclair", "Bourg-en-Bresse", "2019-8-6, 1:15:00", 0);INSERT INTO competitions VALUES(null, "Compétition Tutoriel", "Bordeaux", "2018-11-6, 6:30:00", 1);INSERT INTO competitions VALUES(null, "Festival Tutoriel", "Nantes", "2019-7-24, 0:00:00", 0);INSERT INTO competitions VALUES(null, "Course Spécial", "Nice", "2018-6-16, 21:30:00", 1);
+
+
+
+INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00", 1);
  
 SELECT * FROM associations_competitions;
