@@ -12,7 +12,7 @@ class AssociationsController extends AppController
 
 
     public function index(){
-        $associations = $this->Associations->find('all')->toArray();
+        $associations = $this->Associations->find('all')->order(['classement'=>'ASC'])->toArray();
         $competitions = $this->Associations->Competitions->find('all')->contain('Associations')->toArray();
         $this->set(compact('associations'));
         $this->set(compact('competitions'));
@@ -99,7 +99,7 @@ class AssociationsController extends AppController
         $data = $this->getRequest()->getData();
         foreach($data as $key=>$dat){
             if($key != 'file')
-            $data[$key] = htmlspecialchars($data[$key]);
+                $data[$key] = htmlspecialchars($data[$key]);
         }
         if((trim($data['mdp']) != trim($data['confmdp'])) || empty($data['mdp'])){
             $this->Flash->error('Erreur lors de la confirmation de votre mot de passe.');
@@ -141,11 +141,8 @@ class AssociationsController extends AppController
                         $this->redirect($this->referer());
                     }
                 }
-
             }
         }
-
-
     }
 
     public function search(){
@@ -225,7 +222,7 @@ class AssociationsController extends AppController
         }
         else{
             $association = $this->Associations->get($id);
-            if($association->nom == "Park'O'Drone" || $association->id == $this->request->getSession()->read('currUser')){
+            if($association->nom == "Park'O'Drone"){
                 $this->Flash->error('Erreur : Cette entreprise est intouchable.');
                 $this->redirect($this->referer());
             }
@@ -254,15 +251,58 @@ class AssociationsController extends AppController
         }
         else{
             $association = $this->Associations->get($id);
-            if($association->nom == "Park'O'Drone" || $association->id == $this->request->getSession()->read('currUser')){
+            if($association->nom == "Park'O'Drone"){
                 $this->Flash->error('Erreur : Cette entreprise est intouchable.');
                 $this->redirect($this->referer());
             }
             else{
                 $this->Associations->delete($association);
+				
                 $this->redirect('/');
             }
 
         }
+    }
+
+    public function addScoreForm($id){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else {
+            $toEdit = $this->Associations->get($id);
+            $this->set(compact('toEdit'));
+        }
+
+    }
+
+    public function addScore(){
+        if(!$this->request->getSession()->read('isAdmin')){
+            $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
+            $this->redirect('/');
+        }
+        else {
+            $data = $this->getRequest()->getData();
+            $toEdit = $this->Associations->get($data['id']);
+            $toEdit->score = $data['Associations']['score'];
+            $assocAll = $this->Associations->find('all')->select()->order(['score'=>'ASC'])->toArray();
+            $newClassement = 1;
+            foreach ($assocAll as $assocTemp){
+                if($assocTemp->score > $toEdit->score){
+                    $newClassement++;
+                }
+            }
+			$toEdit->classement = $newClassement;
+            foreach ($assocAll as $assocTemp){
+                if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id){
+                    $assocTemp->classement++;
+                }
+            }
+            foreach($assocAll as $key=>$assocTemp){
+                $this->Associations->save($assocTemp);
+            }
+            $this->Associations->save($toEdit);
+        }
+
     }
 }
