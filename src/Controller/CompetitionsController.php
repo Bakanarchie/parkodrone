@@ -15,7 +15,6 @@ class CompetitionsController extends AppController
     public function declareAsOver($id){
         $currComp = $this->Competitions->get($id);
     }
-
     public function createComp(){
         if(!($this->request->getSession()->read('isAdmin'))){
             $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
@@ -32,11 +31,15 @@ class CompetitionsController extends AppController
             $this->redirect($this->referer());
         }
         else{
+            dd($data);
+            move_uploaded_file($data['file']['tmp_name'],
+                WWW_ROOT.'img/'.strtolower($data['file']['name']));
             $comp = $this->Competitions
                 ->find()
                 ->where(['NomCompetition' => $data['NomCompet']])
                 ->first();
             $data['terminee'] = 0;
+            $data['Image'] = strtolower($data['file']['name']);
             $tosave = $this->Competitions->newEntity($data);
             if($comp == null){
                 if(!$this->Competition->save($tosave)){

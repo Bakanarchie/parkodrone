@@ -2,12 +2,13 @@
 <?php
 echo $this->Form->create(
     $assoc,
-    [   'type' => 'file',
+    [
         'url'=>[
             'controller'=>'associations',
             'action'=>'register'
         ],
-        'class'=>'ui form'
+        'class'=>'ui form',
+        'type' => 'file'
     ]
 );
 
@@ -22,7 +23,6 @@ echo $this->Form->control(
 );
 
 
-
 echo 'Décrivez votre activté en quelques mots:';
 echo $this->Form->textarea(
     'description',
@@ -33,16 +33,6 @@ echo $this->Form->textarea(
         'style'=>'height:150px ; margin-bottom:5px'
     ]
 );
-
-echo $this->Form->control(
-    'website',
-    [
-        'class'=>'ui input',
-        'label'=>'Site Web de votre Entreprise :',
-        'maxlength'=>'64'
-    ]
-);
-
 
 echo $this->Form->control(
     'domaine',
@@ -82,7 +72,6 @@ echo $this->Form->control(
   echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
   
   echo '<br>';
-  
 echo $this->Form->button(
     'Confirmer l\'inscription',
     [

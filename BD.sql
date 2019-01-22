@@ -3,7 +3,7 @@ SET SQL_SAFE_UPDATES = 0;
 
 DROP TABLE IF EXISTS 
 resultat,
-duels_associations,
+associations_duels,
 duels,
 achievements_associations, 
 associations_competitions, 
@@ -31,6 +31,7 @@ CREATE TABLE competitions(
     Lieu Text,
     DateCompet datetime,
     Description Text,
+    Image text,
     terminee bool,
     PRIMARY KEY(id)
 );
@@ -65,7 +66,7 @@ CREATE TABLE duels(
     PRIMARY KEY(id)
 );
 
-CREATE TABLE duels_associations(
+CREATE TABLE associations_duels(
 	duelId int not null,
     assocId int not null,
     FOREIGN KEY (duelId) REFERENCES duels(id),

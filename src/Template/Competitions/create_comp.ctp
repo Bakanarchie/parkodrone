@@ -6,7 +6,8 @@
                     'url'=>[
                 'controller'=>'competition',
                 'action'=>'saveNewComp'],
-                    'class'=>'ui form'
+                    'class'=>'ui form',
+                'type' => 'file'
             ]
         );
 
@@ -39,6 +40,17 @@
       ]
     );
 
+    echo '<br>';
+    echo 'Ajoutez une image pour la compétition : ';
+    echo $this->Form->file('file', ['Image pour la compétition']);
+    echo '</br>';
+
+    echo $this->Form->button(
+        'Confirmer la création de la compétition',
+        [
+            'class'=>'ui black button'
+        ]
+    );
         echo $this->Form->end();
     ?>
 </div>
