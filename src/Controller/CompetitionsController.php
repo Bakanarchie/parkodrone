@@ -27,10 +27,10 @@ class CompetitionsController extends AppController
     public function saveNewComp(){
         $data = $this->getRequest()->getData();
         foreach($data as $key=>$dat){
-            if($key != 'file')
+            if($key != 'file' && $key != 'DateCompet')
             $data[$key] = htmlspecialchars($data[$key]);
         }
-        dd($data);
+        //dd($data);
         if($data['file']['type'] != 'image/jpeg' || $data['file']['type'] != 'image/png'){
             $this->Flash->error('Veuillez choisir une image de type .jpeg ou .png!');
             $this->redirect($this->referer());
@@ -39,13 +39,20 @@ class CompetitionsController extends AppController
             WWW_ROOT.'img/'.strtolower($data['file']['name']));
         $comp = $this->Competitions
             ->find()
-            ->where(['NomCompetition' => $data['NomCompet']])
+            ->where(['NomCompetition' => $data['NomCompetition']])
             ->first();
-        $data['terminee'] = 0;
         $data['Image'] = strtolower($data['file']['name']);
-        $tosave = $this->Competitions->newEntity($data);
+        //dd($data);
+        $tosave = $this->Competitions->newEntity();
+        $tosave->NomCompetition = $data['NomCompetition'];
+        $tosave->Lieu = $data['Lieu'];
+        $tosave->DateCompet = $data['DateCompet'];
+        $tosave->Description = $data['Description'];
+        $tosave->Image = $data['Image'];
+        $tosave->terminee = 0;
+
         if($comp == null){
-            if(!$this->Competition->save($tosave)){
+            if(!$this->Competitions->save($tosave)){
                 $this->Flash->error('Il y a eu une erreur lors de la sauvegarde des données.');
                 $this->redirect($this->referer());
             }

@@ -22,7 +22,7 @@
         'DateCompet',
         [
             'class'=>'ui input',
-            'label'=>'Date de la compétition (format AAAA-MOMO-JJ HH:MiMi) : '
+            'label'=>'Date de la compétition (format AAAA-MoMo-JJ-HH-MiMi) : '
         ]
     );
     echo $this->Form->control(
