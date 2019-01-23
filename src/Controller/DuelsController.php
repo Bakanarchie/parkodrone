@@ -24,15 +24,23 @@ class DuelsController extends AppController
             }
             else{
                 $newDefi = $this->Duels->newEntity();
-                $idactu = $this->request->getSession()->read('currUser');
-                $assactu = $this->Duels->Associations
-                    ->get($idactu);
-                $association = $this->Duels->Associations
-                    ->get($id);
-                $this->set(compact('association'));
+                $allAssoc = $this->Duels->Associations->find()->select(['id', 'nom', 'description'])->toArray();
+                $toJson = array();
+                foreach($allAssoc as $key=>$assocTemp){
+                    if($assocTemp->id == $id || $assocTemp->id == $this->request->getSession()->read('currUser')){
+                        unset($allAssoc[$key]);
+                    }
+                }
+                $ctp = 0;
+                foreach($allAssoc as $assocTemp){
+                    $toJson[$ctp]['title'] = $assocTemp->nom;
+                    $toJson[$ctp]['description'] = $assocTemp->description;
+                    $ctp++;
+                }
+                $jsonString = utf8_encode(json_encode($toJson));
                 $this->set(compact('newDefi'));
                 $this->set(compact('id'));
-                $this->set(compact('assactu'));
+                $this->set(compact('jsonString'));
             }
         }
     }
@@ -60,6 +68,7 @@ class DuelsController extends AppController
                     $this->Flash->error('Erreur lors de l\'envoi de votre défi.');
                 }
                 else{
+
                     $assoc1 = $this->Duels->Associations->get($data['idAssoc2']);
                     $assoc2 = $this->Duels->Associations->get($this->request->getSession()->read('currUser'));
                     $this->Duels->Associations->link(
@@ -74,6 +83,22 @@ class DuelsController extends AppController
                             $assoc2
                         ]
                     );
+                    $ally = $this->Duels->Associations->find()->select()->where(['nom'=>$data['ally']])->first();
+                    if($ally != null && $ally->nom != $assoc1->nom && $ally->nom != $assoc2->nom){
+                        $allianceData = array();
+                        $allianceData['id'] = 0;
+                        $allianceData['association_id_1'] = $assoc2->id;
+                        $allianceData['association_id_2'] = $ally->id;
+                        $alliance = $this->Duels->Alliances->newEntity($allianceData);
+                        $this->Duels->Alliances->save($alliance);
+                        $alliance = $this->Duels->Alliances->find()->order(['id'=>'DESC'])->first();
+                        $this->Duels->Alliances->link(
+                            $defi,
+                            [
+                                $alliance
+                            ]
+                        );
+                    }
                     $this->redirect('/');
                 }
             }

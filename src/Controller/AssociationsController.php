@@ -159,8 +159,13 @@ class AssociationsController extends AppController
 
     public function showProfile($id)
     {
-        $assocActu = $this->Associations->get($id);//->contain(['achivements']);
-        //$duels = $this->Associations->Duels->find()->select()->where([['assocOne', 'assocTwo']=>$id]);
+        $assocActu = $this->Associations->get($id);
+        $compResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>false])->toArray();
+        $duelResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>true])->toArray();
+        if($compResults != null)
+        $this->set->compact('compResults');
+        if($duelResults != null)
+        $this->set->compact('duelResults');
         if($assocActu == null){
             $this->redirect('/');
         }

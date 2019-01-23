@@ -1,8 +1,6 @@
 
 <br>
 <div class="ui fluid unstackable container">
-
-
     <div class="ui fluid unstackable grid container" style="background-image: url(../img/whitebg.png)">
         <div class="two column row" >
 
