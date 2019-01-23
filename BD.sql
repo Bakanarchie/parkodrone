@@ -89,23 +89,8 @@ CREATE TABLE alliances(
 DROP TRIGGER IF EXISTS updateClassement;
 DROP TRIGGER IF EXISTS newClassement;
 DROP TRIGGER IF EXISTS updateScore;
-DROP FUNCTION IF EXISTS getFirstAssocScore;
 
 DELIMITER $
-
-CREATE FUNCTION getFirstAssocScore(score int , classement int) RETURNS INT
-BEGIN
-	DECLARE endloop BOOL;
-	DECLARE parcoursAssoc CURSOR FOR (SELECT classement, score FROM associations);
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET endloop:=1;
-    OPEN parcoursAssoc;
-    WHILE NOT (endloop) DO
-		IF parcoursAssoc.score < score THEN
-			SET classement := parcoursAssoc.classement;
-        END IF;
-    END WHILE;
-    RETURN id;
-END$
  
   INSERT INTO associations VALUES(null, "Park'O'Drone", "Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.", "Séminaires", "2ee61124a8695f5f3491df998d58a9160d7acac1ee28ec3578d158a1ff026ed4", 0, 1,'admin', 'Park\'o\'Drone.png', 'http://www.parkodrone.fr/')$
  
@@ -117,15 +102,8 @@ END$
     SET NEW.groupe = 'user';
  END$
  
- CREATE TRIGGER updtClass AFTER DELETE ON associations
- FOR EACH ROW
- BEGIN
-	UPDATE Associations SET Classement = Classement+1 WHERE Classement >= OLD.Classement;
-    
-    END$
  
  DELIMITER ;
- 
 INSERT INTO associations VALUES(null, "IUT Lyon 1", "L'Excellence Technologique", "Enseignement", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'IUTLYON1.jpg', 'https://iut.univ-lyon1.fr/');
 INSERT INTO associations VALUES(null, "BarrelRollGames", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue nisl erat, at auctor nulla semper non. Pellentesque convallis consectetur mauris, ac feugiat libero efficitur faucibus. In hac habitasse platea dictumst. Maecenas ut orci sit amet purus efficitur viverra. Nullam sit amet neque sodales, cursus felis ac, pellentesque nunc. Fusce vestibulum eleifend tellus, in euismod nunc ornare eu. Vestibulum vestibulum id enim vitae semper.", "Jeux Vidéos", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'barrel.png', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 INSERT INTO associations VALUES(null, "SohmatCorp.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue nisl erat, at auctor nulla semper non. Pellentesque convallis consectetur mauris, ac feugiat libero efficitur faucibus. In hac habitasse platea dictumst. Maecenas ut orci sit amet purus efficitur viverra. Nullam sit amet neque sodales, cursus felis ac, pellentesque nunc. Fusce vestibulum eleifend tellus, in euismod nunc ornare eu. Vestibulum vestibulum id enim vitae semper.", "Jeux Vidéos", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'truc.png', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
