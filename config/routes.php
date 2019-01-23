@@ -72,7 +72,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             ],
             'id'=>'[0-9]+'
         ]);
-		$routes->connect('/admin/ajouterscore/:id', ['controller' => 'Associations', 'action' => 'addScoreForm'],
+    $routes->connect('/admin/ajouterscore/:id', ['controller' => 'Associations', 'action' => 'addScoreForm'],
         [
             'pass'=>[
                 'id'

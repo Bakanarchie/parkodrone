@@ -1,7 +1,6 @@
 use p1703235;
 SET SQL_SAFE_UPDATES = 0;
-
-DROP TABLE IF EXISTS 
+alliances_duels,
 alliances,
 resultat,
 associations_duels,
@@ -63,6 +62,7 @@ CREATE TABLE associations_competitions(
 CREATE TABLE duels(
 	id int not null auto_increment,
     duelDate datetime,
+    isOver boolean,
     message text,
     PRIMARY KEY(id)
 );
@@ -78,17 +78,35 @@ CREATE TABLE associations_duels(
 
 
 CREATE TABLE alliances(
-	id int,
+	id int not null auto_increment,
 	association_id_1 int not null,
     association_id_2 int not null,
-    PRIMARY KEY (association_id_1, association_id_2),
+    PRIMARY KEY (id),
     FOREIGN KEY (association_id_1) REFERENCES associations(id),
     FOREIGN KEY (association_id_2) REFERENCES associations(id)
 );
+CREATE TABLE alliances_duels(
+	alliance_id int not null,
+	duel_id int not null,
+    PRIMARY KEY(alliance_id, duel_id),
+    FOREIGN KEY (alliance_id) REFERENCES alliances(id),
+    FOREIGN KEY (duel_id) REFERENCES duels(id)
+);
 
-DROP TRIGGER IF EXISTS updateClassement;
+CREATE TABLE results(
+	id int not null auto_increment,
+    idCompetition int,
+    idDuel int,
+    idAssoc int not null,
+    timeResult varchar(8),
+    isDuel boolean,
+    isWinner boolean,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idCompetition) REFERENCES competitions(id),
+    FOREIGN KEY(idDuel) REFERENCES duels(id),
+    FOREIGN KEY(idAssoc) REFERENCES associations(id)
+);
 DROP TRIGGER IF EXISTS newClassement;
-DROP TRIGGER IF EXISTS updateScore;
 
 DELIMITER $
  

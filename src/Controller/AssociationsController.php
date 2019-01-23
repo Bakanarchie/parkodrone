@@ -159,8 +159,13 @@ class AssociationsController extends AppController
 
     public function showProfile($id)
     {
-        $assocActu = $this->Associations->get($id);//->contain(['achivements']);
-        //$duels = $this->Associations->Duels->find()->select()->where([['assocOne', 'assocTwo']=>$id]);
+        $assocActu = $this->Associations->get($id);
+        $compResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>false])->toArray();
+        $duelResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>true])->toArray();
+        if($compResults != null)
+        $this->set->compact('compResults');
+        if($duelResults != null)
+        $this->set->compact('duelResults');
         if($assocActu == null){
             $this->redirect('/');
         }
@@ -279,30 +284,27 @@ class AssociationsController extends AppController
     public function addScore(){
         if(!$this->request->getSession()->read('isAdmin')){
             $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
-            $this->redirect('/');
         }
         else {
             $data = $this->getRequest()->getData();
             $toEdit = $this->Associations->get($data['id']);
+			$prevClass = $toEdit->classement;
             $toEdit->score = $data['Associations']['score'];
             $assocAll = $this->Associations->find('all')->select()->order(['score'=>'ASC'])->toArray();
             $newClassement = 1;
-            foreach ($assocAll as $assocTemp){
-                if($assocTemp->score > $toEdit->score){
-                    $newClassement++;
-                }
-            }
-
-			$toEdit->classement = $newClassement;
 			$modify = false;
+			foreach ($assocAll as $assocTemp){
+					if($assocTemp->score > $toEdit->score){
+						$newClassement++;
+					}
+				}
 			foreach ($assocAll as $assocTemp){
                 if($assocTemp->classement == $newClassement && $assocTemp->id != $toEdit->id){
                     $modify = true;
                 }
             }
-			if($modify){
-				foreach ($assocAll as $assocTemp){
-					if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id){
+			if($modify){foreach ($assocAll as $assocTemp){
+					if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id && $assocTemp->classement < $prevClass){
 						$assocTemp->classement++;
 					}
 				}
@@ -310,9 +312,10 @@ class AssociationsController extends AppController
 					$this->Associations->save($assocTemp);
 				}
 			}
+            $toEdit->classement = $newClassement;
             $this->Associations->save($toEdit);
 			$this->redirect('/');
         }
-
+		$this->redirect('/');
     }
 }

@@ -18,6 +18,7 @@ class DuelsTable extends Table
     {
         parent::initialize($config);
         $this->belongsToMany('Associations');
+        $this->belongsToMany('Alliances');
     }
 
 }
