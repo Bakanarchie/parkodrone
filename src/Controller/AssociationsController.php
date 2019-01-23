@@ -12,7 +12,7 @@ class AssociationsController extends AppController
 
 
     public function index(){
-        $associations = $this->Associations->find('all')->toArray();
+        $associations = $this->Associations->find('all')->order(['classement'=>'ASC'])->toArray();
         $competitions = $this->Associations->Competitions->find('all')->contain('Associations')->toArray();
         $this->set(compact('associations'));
         $this->set(compact('competitions'));
@@ -257,6 +257,7 @@ class AssociationsController extends AppController
             }
             else{
                 $this->Associations->delete($association);
+				
                 $this->redirect('/');
             }
 
@@ -276,7 +277,6 @@ class AssociationsController extends AppController
     }
 
     public function addScore(){
-
         if(!$this->request->getSession()->read('isAdmin')){
             $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
             $this->redirect('/');
@@ -285,6 +285,22 @@ class AssociationsController extends AppController
             $data = $this->getRequest()->getData();
             $toEdit = $this->Associations->get($data['id']);
             $toEdit->score = $data['Associations']['score'];
+            $assocAll = $this->Associations->find('all')->select()->order(['score'=>'ASC'])->toArray();
+            $newClassement = 1;
+            foreach ($assocAll as $assocTemp){
+                if($assocTemp->score > $toEdit->score){
+                    $newClassement++;
+                }
+            }
+			$toEdit->classement = $newClassement;
+            foreach ($assocAll as $assocTemp){
+                if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id){
+                    $assocTemp->classement++;
+                }
+            }
+            foreach($assocAll as $key=>$assocTemp){
+                $this->Associations->save($assocTemp);
+            }
             $this->Associations->save($toEdit);
         }
 

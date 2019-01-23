@@ -51,7 +51,7 @@
 
         <div>
 
-        <table class="ui  selectable compact  single line table" >
+        <table class="ui  selectable compact unstackable single line table" >
             <thead >
             <tr style="background-image:url(img/banner.png)">
                 <th colspan="4" ; style="background-image:url(img/banner.png)"><p style="font-size:large; font-family: Oswald, sans-serif ; color:#fefeff">CLASSEMENT GÉNÉRAL</p></th>

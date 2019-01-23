@@ -32,7 +32,7 @@
             'label'=>'Lieu de la compétition : '
         ]
     );
-
+    
     echo $this->Form->control(
         'Description',
         [
