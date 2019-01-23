@@ -78,6 +78,7 @@ CREATE TABLE associations_duels(
 
 
 CREATE TABLE alliances(
+	id int,
 	association_id_1 int not null,
     association_id_2 int not null,
     PRIMARY KEY (association_id_1, association_id_2),
@@ -92,14 +93,6 @@ DROP FUNCTION IF EXISTS getFirstAssocScore;
 
 DELIMITER $
 
-CREATE TRIGGER updateClassement AFTER UPDATE ON associations
-FOR EACH ROW
-BEGIN
-	IF NOT (NEW.Classement = OLD.Classement) THEN
-	UPDATE Associations SET Classement = Classement+1 WHERE Classement >= NEW.Classement;
-    END IF;
-END$
-
 CREATE FUNCTION getFirstAssocScore(score int , classement int) RETURNS INT
 BEGIN
 	DECLARE endloop BOOL;
@@ -112,14 +105,6 @@ BEGIN
         END IF;
     END WHILE;
     RETURN id;
-END$
-
-CREATE TRIGGER updateScore BEFORE UPDATE ON associations
-FOR EACH ROW
-BEGIN
-	IF NOT (NEW.Score = OLD.Score) THEN
-			SET NEW.Classement = getFirstAssocScore(NEW.Score, NEW.Classement);
-    END IF;
 END$
  
   INSERT INTO associations VALUES(null, "Park'O'Drone", "Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.", "Séminaires", "2ee61124a8695f5f3491df998d58a9160d7acac1ee28ec3578d158a1ff026ed4", 0, 1,'admin', 'Park\'o\'Drone.png', 'http://www.parkodrone.fr/')$
