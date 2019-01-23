@@ -24,8 +24,15 @@ class DuelsController extends AppController
             }
             else{
                 $newDefi = $this->Duels->newEntity();
+                $idactu = $this->request->getSession()->read('currUser');
+                $assactu = $this->Duels->Associations
+                    ->get($idactu);
+                $association = $this->Duels->Associations
+                    ->get($id);
+                $this->set(compact('association'));
                 $this->set(compact('newDefi'));
                 $this->set(compact('id'));
+                $this->set(compact('assactu'));
             }
         }
     }
