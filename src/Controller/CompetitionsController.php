@@ -71,9 +71,19 @@ class CompetitionsController extends AppController
 
     public function finishCompet($id){;
         $compet = $this->Competitions->get($id);
-        $compet->terminee = true;
+        $compet->terminee = 1;
         $this->Competitions->save($compet);
+        $assos = $this->Competitions
+                    ->find()
+                    ->contain(['Associations'])
+                    ->where(['id =' => $id]);
 
+        foreach($assos as $ass){
+            foreach($ass->associations as $association){
+                $this->Competitions->Associations->unlink($compet, [$association]);
+            }
+        }
+        $this->redirect('/');
     }
 
     public function finishCompetpg($id){
