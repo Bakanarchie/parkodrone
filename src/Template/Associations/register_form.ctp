@@ -10,7 +10,8 @@ echo $this->Form->create(
             'controller'=>'associations',
             'action'=>'register'
         ],
-        'class'=>'ui form'
+        'class'=>'ui form',
+        'type' => 'file'
     ]
 );
 
@@ -35,6 +36,18 @@ echo $this->Form->textarea(
         'style'=>'height:150px ; margin-bottom:5px'
     ]
 );
+
+echo '<br>';
+echo $this->Form->control(
+  'website',
+        [
+            'class'=>'ui input',
+            'label'=>'Site web de votre entreprise :',
+            'maxlength'=>'100',
+            'style'=>'margin-bottom:5px'
+        ]
+);
+echo '</br>';
 
 echo $this->Form->control(
     'domaine',
@@ -70,8 +83,10 @@ echo $this->Form->control(
     ]
 );
 
+  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
+  
 echo $this->Form->button(
-    'Confirmer l\'inscription',
+    '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
     [
         'class'=>'ui black button'
     ]
