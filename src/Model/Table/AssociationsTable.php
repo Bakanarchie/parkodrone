@@ -21,5 +21,4 @@ class AssociationsTable extends Table
         $this->belongsToMany('Achievements');
         $this->hasMany('Results');
     }
-
 }

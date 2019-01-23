@@ -1,7 +1,5 @@
 use p1703235;
 SET SQL_SAFE_UPDATES = 0;
-
-DROP TABLE IF EXISTS
 alliances_duels,
 alliances,
 resultat,
@@ -109,7 +107,6 @@ CREATE TABLE results(
     FOREIGN KEY(idDuel) REFERENCES duels(id),
     FOREIGN KEY(idAssoc) REFERENCES associations(id)
 );
-
 DROP TRIGGER IF EXISTS newClassement;
 
 DELIMITER $
