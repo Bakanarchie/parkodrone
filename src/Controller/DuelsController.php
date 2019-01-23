@@ -24,23 +24,8 @@ class DuelsController extends AppController
             }
             else{
                 $newDefi = $this->Duels->newEntity();
-                $allAssoc = $this->Duels->Associations->find()->select(['id', 'nom', 'description'])->toArray();
-                $toJson = array();
-                foreach($allAssoc as $key=>$assocTemp){
-                    if($assocTemp->id == $id || $assocTemp->id == $this->request->getSession()->read('currUser')){
-                        unset($allAssoc[$key]);
-                    }
-                }
-                $ctp = 0;
-                foreach($allAssoc as $assocTemp){
-                    $toJson[$ctp]['title'] = $assocTemp->nom;
-                    $toJson[$ctp]['description'] = $assocTemp->description;
-                    $ctp++;
-                }
-                $jsonString = utf8_encode(json_encode($toJson));
                 $this->set(compact('newDefi'));
                 $this->set(compact('id'));
-                $this->set(compact('jsonString'));
             }
         }
     }
@@ -68,7 +53,6 @@ class DuelsController extends AppController
                     $this->Flash->error('Erreur lors de l\'envoi de votre défi.');
                 }
                 else{
-
                     $assoc1 = $this->Duels->Associations->get($data['idAssoc2']);
                     $assoc2 = $this->Duels->Associations->get($this->request->getSession()->read('currUser'));
                     $this->Duels->Associations->link(
@@ -83,8 +67,6 @@ class DuelsController extends AppController
                             $assoc2
                         ]
                     );
-                    $ally = $this->Duels->Associations->find()->select()->where(['nom'=>$data['ally']])->first();
-                    $this->Duels->Associations->Associations->link($assoc2, [$ally]);
                     $this->redirect('/');
                 }
             }

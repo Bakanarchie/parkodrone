@@ -292,16 +292,26 @@ class AssociationsController extends AppController
                     $newClassement++;
                 }
             }
+
 			$toEdit->classement = $newClassement;
-            foreach ($assocAll as $assocTemp){
-                if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id){
-                    $assocTemp->classement++;
+			$modify = false;
+			foreach ($assocAll as $assocTemp){
+                if($assocTemp->classement == $newClassement && $assocTemp->id != $toEdit->id){
+                    $modify = true;
                 }
             }
-            foreach($assocAll as $key=>$assocTemp){
-                $this->Associations->save($assocTemp);
-            }
+			if($modify){
+				foreach ($assocAll as $assocTemp){
+					if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id){
+						$assocTemp->classement++;
+					}
+				}
+				foreach($assocAll as $key=>$assocTemp){
+					$this->Associations->save($assocTemp);
+				}
+			}
             $this->Associations->save($toEdit);
+			$this->redirect('/');
         }
 
     }

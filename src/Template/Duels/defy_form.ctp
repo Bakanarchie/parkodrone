@@ -35,39 +35,6 @@ echo $this->Form->control(
     ]
 );
 
-    echo '<div class="ui search">';
-
-        echo $this->Form->control(
-            'ally',
-            [
-                'class' => 'ui prompt input',
-                'label' => '',
-                'placeholder'=>'Faire appel à un allié'
-            ]
-        );
-       echo' <div class="results"></div>
-    </div>'
-?>
-    <script>
-
-
-
-        var content = <?= $jsonString ?>
-        ;
-
-        console.log(content);
-        $('.ui.search')
-            .search({
-                source : content,
-                searchFields   : [
-                    'title'
-                ],
-                fullTextSearch: false
-            })
-        ;
-    </script>
-
-    <?php
 echo $this->Form->hidden(
         'idAssoc2',
         [
@@ -76,10 +43,7 @@ echo $this->Form->hidden(
 );
 
 echo $this->Form->submit(
-    'DEFIER',
-    [
-            'class'=>'ui black button'
-    ]
+
 );
 
 echo $this->Form->end();
