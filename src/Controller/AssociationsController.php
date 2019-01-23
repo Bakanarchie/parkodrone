@@ -303,10 +303,7 @@ class AssociationsController extends AppController
                     $modify = true;
                 }
             }
-			if($modify){
-				
-				
-				foreach ($assocAll as $assocTemp){
+			if($modify){foreach ($assocAll as $assocTemp){
 					if($assocTemp->classement >= $newClassement && $assocTemp->id != $toEdit->id && $assocTemp->classement < $prevClass){
 						$assocTemp->classement++;
 					}
@@ -317,6 +314,7 @@ class AssociationsController extends AppController
 			}
             $toEdit->classement = $newClassement;
             $this->Associations->save($toEdit);
+			$this->redirect('/');
         }
 		$this->redirect('/');
     }

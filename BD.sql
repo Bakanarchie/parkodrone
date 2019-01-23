@@ -85,7 +85,6 @@ CREATE TABLE alliances(
     FOREIGN KEY (association_id_1) REFERENCES associations(id),
     FOREIGN KEY (association_id_2) REFERENCES associations(id)
 );
-
 CREATE TABLE alliances_duels(
 	alliance_id int not null,
 	duel_id int not null,
