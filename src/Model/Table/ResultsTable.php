@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: p1703235
- * Date: 17/12/2018
- * Time: 11:04
+ * Date: 23/01/2019
+ * Time: 12:12
  */
 
 namespace App\Model\Table;
@@ -11,15 +11,13 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class AssociationsTable extends Table
+class ResultsTable extends Table
 {
 
     public function initialize(array $config)
     {
         parent::initialize($config);
-        $this->belongsToMany('Competitions');
-        $this->belongsToMany('Achievements');
-        $this->hasMany('Results');
+        $this->hasOne('Associations');
     }
 
 }

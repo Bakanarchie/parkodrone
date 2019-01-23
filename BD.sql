@@ -64,6 +64,7 @@ CREATE TABLE associations_competitions(
 CREATE TABLE duels(
 	id int not null auto_increment,
     duelDate datetime,
+    isOver boolean,
     message text,
     PRIMARY KEY(id)
 );
@@ -95,9 +96,21 @@ CREATE TABLE alliances_duels(
     FOREIGN KEY (duel_id) REFERENCES duels(id)
 );
 
-DROP TRIGGER IF EXISTS updateClassement;
+CREATE TABLE results(
+	id int not null auto_increment,
+    idCompetition int,
+    idDuel int,
+    idAssoc int not null,
+    timeResult varchar(8),
+    isDuel boolean,
+    isWinner boolean,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idCompetition) REFERENCES competitions(id),
+    FOREIGN KEY(idDuel) REFERENCES duels(id),
+    FOREIGN KEY(idAssoc) REFERENCES associations(id)
+);
+
 DROP TRIGGER IF EXISTS newClassement;
-DROP TRIGGER IF EXISTS updateScore;
 
 DELIMITER $
  

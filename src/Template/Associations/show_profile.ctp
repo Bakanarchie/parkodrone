@@ -82,10 +82,26 @@
                     <thead>
                         <th>Derniers duels</th>
                     </thead>
+                    <tbody>
                     <?php
-
+                        if(isset($duelResults)){
+                            foreach($duelResults as $resultTemp){
+                                $enemy = $this->Associations->Duels->get($resultTemp->idDuel)->contain(['Associations']);
+                                foreach($enemy->associations as $assocTemp){
+                                    if($assocTemp->id != $assocActu->id) $enemy = $assocTemp;
+                                }
+                                echo '<tr><td><div class="ui row">';
+                                    echo $enemy->nom;
+                                echo '</div></td></tr>';
+                            }
+                        }
+                        else{
+                            echo '<tr><td>Rien à afficher pour le moment :(</td></tr>';
+                        }
 
                     ?>
+                    </tbody>
+
                 </table>
             </div>
              <div class=" eight wide column">
