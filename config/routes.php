@@ -72,13 +72,14 @@ Router::scope('/', function (RouteBuilder $routes) {
             ],
             'id'=>'[0-9]+'
         ]);
-    $routes->connect('/admin/createComp', ['controller' => 'Competitions', 'action' => 'createComp']);
-    $routes->connect('/compet/:id', ['controller' => 'Competitions', 'action' => 'affichedetail'],
+
+    $routes->connect('/admin/ajouterscore/:id', ['controller' => 'Associations', 'action' => 'addScoreForm'],
         [
             'pass'=>[
                 'id'
             ],
             'id'=>'[0-9]+'
         ]);
+    $routes->connect('/admin/createComp', ['controller' => 'Competitions', 'action' => 'createComp']);
     $routes->fallbacks(DashedRoute::class);
 });
