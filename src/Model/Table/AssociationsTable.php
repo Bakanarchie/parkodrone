@@ -19,6 +19,7 @@ class AssociationsTable extends Table
         parent::initialize($config);
         $this->belongsToMany('Competitions');
         $this->belongsToMany('Achievements');
+        $this->belongsToMany('Associations', ['joinTable'=>'alliances']);
     }
 
 }
