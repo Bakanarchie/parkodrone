@@ -114,13 +114,7 @@
 
             ]
         );
-        echo'<div class="row">
-                                <div class="ui black button  fluid" >
-                                    <p style="font-family: Oswald;font-size: x-large">
-                                    DEFIER !</p>
-                                </div>
-                           </div>';
-        echo $this->Form->submit();
+        echo $this->Form->submit('DEFIER !', ['class'=>"ui black button fluid", 'style'=>'font-family: Oswald;font-size: x-large']);
         echo $this->Form->end();
         ?>
     </div>

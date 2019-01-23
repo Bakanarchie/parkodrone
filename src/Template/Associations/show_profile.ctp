@@ -70,10 +70,10 @@
 
         <br><br>
     <div class="two column row">
-            <div class=" eight wide column">
+            <div class=" six wide column">
                 <div class="inline" style="text-align:left ; width = auto">
                     <?php
-                     echo '<p><span><t style="font-size:large"> Score total : </t>  <t style="font-size:xx-large ; font-weight:900; font-family: Oswald">' , $assocActu->score ,' pts</t> <t style="font-size:large ; font-weight:100;font-family: Oswald">( ', $assocActu->classement ,' ème )</t></span></p>';
+                     echo '<p><span><t style="font-size:large"> Score total : </t>  <t style="font-size:xx-large ; font-weight:900; font-family: Oswald">' , $assocActu->score ,' pts</t> <t style="font-size:large ; font-weight:100;font-family: Oswald">( X', $assocActu->position ,' ème )</t></span></p>';
 
                    ?>
                 </div>
