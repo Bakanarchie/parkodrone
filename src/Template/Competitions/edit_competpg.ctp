@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="ui container">
     <?php
     echo $this->Form->create(

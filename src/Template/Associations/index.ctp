@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <div style="background-image: url(img/bg.png)">
 <div  style="width: 100% ; height: auto; background-image: url(img/blocbg.png) ; margin-bottom: 3%">
     <div class="ui stackable grid">
