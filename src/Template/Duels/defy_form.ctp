@@ -74,13 +74,13 @@ echo $this->Form->hidden(
             'value' => $id
         ]
 );
-
-echo $this->Form->submit(
-    'DEFIER',
-    [
-            'class'=>'ui black button'
-    ]
-);
+            ]
+        );
+        echo $this->Form->submit('DEFIER !', ['class'=>"ui black button fluid", 'style'=>'font-family: Oswald;font-size: x-large']);
+        echo $this->Form->end();
+        ?>
+    </div>
+</div>
 
 echo $this->Form->end();
 
