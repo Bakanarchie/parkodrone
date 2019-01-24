@@ -162,10 +162,24 @@ class AssociationsController extends AppController
         $assocActu = $this->Associations->get($id);
         $compResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>false])->toArray();
         $duelResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>true])->toArray();
+
         if($compResults != null)
-        $this->set->compact('compResults');
-        if($duelResults != null)
-        $this->set->compact('duelResults');
+        $this->set(compact('compResults'));
+        $duelArray = array();
+        $isWinner = array();
+        if($duelResults != null){
+            foreach($duelResults as $resultTemp){
+                $enemy = $this->Associations->Duels->find()->where(['id'=>$resultTemp->idDuel])->contain(['Associations'])->first();
+                foreach($enemy->associations as $assocTemp){
+                    if($assocTemp->id != $assocActu->id) $enemy = $assocTemp;
+                }
+                $duelArray[] = $enemy;
+                $isWinner[] = $resultTemp->isWinner;
+
+            }
+        }
+        $this->set(compact('isWinner'));
+        $this->set(compact('duelArray'));
         if($assocActu == null){
             $this->redirect('/');
         }

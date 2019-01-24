@@ -1,35 +1,36 @@
+<div class="ui container">
 
-<br>
-<div class="ui fluid unstackable container">
-    <div class="ui fluid unstackable grid container" style="background-image: url(../img/whitebg.png)">
-        <div class="two column row" >
+    <div class="ui fluid stackable grid container" >
 
+        <div class="two column row" style="background-color: #b9b9b9">
 
-
-
-            <div class="four wide compact column">
-                <?= $this->Html->image($compet->Image, ['class'=>'ui small image']); ?>
+            <div class="ui four wide column">
+                <?= $this->Html->image($compet->Image, ['style'=>'width:100%; height:auto;']); ?>
             </div>
 
+            <div class="twelve wide column">
+                <div class="ui fluid stackable grid container">
 
-            <div class=" compact ten wide column" style="horiz-align: left">
+                        <div class="column">
+                            <div style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px">
+                                <?=$compet->NomCompetition?>
+                            </div>
+                            <div class="column">
+                                <div>
+                                    <i>
+                                        <?=$compet->Lieu?>
+                                    </i>
 
-                <div class="ui fluid container" style="horiz-align: left ; margin-top: 5px" >
+                                </div>
 
-                    <div class=" fluid column" style="font-weight: bold; vertical-align: top; horiz-align: left; text-align:left ; font-size: x-large ; ; font-family: Oswald">
-                        <?=$compet->NomCompetition?>
-                    </div>
-                    <div  style="text-align: left ; width: 200px ; margin-top: 10px ;margin-left: 0px">
-                        <?= $compet->Lieu ?>
+                                <div>
+                                    <?=$compet->Description?>
+                                </div>
 
-                    </div>
-
-
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
-
-        <div class="row" style="text-align: justify ; margin-left: 3%;margin-right: 3% ; margin-bottom: 15px"><?= $compet->Description ?></div>
-
     </div>
 </div>

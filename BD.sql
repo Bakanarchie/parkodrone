@@ -1,5 +1,8 @@
 use p1703235;
 SET SQL_SAFE_UPDATES = 0;
+
+DROP TABLE IF EXISTS
+results,
 alliances_duels,
 alliances,
 resultat,
@@ -107,6 +110,7 @@ CREATE TABLE results(
     FOREIGN KEY(idDuel) REFERENCES duels(id),
     FOREIGN KEY(idAssoc) REFERENCES associations(id)
 );
+
 DROP TRIGGER IF EXISTS newClassement;
 
 DELIMITER $
@@ -121,8 +125,8 @@ DELIMITER $
     SET NEW.groupe = 'user';
  END$
  
- 
  DELIMITER ;
+
 INSERT INTO associations VALUES(null, "IUT Lyon 1", "L'Excellence Technologique", "Enseignement", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'IUTLYON1.jpg', 'https://iut.univ-lyon1.fr/');
 INSERT INTO associations VALUES(null, "BarrelRollGames", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue nisl erat, at auctor nulla semper non. Pellentesque convallis consectetur mauris, ac feugiat libero efficitur faucibus. In hac habitasse platea dictumst. Maecenas ut orci sit amet purus efficitur viverra. Nullam sit amet neque sodales, cursus felis ac, pellentesque nunc. Fusce vestibulum eleifend tellus, in euismod nunc ornare eu. Vestibulum vestibulum id enim vitae semper.", "Jeux Vidéos", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'barrel.png', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 INSERT INTO associations VALUES(null, "SohmatCorp.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue nisl erat, at auctor nulla semper non. Pellentesque convallis consectetur mauris, ac feugiat libero efficitur faucibus. In hac habitasse platea dictumst. Maecenas ut orci sit amet purus efficitur viverra. Nullam sit amet neque sodales, cursus felis ac, pellentesque nunc. Fusce vestibulum eleifend tellus, in euismod nunc ornare eu. Vestibulum vestibulum id enim vitae semper.", "Jeux Vidéos", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'truc.png', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
@@ -142,4 +146,5 @@ INSERT INTO competitions VALUES(null, "Festival Tutoriel", "Nantes", "2019-7-24,
 INSERT INTO competitions VALUES(null, "Course Spécial", "Nice", "2018-6-16, 21:30:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 1);
 INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 1);
 
-
+ INSERT INTO results VALUES(null, null, 1, 1, "01:30:45", true, true);
+ INSERT INTO results VALUES(null, null, 1, 7, "01:31:48", true, false);
