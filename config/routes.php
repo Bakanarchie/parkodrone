@@ -43,7 +43,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             ],
             'id'=>'[0-9]+'
         ]);
-    $routes->connect('/competition/:id', ['controller' => 'Competitions', 'action' => 'show'],
+    $routes->connect('/compet/:id', ['controller' => 'Competitions', 'action' => 'affichedetail'],
         [
             'pass'=>[
                 'id'
