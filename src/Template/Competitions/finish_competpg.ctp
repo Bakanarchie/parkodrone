@@ -1,11 +1,3 @@
-<?php/*
-foreach ($competition as $compet){
-    foreach($compet->associations as $associations){
-        debug($associations);
-    }
-}
-*/
-?>
 <div class="ui eight wide column"  style="overflow-y: scroll ; height: 640px " id="foo">
 
     <div>
