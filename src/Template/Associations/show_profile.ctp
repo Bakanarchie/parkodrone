@@ -119,7 +119,6 @@
 
                         </div>
                     </div>
-
                     <div class="ui nine wide column">
                         <table class="ui fixed table " >
                             <thead>
@@ -133,7 +132,6 @@
                                 Not supported yet.
 
                             </div></th>
-
                         </table>
 
 
