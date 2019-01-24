@@ -1,11 +1,3 @@
-<?php/*
-foreach ($competition as $compet){
-    foreach($compet->associations as $associations){
-        debug($associations);
-    }
-}
-*/
-?>
 <div class="ui eight wide column"  style="overflow-y: scroll ; height: 640px " id="foo">
 
     <div>
@@ -39,6 +31,6 @@ foreach ($competition as $compet){
 
             ?>
         </table>
-        <?='<a href="././finishCompet/'.$id.'"><button class="ui black button icon">Finaliser</button></a>'?>
+        <?='<a href="../finishCompet/'.$id.'"><button class="ui black button icon">Finaliser</button></a>'?>
     </div>
 </div>
