@@ -149,6 +149,7 @@
                                 }
                                 if($this->request->getSession()->read('isAdmin')){
                                    echo '<a href="./competitions/finishCompetpg/'.$compTemp->id.'"><button class="ui black button icon">Terminer</button></a>';
+                                   echo '<a href="./competitions/editCompetpg/'.$compTemp->id.'"><button class="ui black button icon">Modifier</button></a>';
                                 }
                             }
                         echo '</td>';
