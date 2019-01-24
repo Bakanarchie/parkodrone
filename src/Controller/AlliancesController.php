@@ -12,5 +12,4 @@ namespace App\Controller;
 class AlliancesController extends AppController
 {
 
-
 }

@@ -39,6 +39,6 @@ foreach ($competition as $compet){
 
             ?>
         </table>
-        <?='<a href="../finishCompet/'.$id.'"><button class="ui black button icon">Finaliser</button></a>'?>
+        <?='<a href="././finishCompet/'.$id.'"><button class="ui black button icon">Finaliser</button></a>'?>
     </div>
 </div>
