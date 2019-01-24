@@ -29,6 +29,13 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Associations', 'action' => 'index']);
 	$routes->connect('/connexion', ['controller'=>'Associations','action'=>'connect']);
     $routes->connect('/inscrireCompet/:idComp', ['controller' => 'Associations', 'action' => 'registerToComp']);
+    $routes->connect('/defier/:id', ['controller' => 'Duels', 'action' => 'defyForm'],
+        [
+            'pass'=>[
+                'id'
+            ],
+            'id'=>'[0-9]+'
+        ]);
     $routes->connect('/profil/:id', ['controller' => 'Associations', 'action' => 'showProfile'],
         [
             'pass'=>[
@@ -36,14 +43,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             ],
             'id'=>'[0-9]+'
         ]);
-		$routes->connect('/defier/:id', ['controller' => 'Duels', 'action' => 'defyForm'],
-        [
-            'pass'=>[
-                'id'
-            ],
-            'id'=>'[0-9]+'
-        ]);
-    $routes->connect('/competition/:id', ['controller' => 'Competitions', 'action' => 'show'],
+    $routes->connect('/compet/:id', ['controller' => 'Competitions', 'action' => 'affichedetail'],
         [
             'pass'=>[
                 'id'
@@ -72,6 +72,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             ],
             'id'=>'[0-9]+'
         ]);
+
     $routes->connect('/admin/ajouterscore/:id', ['controller' => 'Associations', 'action' => 'addScoreForm'],
         [
             'pass'=>[
