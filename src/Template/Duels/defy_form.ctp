@@ -46,7 +46,6 @@
     <div class="container yellow fluid " style="background-color: #fff600 ; height: 5px"></div>
 </div>
 
-
     <div class="ui fluid container">
 
         <?php
@@ -59,6 +58,38 @@
                 ]
             ]
         );
+  echo '<div class="ui search">';
+
+        echo $this->Form->control(
+            'ally',
+            [
+                'class' => 'ui prompt input',
+                'label' => '',
+                'placeholder'=>'Faire appel à un allié'
+            ]
+        );
+       echo' <div class="results"></div>
+    </div>'
+?>
+    <script>
+
+
+
+        var content = <?= $jsonString ?>
+        ;
+
+        console.log(content);
+        $('.ui.search')
+            .search({
+                source : content,
+                searchFields   : [
+                    'title'
+                ],
+                fullTextSearch: false
+            })
+        ;
+    </script>
+  <?php
         echo $this->Form->hidden(
             'idAssoc2',
             [
@@ -83,13 +114,7 @@
 
             ]
         );
-        echo'<div class="row">
-                                <div class="ui black button  fluid" >
-                                    <p style="font-family: Oswald;font-size: x-large">
-                                    DEFIER !</p>
-                                </div>
-                           </div>';
-        echo $this->Form->submit();
+        echo $this->Form->submit('DEFIER !', ['class'=>"ui black button fluid", 'style'=>'font-family: Oswald;font-size: x-large']);
         echo $this->Form->end();
         ?>
     </div>

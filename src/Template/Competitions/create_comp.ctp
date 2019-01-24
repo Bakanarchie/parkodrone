@@ -32,6 +32,14 @@
             'label'=>'Lieu de la compétition : '
         ]
     );
+    
+    echo $this->Form->control(
+        'Description',
+        [
+            'class'=>'ui input',
+            'label'=>'Description de la compétition : '
+        ]
+    );
 
     echo '<br>';
     echo 'Ajoutez une image pour la compétition : ';

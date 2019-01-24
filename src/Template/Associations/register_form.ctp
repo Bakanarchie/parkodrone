@@ -83,7 +83,7 @@ echo $this->Form->control(
     ]
 );
 
-  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :'])
+  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
   
 echo $this->Form->button(
     '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
@@ -96,4 +96,3 @@ echo  $this->Form->end();
 
 echo '<br>';
 ?>
-</div></div></div>

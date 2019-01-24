@@ -1,5 +1,3 @@
-
-
 <div style="background-image: url(img/bg.png)">
 <div  style="width: 100% ; height: auto; background-image: url(img/blocbg.png) ; margin-bottom: 3%">
     <div class="ui stackable grid">
@@ -149,6 +147,9 @@
                                 else{
                                     echo '<a href="./associations/unregisterFromComp/'.$compTemp->id.'"><button class="ui black button icon"><i class="check icon"></i></button></a>';
                                 }
+                                if($this->request->getSession()->read('isAdmin')){
+                                   echo '<a href="./competitions/finishCompetpg/'.$compTemp->id.'"><button class="ui black button icon">Terminer</button></a>';
+                                }
                             }
                         echo '</td>';
                     echo '</tr>';
@@ -183,4 +184,3 @@
 
 <br><br><br>
 </div>
-
