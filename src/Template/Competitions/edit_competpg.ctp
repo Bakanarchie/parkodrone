@@ -1,25 +1,25 @@
 <div class="ui container">
     <?php
-        echo $this->Form->create(
-            $newCompetition,
-            [
-                    'url'=>[
+    echo $this->Form->create(
+        $competition,
+        [
+            'url'=>[
                 'controller'=>'competitions',
-                'action'=>'saveNewComp'],
-                    'class'=>'ui form',
-                'type' => 'file'
-            ]
-        );
+                'action'=>'editCompet'],
+            'class'=>'ui form',
+            'type' => 'file'
+        ]
+    );
 
     echo $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]);
 
-        echo $this->Form->control(
-            'NomCompetition',
-            [
-                'class'=>'ui input',
-                'label'=>'Nom de la compétition : '
-            ]
-        );
+    echo $this->Form->control(
+        'NomCompetition',
+        [
+            'class'=>'ui input',
+            'label'=>'Nom de la compétition : '
+        ]
+    );
     echo $this->Form->control(
         'DateCompet',
         [
@@ -34,7 +34,7 @@
             'label'=>'Lieu de la compétition : '
         ]
     );
-    
+
     echo $this->Form->control(
         'Description',
         [
@@ -54,6 +54,6 @@
             'class'=>'ui black button'
         ]
     );
-        echo $this->Form->end();
+    echo $this->Form->end();
     ?>
 </div>

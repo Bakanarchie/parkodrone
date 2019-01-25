@@ -1,11 +1,11 @@
 
-<br>
 <div class="ui fluid unstackable container">
+    <div class="ui container">
+        <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
+    </div>
     <div class="ui fluid unstackable grid container" style="background-image: url(../img/whitebg.png)">
+
         <div class="two column row" >
-
-
-
 
             <div class="four wide compact column">
                 <?= $this->Html->image($compet->Image, ['class'=>'ui small image']); ?>
