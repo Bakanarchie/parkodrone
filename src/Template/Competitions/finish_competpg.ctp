@@ -30,7 +30,6 @@
                         echo '</tr>';
                     }
                 }
-
                 ?>
             </table>
             <?='<a href="../finishCompet/'.$id.'"><button class="ui black button icon">Finaliser</button></a>'?>
