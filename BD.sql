@@ -96,14 +96,6 @@ CREATE TABLE alliances_duels(
     FOREIGN KEY (duel_id) REFERENCES duels(id)
 );
 
-CREATE TABLE alliances_duels(
-	alliance_id int not null,
-	duel_id int not null,
-    PRIMARY KEY(alliance_id, duel_id),
-    FOREIGN KEY (alliance_id) REFERENCES alliances(id),
-    FOREIGN KEY (duel_id) REFERENCES duels(id)
-);
-
 CREATE TABLE results(
 	id int not null auto_increment,
     idCompetition int,

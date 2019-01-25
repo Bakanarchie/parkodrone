@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -14,6 +13,5 @@ use Cake\ORM\Entity;
 
 class Result extends Entity
 {
-
 
 }
