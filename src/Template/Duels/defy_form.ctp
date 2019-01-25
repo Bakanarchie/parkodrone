@@ -2,9 +2,6 @@
 <div  class="fluid container" style="background-image: url(../img/whitebg.png)">
 <div  class="fluid container" style="width: 100% ; height: auto; background-image: url(../img/whoosh.gif); background-size: 100% 100%; margin-bottom: 5%; margin-top: 14px">
 
-
-
-
         <div class="ui grid container">
 
             <div class="ui six wide column" style="vertical-align: center">
@@ -47,7 +44,8 @@
 </div>
 
     <div class="ui fluid container">
-
+        <div class="ui container">
+            <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
         <?php
         echo $this->Form->create(
             $newDefi,
@@ -71,6 +69,7 @@
        echo' <div class="results"></div>
     </div>'
 ?>
+
     <script>
 
 
@@ -117,6 +116,7 @@
         echo $this->Form->submit('DEFIER !', ['class'=>"ui black button fluid", 'style'=>'font-family: Oswald;font-size: x-large']);
         echo $this->Form->end();
         ?>
+        </div>
     </div>
 </div>
 

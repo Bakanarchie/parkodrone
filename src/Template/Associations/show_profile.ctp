@@ -1,6 +1,10 @@
 <br>
 <div class="ui fluid unstackable container">
 
+    <div class="ui fluid grid container">
+        <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
+    </div>
+
 
     <div class="ui fluid grid container" style="background-image: url(../img/whitebg.png)">
         <div class="two column row" >

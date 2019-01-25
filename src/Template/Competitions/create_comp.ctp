@@ -11,6 +11,8 @@
             ]
         );
 
+    echo $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]);
+
         echo $this->Form->control(
             'NomCompetition',
             [
