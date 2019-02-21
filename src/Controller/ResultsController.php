@@ -11,5 +11,4 @@ namespace App\Controller;
 
 class ResultsController extends AppController
 {
-
 }
