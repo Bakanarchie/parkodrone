@@ -36,7 +36,7 @@
                 foreach($competitions as $compTemp){
                     echo '<tr>';
                     echo '<td>';
-                    echo $this->Html->link($compTemp->NomCompetition, '/competition/'.$compTemp->id);
+                    echo $this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                     echo '</td>';
                     echo '</tr>';
                 }
