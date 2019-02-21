@@ -1,7 +1,10 @@
 use p1703235;
 SET SQL_SAFE_UPDATES = 0;
 
-DROP TABLE IF EXISTS 
+DROP TABLE IF EXISTS
+results,
+alliances_duels,
+alliances,
 resultat,
 associations_duels,
 duels,
@@ -62,6 +65,7 @@ CREATE TABLE associations_competitions(
 CREATE TABLE duels(
 	id int not null auto_increment,
     duelDate datetime,
+    isOver boolean,
     message text,
     PRIMARY KEY(id)
 );
@@ -75,42 +79,33 @@ CREATE TABLE associations_duels(
     
 );
 
-DROP TRIGGER IF EXISTS updateClassement;
+
+CREATE TABLE alliances(
+	id int not null auto_increment,
+	association_id_1 int not null,
+    association_id_2 int not null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (association_id_1) REFERENCES associations(id),
+    FOREIGN KEY (association_id_2) REFERENCES associations(id)
+);
+
+CREATE TABLE results(
+	id int not null auto_increment,
+    idCompetition int,
+    idDuel int,
+    idAssoc int not null,
+    timeResult varchar(8),
+    isDuel boolean,
+    isWinner boolean,
+    PRIMARY KEY(id),
+    FOREIGN KEY (idCompetition) REFERENCES competitions(id),
+    FOREIGN KEY(idDuel) REFERENCES duels(id),
+    FOREIGN KEY(idAssoc) REFERENCES associations(id)
+);
+
 DROP TRIGGER IF EXISTS newClassement;
-DROP TRIGGER IF EXISTS updateScore;
-DROP FUNCTION IF EXISTS getFirstAssocScore;
 
 DELIMITER $
-
-CREATE TRIGGER updateClassement AFTER UPDATE ON associations
-FOR EACH ROW
-BEGIN
-	IF NOT (NEW.Classement = OLD.Classement) THEN
-	UPDATE Associations SET Classement = Classement+1 WHERE Classement >= NEW.Classement;
-    END IF;
-END$
-
-CREATE FUNCTION getFirstAssocScore(score int , classement int) RETURNS INT
-BEGIN
-	DECLARE endloop BOOL;
-	DECLARE parcoursAssoc CURSOR FOR (SELECT classement, score FROM associations);
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET endloop:=1;
-    OPEN parcoursAssoc;
-    WHILE NOT (endloop) DO
-		IF parcoursAssoc.score < score THEN
-			SET classement := parcoursAssoc.classement;
-        END IF;
-    END WHILE;
-    RETURN id;
-END$
-
-CREATE TRIGGER updateScore BEFORE UPDATE ON associations
-FOR EACH ROW
-BEGIN
-	IF NOT (NEW.Score = OLD.Score) THEN
-			SET NEW.Classement = getFirstAssocScore(NEW.Score, NEW.Classement);
-    END IF;
-END$
  
   INSERT INTO associations VALUES(null, "Park'O'Drone", "Park’o drone est une entreprise proposant des services événementiels sur mesure pour les entreprises, institutions et associations.", "Séminaires", "2ee61124a8695f5f3491df998d58a9160d7acac1ee28ec3578d158a1ff026ed4", 0, 1,'admin', 'Park\'o\'Drone.png', 'http://www.parkodrone.fr/')$
  
@@ -122,15 +117,8 @@ END$
     SET NEW.groupe = 'user';
  END$
  
- CREATE TRIGGER updtClass AFTER DELETE ON associations
- FOR EACH ROW
- BEGIN
-	UPDATE Associations SET Classement = Classement+1 WHERE Classement >= OLD.Classement;
-    
-    END$
  
  DELIMITER ;
- 
 INSERT INTO associations VALUES(null, "IUT Lyon 1", "L'Excellence Technologique", "Enseignement", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'IUTLYON1.jpg', 'https://iut.univ-lyon1.fr/');
 INSERT INTO associations VALUES(null, "BarrelRollGames", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue nisl erat, at auctor nulla semper non. Pellentesque convallis consectetur mauris, ac feugiat libero efficitur faucibus. In hac habitasse platea dictumst. Maecenas ut orci sit amet purus efficitur viverra. Nullam sit amet neque sodales, cursus felis ac, pellentesque nunc. Fusce vestibulum eleifend tellus, in euismod nunc ornare eu. Vestibulum vestibulum id enim vitae semper.", "Jeux Vidéos", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'barrel.png', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 INSERT INTO associations VALUES(null, "SohmatCorp.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam congue nisl erat, at auctor nulla semper non. Pellentesque convallis consectetur mauris, ac feugiat libero efficitur faucibus. In hac habitasse platea dictumst. Maecenas ut orci sit amet purus efficitur viverra. Nullam sit amet neque sodales, cursus felis ac, pellentesque nunc. Fusce vestibulum eleifend tellus, in euismod nunc ornare eu. Vestibulum vestibulum id enim vitae semper.", "Jeux Vidéos", "043e44016b72f2c1630a9db609238712e5f85da6cee0a8c0b73a357715191735", 0, 0, 'user', 'truc.png', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
@@ -149,3 +137,6 @@ INSERT INTO competitions VALUES(null, "Compétition Tutoriel", "Bordeaux", "2018
 INSERT INTO competitions VALUES(null, "Festival Tutoriel", "Nantes", "2019-7-24, 0:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 0);
 INSERT INTO competitions VALUES(null, "Course Spécial", "Nice", "2018-6-16, 21:30:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 1);
 INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2018-12-25, 00:00:00","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tortor arcu, aliquet et quam gravida, elementum ultrices tellus. Phasellus lacus tortor, congue nec congue vehicula, molestie et dolor. Proin eget commodo ex. Donec in imperdiet velit. Duis suscipit sapien vitae ligula ullamcorper, vel venenatis sem vulputate. Aenean cursus nisl at porta mattis. Nullam eleifend molestie arcu a vestibulum. Duis ac ex quis sem ornare luctus sed eu nisl. Ut odio metus, condimentum quis dui ac, vehicula auctor lacus. Praesent eget metus porttitor ipsum egestas tempus. Nam placerat eget odio in faucibus. Curabitur nisi turpis, blandit nec commodo consectetur, ultrices ac purus. Donec tempor efficitur auctor.", "Park'o'Drone.png", 1);
+
+
+/*INSERT INTO results VALUES(null, */

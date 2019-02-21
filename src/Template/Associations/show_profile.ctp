@@ -1,74 +1,79 @@
-
 <br>
-<div class="ui container">
-    <div class="ui fluid stackable grid container" >
-        <div class="two column  row" style="background-image: url(../img/whitebg.png)">
-            <div class="ui four wide column">
-                <?= $this->Html->image($assocActu->filename, ['style'=>'width:auto; height:auto']); ?>
+<div class="ui fluid unstackable container">
+
+    <div class="ui fluid grid container">
+        <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
+    </div>
+
+
+    <div class="ui fluid grid container" style="background-image: url(../img/whitebg.png)">
+        <div class="two column row" >
+
+
+
+
+            <div class="five wide compact column">
+                <?= $this->Html->image($assocActu->filename, ['class'=>'ui small image']); ?>
             </div>
-            <div class="twelve wide column">
-                <div class="ui fluid grid container">
 
 
+            <div class=" compact column" style="horiz-align: left">
 
-                    <div class="three column row">
-                        <div class="column" style="font-weight: bold; text-align:left ; font-size: xx-large ; margin-top: 7px ; font-family: Oswald">
+                <div class="ui fluid container" style="horiz-align: left ; margin-top: 5px" >
+
+                        <div class=" fluid column" style="font-weight: bold; vertical-align: top; horiz-align: left; text-align:left ; font-size: x-large ; ; font-family: Oswald">
                             <?=$assocActu->nom?>
                         </div>
-
-
-                        <div class="column">
-                            <?php
-                            if($this->request->getSession()->read('isAdmin')){
-                                echo '<div class="ui compact small menu">
-                                <div class="ui simple dropdown item">
-                                    Outils administratifs
-                                    <i class="dropdown icon"></i>
-                                    <div class="menu">';
-                                if(!($assocActu->nom == "Park'O'Drone")){
-                                    echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black']).'</div>';
-                                }
-                                echo '<div class="item">Ajouter temps</div>';
-                                echo '<div class="item">'.$this->Html->link('Ajouter Score','/admin/ajouterscore/'.$assocActu->id,['style'=>'color: black']).'</div>';
-                                if(!($assocActu->nom == "Park'O'Drone")){
-                                    if($assocActu->groupe == "admin"){
-                                        echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
-                                    }
-                                    else{
-                                        echo '<div class="item">'.$this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black'] ).'</div>';
-                                    }
-                                }
-                                echo '</div>
-                                </div>
-                            </div>';
-                            }
-                            ?>
-                        </div>
-
-                        <div class="column" style="text-align: center">
-                            <?php
-                            if(trim($assocActu->website) != ""){
-                                echo $this->Html->link('<button class="ui simple black circular button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank', 'style'=>'margin-top: 10px']);
-                            } ?>
-                        </div>
-
-                    <div class="one column row">
-                        <div class="column" style="text-align: left ; width: 200px ; margin-left: 3px">
+                        <div  style="text-align: left ; width: 200px ; margin-top: 10px ;margin-left: 0px">
                             <?= $assocActu->domaine ?>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row" style="text-align: justify;  "><?= $assocActu->description ?></div>
+                        </div>
+                    <?php
+                    if(trim($assocActu->website) != ""){
+                        echo $this->Html->link('<br><button class="ui simple compact black button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank']);
+                    } ?>
+
+                </div>
             </div>
         </div>
 
+             <?php
+             if($this->request->getSession()->read('isAdmin')){
+             echo '<div class="ui simple inverted compact small menu">
+                                <div class="ui circular simple dropdown item">
+                                    Outils administratifs
+                                    <div class="menu">';
+            if(!($assocActu->nom == "Park'O'Drone")){
+                echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black']).'</div>';
+            }
+            echo '<div class="item">Ajouter temps</div>';
+            echo '<div class="item">'.$this->Html->link('Ajouter Score','/admin/ajouterscore/'.$assocActu->id,['style'=>'color: black']).'</div>';
+            if(!($assocActu->nom == "Park'O'Drone")){
+                if($assocActu->groupe == "admin"){
+                    echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
+                }
+                else{
+                    echo '<div class="item">'.$this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black'] ).'</div>';
+                }
+            }
+            echo '</div>
+                                </div>
+                            </div>';
+        }
+        ?>
 
-        </div>
+          <div class="row" style="text-align: justify ; margin-left: 3%;margin-right: 3% "><?= $assocActu->description ?></div>
+
+    </div>
 
 
-        <br>
-        <div class="two column row">
+
+
+
+
+
+        <br><br>
+    <div class="two column row">
             <div class=" six wide column">
                 <div class="inline" style="text-align:left ; width = auto">
                     <?php
@@ -82,10 +87,26 @@
                     <thead>
                         <th>Derniers duels</th>
                     </thead>
+                    <tbody>
                     <?php
-
+                        if(isset($duelResults)){
+                            foreach($duelResults as $resultTemp){
+                                $enemy = $this->Associations->Duels->get($resultTemp->idDuel)->contain(['Associations']);
+                                foreach($enemy->associations as $assocTemp){
+                                    if($assocTemp->id != $assocActu->id) $enemy = $assocTemp;
+                                }
+                                echo '<tr><td><div class="ui row">';
+                                    echo $enemy->nom;
+                                echo '</div></td></tr>';
+                            }
+                        }
+                        else{
+                            echo '<tr><td>Rien à afficher pour le moment :(</td></tr>';
+                        }
 
                     ?>
+                    </tbody>
+
                 </table>
             </div>
              <div class=" eight wide column">

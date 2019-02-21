@@ -12,9 +12,6 @@ namespace App\Controller;
 class CompetitionsController extends AppController
 {
 
-    public function declareAsOver($id){
-        $currComp = $this->Competitions->get($id);
-    }
     public function createComp(){
         if(!($this->request->getSession()->read('isAdmin'))){
             $this->Flash->error('Vous devez être un administrateur pour accéder à cette page.');
@@ -65,12 +62,44 @@ class CompetitionsController extends AppController
                 }
             }
         }
-
-
     }
 
     public function affichedetail($id){
         $compet = $this->Competitions->get($id);
         $this->set(compact('compet'));
+    }
+
+    public function finishCompet($id){;
+        $compet = $this->Competitions->get($id);
+        $compet->terminee = true;
+        $this->Competitions->save($compet);
+
+    }
+
+    public function finishCompetpg($id){
+        $competition = $this->Competitions
+                            ->find()
+                            ->contain(['Associations'])
+                            ->where(['id =' => $id]);
+        $this->set(compact('competition'));
+        $this->set(compact('id'));
+    }
+
+    public function editCompetpg($id){
+        $competition = $this->Competitions->get($id);
+        $this->set(compact('competition'));
+    }
+
+    public function editCompet($id){
+        $data = $this->getRequest()->getData();
+        $data['Image'] = strtolower($data['file']['name']);
+        $competition = $this->Competitions->get($id);
+        $this->Competitions->patchEntity($competition, $data);
+        if(!$this->Competitions->save($competition)){
+            $this->Flash->error("Erreur lors de l'enregistrement de vos modifications!");
+            $this->redirect($this->referer());
+        }else{
+            $this->redirect('/');
+        }
     }
 }
