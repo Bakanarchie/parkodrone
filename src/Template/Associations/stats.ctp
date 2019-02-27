@@ -1,9 +1,7 @@
 <br>
 <script>
-    window.onload(){
-        $('#Ratio').progress({
-            percent: 65
-        });
+    window.onload = function(){
+        $('#barre').progress();
     }
 </script>
     <div class="ui fluid unstackable container">
@@ -15,7 +13,7 @@
 
     <div class="ui fluid grid container" style="background-image: url(../img/whitebg.png)">
         <div class="two column row" >
-            
+
             <div class="five wide compact column">
                 <?= $this->Html->image($assocActu->filename, ['class'=>'ui small image']); ?>
             </div>
@@ -40,7 +38,7 @@
                 </div>
 
             </div>
-            <table class="ui  selectable compact unstackable single line table">
+            <table class="ui compact unstackable single line table">
                 <thead>
                 <tr style="background-image:url(img/banner.png)">
                     <th colspan="4" ; style="background-color: #1a1a1a"><p style="font-size:large; font-family: Oswald, sans-serif ; color:#fefeff">DUELS</p></th>
@@ -61,7 +59,7 @@
                     </td>
                     <td>
                         <p>Victoires / Défaites</p>
-                        <div class="ui progress" id="Ratio">
+                        <div class="ui progress" data-percent="65" id="barre">
                             <div class="bar">
                                 <div class="progress"></div>
                             </div>
@@ -70,7 +68,7 @@
                 </tr>
             </table>
 
-            <table class="ui  selectable compact unstackable single line table">
+            <table class="ui compact unstackable single line table">
                 <thead>
                 <tr style="background-image:url(img/banner.png)">
                     <th colspan="4" ; style="background-color: #1a1a1a"><p style="font-size:large; font-family: Oswald, sans-serif ; color:#fefeff">COMPETITIONS</p></th>
