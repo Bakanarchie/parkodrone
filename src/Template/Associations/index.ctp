@@ -1,4 +1,3 @@
-
 <div style="background-image: url(img/bg.png)">
 <div  style="width: 100% ; height: auto; background-image: url(img/blocbg.png) ; margin-bottom: 3%">
     <div class="ui stackable grid">
@@ -127,11 +126,11 @@
             </tr>
             </thead>
             <?php
+
             foreach($competitions as $compTemp){
                 if(!$compTemp->terminee){
                     echo '<tr>';
                         echo '<td>';
-
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';
@@ -150,7 +149,6 @@
                                 }
                                 if($this->request->getSession()->read('isAdmin')){
                                    echo '<a href="./competitions/finishCompetpg/'.$compTemp->id.'"><button class="ui black button icon">Terminer</button></a>';
-                                   echo '<a href="./competitions/editCompetpg/'.$compTemp->id.'"><button class="ui black button icon">Modifier</button></a>';
                                 }
                             }
                         echo '</td>';

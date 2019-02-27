@@ -1,5 +1,5 @@
 <div class="ui container">
-    <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
+
     <div class="ui tabular menu">
         <div id="item1" class="item toAdd" data-tab="tab-name">Entreprises</div>
         <div class="item" data-tab="tab-name2">Compétitions</div>
@@ -36,7 +36,7 @@
                 foreach($competitions as $compTemp){
                     echo '<tr>';
                     echo '<td>';
-                    echo $this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
+                    echo $this->Html->link($compTemp->NomCompetition, '/competition/'.$compTemp->id);
                     echo '</td>';
                     echo '</tr>';
                 }
