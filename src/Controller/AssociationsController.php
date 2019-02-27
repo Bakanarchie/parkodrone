@@ -280,8 +280,14 @@ class AssociationsController extends AppController
                 $this->redirect($this->referer());
             }
             else{
+                $assocToChange = $this->Associations->find()->select()->where(['classement >' => $association->classement])->toArray();
+                foreach($assocToChange as $assocTemp){
+                    $assocTemp->classement--;
+                }
+                foreach($assocToChange as $assocTemp){
+                    $this->Associations->save($assocTemp);
+                }
                 $this->Associations->delete($association);
-				
                 $this->redirect('/');
             }
 
