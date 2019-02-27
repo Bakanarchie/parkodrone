@@ -79,7 +79,7 @@
                         ?>
 
                         <div class="grid mobile only"> <br> </div>
-                        <button class="ui black rounded button" style="margin-left: 10px">Statistiques</button>
+                        <?php echo $this->Html->link('Statistiques','/associations/stats/'.$assocActu->id, ['class'=>'ui rounded button', 'style'=>'margin-left: 10px'] ); ?>
                         <?php if($assocActu->id != $this->request->getSession()->read('currUser') && $this->request->getSession()->read('currUser') != null) echo $this->Html->link('<button class="ui black rounded button">Défier</button>','/defier/'.$assocActu->id,['escape'=>false]); ?>
                     <br><br>
                     </div>
