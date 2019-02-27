@@ -19,6 +19,11 @@ class AssociationsTable extends Table
         parent::initialize($config);
         $this->belongsToMany('Competitions');
         $this->belongsToMany('Achievements');
-        $this->hasMany('Results');
+        $this->belongsToMany('Duels');
+        $this->hasMany('Results', [
+                                                'dependent' => true,
+                                                'cascadeCallbacks' => true,
+                                            ]
+        );
     }
 }

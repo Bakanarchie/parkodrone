@@ -7,12 +7,14 @@
  */
 
 namespace App\Controller;
+use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 class AssociationsController extends AppController
 {
 
 
     public function index(){
-	    Time::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any mutable DateTime
+        Time::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any mutable DateTime
         FrozenTime::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any immutable DateTime
         Time::setDefaultLocale('fr-FR'); // For any mutable DateTime
         FrozenTime::setDefaultLocale('fr-FR'); // For any immutable DateTime

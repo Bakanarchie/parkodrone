@@ -18,7 +18,14 @@ class DuelsTable extends Table
     {
         parent::initialize($config);
         $this->belongsToMany('Associations');
-        $this->belongsToMany('Alliances');
+        $this->belongsToMany('Alliances', [
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+        $this->hasMany('Results', [
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
     }
 
 }

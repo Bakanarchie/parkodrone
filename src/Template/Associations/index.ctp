@@ -127,11 +127,11 @@
             </tr>
             </thead>
             <?php
-
             foreach($competitions as $compTemp){
                 if(!$compTemp->terminee){
                     echo '<tr>';
                         echo '<td>';
+
                             echo '<h4 class="ui header"><div class="content">'.$this->Html->link($compTemp->NomCompetition, '/compet/'.$compTemp->id);
                             echo '<div class="sub header"> Aura lieu le '.$compTemp->DateCompet;
                             echo '</div></div></h4>';

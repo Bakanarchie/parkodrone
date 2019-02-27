@@ -91,16 +91,16 @@ CREATE TABLE alliances(
 
 CREATE TABLE results(
 	id int not null auto_increment,
-    idCompetition int,
-    idDuel int,
-    idAssoc int not null,
+    competition_id int,
+    duel_id int,
+    association_id int not null,
     timeResult varchar(8),
     isDuel boolean,
     isWinner boolean,
     PRIMARY KEY(id),
-    FOREIGN KEY (idCompetition) REFERENCES competitions(id),
-    FOREIGN KEY(idDuel) REFERENCES duels(id),
-    FOREIGN KEY(idAssoc) REFERENCES associations(id)
+    FOREIGN KEY (competition_id) REFERENCES competitions(id),
+    FOREIGN KEY(duel_id) REFERENCES duels(id),
+    FOREIGN KEY(association_id) REFERENCES associations(id)
 );
 
 DROP TRIGGER IF EXISTS newClassement;

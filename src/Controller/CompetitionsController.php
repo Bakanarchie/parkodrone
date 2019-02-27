@@ -71,18 +71,8 @@ class CompetitionsController extends AppController
 
     public function finishCompet($id){;
         $compet = $this->Competitions->get($id);
-        $compet->terminee = 1;
+        $compet->terminee = true;
         $this->Competitions->save($compet);
-        $assos = $this->Competitions
-            ->find()
-            ->contain(['Associations'])
-            ->where(['id =' => $id]);
-
-        foreach($assos as $ass){
-            foreach($ass->associations as $association){
-                $this->Competitions->Associations->unlink($compet, [$association]);
-            }
-        }
         $this->redirect('/');
     }
 
@@ -100,7 +90,7 @@ class CompetitionsController extends AppController
         $this->set(compact('competition'));
     }
 
-     public function editCompet($id){
+    public function editCompet($id){
         $data = $this->getRequest()->getData();
         $data['Image'] = strtolower($data['file']['name']);
         $competition = $this->Competitions->get($id);
