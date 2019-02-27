@@ -115,7 +115,7 @@
                         <div class="column" style="text-align: right">
                         </div>
                         <div class="column" style="text-align: right">
-                            <button class="ui rounded button">Statistiques</button>
+                            <?php echo $this->Html->link('Statistiques','/associations/stats/'.$assocActu->id, ['class'=>'ui rounded button'] ); ?>
                         </div>
                         <div class="column" style="text-align: right">
                             <?php if($assocActu->id != $this->request->getSession()->read('currUser') && $this->request->getSession()->read('currUser') != null) echo $this->Html->link('<button class="ui rounded button">Défier</button>','/defier/'.$assocActu->id,['escape'=>false]); ?>
