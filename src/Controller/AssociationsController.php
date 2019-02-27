@@ -7,14 +7,35 @@
  */
 
 namespace App\Controller;
+use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 class AssociationsController extends AppController
 {
 
 
     public function index(){
+        Time::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any mutable DateTime
+        FrozenTime::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any immutable DateTime
+        Time::setDefaultLocale('fr-FR'); // For any mutable DateTime
+        FrozenTime::setDefaultLocale('fr-FR'); // For any immutable DateTime
+        Time::setToStringFormat('dd-MM-YYYY HH:mm:ss');
+        FrozenTime::setToStringFormat('dd-MM-YYYY HH:mm:ss');
         $associations = $this->Associations->find('all')->order(['classement'=>'ASC'])->toArray();
         $competitions = $this->Associations->Competitions->find('all')->contain('Associations')->toArray();
         $this->set(compact('associations'));
+        $jsonDate = array();
+        foreach($competitions as $compTemp){
+            $jsonDate[] = $compTemp->DateCompet;
+        }
+        $jsonDate = json_encode($jsonDate);
+        $jsonDate = json_decode($jsonDate);
+        $cpt = 0;
+        foreach($competitions as $compTemp){
+            $currDate = explode(' ', $jsonDate[$cpt]);
+            $currDate[1] = explode(':', $currDate[1]);
+            $compTemp->DateCompet = $currDate[0]." à ".$currDate[1][0]."h".$currDate[1][1];
+            $cpt++;
+        }
         $this->set(compact('competitions'));
     }
 
@@ -160,8 +181,8 @@ class AssociationsController extends AppController
     public function showProfile($id)
     {
         $assocActu = $this->Associations->get($id);
-        $compResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>false])->toArray();
-        $duelResults = $this->Associations->Results->find()->where(['idAssoc'=>$id, 'isDuel'=>true])->toArray();
+        $compResults = $this->Associations->Results->find()->where(['association_id'=>$id, 'isDuel'=>false])->toArray();
+        $duelResults = $this->Associations->Results->find()->where(['association_id'=>$id, 'isDuel'=>true])->toArray();
         if($compResults != null)
         $this->set->compact('compResults');
         if($duelResults != null)
@@ -261,8 +282,14 @@ class AssociationsController extends AppController
                 $this->redirect($this->referer());
             }
             else{
+                $assocToChange = $this->Associations->find()->select()->where(['classement >' => $association->classement])->toArray();
+                foreach($assocToChange as $assocTemp){
+                    $assocTemp->classement--;
+                }
+                foreach($assocToChange as $assocTemp){
+                    $this->Associations->save($assocTemp);
+                }
                 $this->Associations->delete($association);
-				
                 $this->redirect('/');
             }
 

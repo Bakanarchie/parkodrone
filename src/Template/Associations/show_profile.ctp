@@ -91,7 +91,7 @@
                     <?php
                         if(isset($duelResults)){
                             foreach($duelResults as $resultTemp){
-                                $enemy = $this->Associations->Duels->get($resultTemp->idDuel)->contain(['Associations']);
+                                $enemy = $this->Associations->Duels->get($resultTemp->duel_id)->contain(['Associations']);
                                 foreach($enemy->associations as $assocTemp){
                                     if($assocTemp->id != $assocActu->id) $enemy = $assocTemp;
                                 }

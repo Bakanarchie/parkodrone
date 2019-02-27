@@ -18,6 +18,10 @@ class CompetitionsTable extends Table
     {
         parent::initialize($config);
         $this->belongsToMany('Associations');
+        $this->hasMany('Results', [
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
     }
 
 }

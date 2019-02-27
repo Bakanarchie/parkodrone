@@ -71,18 +71,8 @@ class CompetitionsController extends AppController
 
     public function finishCompet($id){;
         $compet = $this->Competitions->get($id);
-        $compet->terminee = 1;
+        $compet->terminee = true;
         $this->Competitions->save($compet);
-        $assos = $this->Competitions
-            ->find()
-            ->contain(['Associations'])
-            ->where(['id =' => $id]);
-
-        foreach($assos as $ass){
-            foreach($ass->associations as $association){
-                $this->Competitions->Associations->unlink($compet, [$association]);
-            }
-        }
         $this->redirect('/');
     }
 
@@ -104,6 +94,10 @@ class CompetitionsController extends AppController
         $data = $this->getRequest()->getData();
         $data['Image'] = strtolower($data['file']['name']);
         $competition = $this->Competitions->get($id);
+        $img = $competition->Image;
+        if(empty($data['Image'])){
+            $data['Image'] = $img;
+        }
         $this->Competitions->patchEntity($competition, $data);
         if(!$this->Competitions->save($competition)){
             $this->Flash->error("Erreur lors de l'enregistrement de vos modifications!");
