@@ -6,11 +6,6 @@
 </script>
     <div class="ui fluid unstackable container">
 
-    <div class="ui fluid grid container">
-        <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
-    </div>
-
-
     <div class="ui fluid grid container" style="background-image: url(../img/whitebg.png)">
         <div class="two column row" >
 
@@ -86,8 +81,12 @@
                         <p>0</p>
                         <p>0</p>
                         <p>0</p>
-                        <p>X ème</p>
-                        <p>0000 PTS</p>
+                        <?php
+                            if($assocActu->classement == 1)
+                                echo'<p>'.$assocActu->classement.'er</p>';
+                            else
+                                echo'<p>'.$assocActu->classement.' ème</p>';
+                            echo '<p>'.$assocActu->score.' PTS</p>';?>
                     </td>
                     <td>
 
