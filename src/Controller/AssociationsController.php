@@ -15,6 +15,19 @@ class AssociationsController extends AppController
         $associations = $this->Associations->find('all')->order(['classement'=>'ASC'])->toArray();
         $competitions = $this->Associations->Competitions->find('all')->contain('Associations')->toArray();
         $this->set(compact('associations'));
+        $jsonDate = array();
+        foreach($competitions as $compTemp){
+            $jsonDate[] = $compTemp->DateCompet;
+        }
+        $jsonDate = json_encode($jsonDate);
+        $jsonDate = json_decode($jsonDate);
+        $cpt = 0;
+        foreach($competitions as $compTemp){
+            $currDate = explode(' ', $jsonDate[$cpt]);
+            $currDate[1] = explode(':', $currDate[1]);
+            $compTemp->DateCompet = $currDate[0]." à ".$currDate[1][0]."h".$currDate[1][1];
+            $cpt++;
+        }
         $this->set(compact('competitions'));
     }
 
