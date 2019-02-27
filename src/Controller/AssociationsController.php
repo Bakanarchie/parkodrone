@@ -12,6 +12,12 @@ class AssociationsController extends AppController
 
 
     public function index(){
+	    Time::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any mutable DateTime
+        FrozenTime::setJsonEncodeFormat('dd-MM-YYYY HH:mm:ss');  // For any immutable DateTime
+        Time::setDefaultLocale('fr-FR'); // For any mutable DateTime
+        FrozenTime::setDefaultLocale('fr-FR'); // For any immutable DateTime
+        Time::setToStringFormat('dd-MM-YYYY HH:mm:ss');
+        FrozenTime::setToStringFormat('dd-MM-YYYY HH:mm:ss');
         $associations = $this->Associations->find('all')->order(['classement'=>'ASC'])->toArray();
         $competitions = $this->Associations->Competitions->find('all')->contain('Associations')->toArray();
         $this->set(compact('associations'));
