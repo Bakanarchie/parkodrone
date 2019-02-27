@@ -100,10 +100,14 @@ class CompetitionsController extends AppController
         $this->set(compact('competition'));
     }
 
-    public function editCompet($id){
+     public function editCompet($id){
         $data = $this->getRequest()->getData();
         $data['Image'] = strtolower($data['file']['name']);
         $competition = $this->Competitions->get($id);
+        $img = $competition->Image;
+        if(empty($data['Image'])){
+            $data['Image'] = $img;
+        }
         $this->Competitions->patchEntity($competition, $data);
         if(!$this->Competitions->save($competition)){
             $this->Flash->error("Erreur lors de l'enregistrement de vos modifications!");
