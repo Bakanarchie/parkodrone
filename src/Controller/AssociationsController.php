@@ -347,4 +347,20 @@ class AssociationsController extends AppController
         }
 		$this->redirect('/');
     }
+
+    public function stats($id){
+        $assocActu = $this->Associations->get($id);
+        $compResults = $this->Associations->Results->find()->where(['association_id'=>$id, 'isDuel'=>false])->toArray();
+        $duelResults = $this->Associations->Results->find()->where(['association_id'=>$id, 'isDuel'=>true])->toArray();
+        if($compResults != null)
+            $this->set->compact('compResults');
+        if($duelResults != null)
+            $this->set->compact('duelResults');
+        if($assocActu == null){
+            $this->redirect('/');
+        }
+        else{
+            $this->set(compact('assocActu'));
+        }
+    }
 }
