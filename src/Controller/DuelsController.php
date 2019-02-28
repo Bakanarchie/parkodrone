@@ -117,7 +117,14 @@ class DuelsController extends AppController
 
     public function viewAll(){
         $currAssoc = $this->Duels->Associations->find()->select()->where(['id'=>$this->getRequest()->getSession()->read('currUser')])->contain(['Duels'])->first();
+        $duels = $currAssoc->duels;
+        $duelsContain = array();
+        foreach ($duels as $duelTemp){
+            $duelsContain[] = $this->Duels->find()->select()->where(['id'=>$duelTemp->id])->contain(['Associations'])->first();
+        }
         $this->set(compact('currAssoc'));
+        debug($duelsContain);
+        die();
     }
 
 }

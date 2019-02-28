@@ -148,7 +148,7 @@
                     </tr>
                 </table>
                 <p id="displayDate"></p>
-                <input type="hidden" id="inputDate" name="DateCompet">
+                <input type="hidden" id="inputDate" name="duelDate">
             </div>
 
 
