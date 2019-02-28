@@ -8,8 +8,9 @@ alliances,
 resultat,
 associations_duels,
 duels,
+statistics,
 achievements_associations, 
-associations_competitions, 
+associations_competitions,
 achievements, 
 associations, 
 competitions;
@@ -45,6 +46,21 @@ CREATE TABLE achievements(
     PRIMARY KEY(id)
 );
 
+CREATE TABLE statistics(
+	id int not null auto_increment,
+    association_id int,
+    ratio double,
+    nbPremier int,
+    nbPodium int,
+    nbVictoire int,
+    nbDefaite int,
+    nbCompet int,
+    nbDuel int,
+    PRIMARY KEY(id),
+    CONSTRAINT FOREIGN KEY(association_id) REFERENCES associations(id) 
+);
+
+
 CREATE TABLE achievements_associations(
 	association_id int,
     achievement_id int,
@@ -66,6 +82,7 @@ CREATE TABLE duels(
 	id int not null auto_increment,
     duelDate datetime,
     isOver boolean,
+    isAccepted boolean,
     message text,
     PRIMARY KEY(id)
 );
@@ -102,6 +119,8 @@ CREATE TABLE results(
     FOREIGN KEY(duel_id) REFERENCES duels(id),
     FOREIGN KEY(association_id) REFERENCES associations(id)
 );
+
+
 
 DROP TRIGGER IF EXISTS newClassement;
 
