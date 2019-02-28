@@ -1,0 +1,45 @@
+#head.calendar{
+    width: 100%;
+}
+
+thead.calendar{
+    text-align: center;
+    background: #ff2827;
+}
+
+
+
+td.calendar{
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    background: #494949;
+    color: white;
+}
+
+
+
+td.calendar:hover{
+    background:#ffd93f;
+}
+
+td.calendar.unselectable:hover{
+    background:#494949;
+}
+
+.day{
+    background: #222222;
+}
+
+.day:hover{
+    background:#222222;
+}
+
+
+.unselectable{
+    background: gray;
+}
+
+.unselectable:hover{
+    background: gray;
+}
