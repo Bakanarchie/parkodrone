@@ -28,6 +28,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') ?>
     <?= $this->Html->css('addition.css') ?>
+
     <?= $this->Html->script("https://code.jquery.com/jquery-3.2.1.min.js") ?>
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js') ?>
 
@@ -61,6 +62,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
                 if($this->request->getSession()->read('currUser') != null){
                     echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOTRE PROFIL</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
                     echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOUS DECONNECTER</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOS DUELS</button>', ['controller'=>'duels', 'action'=>'viewAll'], ['escape'=>false]);
                 }
                 else{
                     echo $this->Html->link('<button class="ui inverted basic yellow  button" ; style="font-family: Oswald;">VOUS CONNECTER</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
