@@ -67,6 +67,7 @@ class DuelsController extends AppController
             $data['duelDate'] = FrozenTime::createFromFormat('Y-m-d H:i:s', $data['duelDate'], 'Europe/Paris');
             $data['isOver'] = false;
             $data['isAccepted'] = false;
+            $data['initiatorId'] = $this->request->getSession()->read('currUser');
             if($data['idAssoc2'] == $this->request->getSession()->read('currUser')){
                 $this->redirect($this->referer());
                 $this->Flash->error('Vous ne pouvez pas vous défier vous-même.');
@@ -123,8 +124,13 @@ class DuelsController extends AppController
             $duelsContain[] = $this->Duels->find()->select()->where(['id'=>$duelTemp->id])->contain(['Associations'])->first();
         }
         $this->set(compact('currAssoc'));
-        debug($duelsContain);
-        die();
+        $this->set(compact('duelsContain'));
+    }
+
+    public function accept($duelId){
+        $toAccept = $this->Duels->get($duelId);
+        $toAccept->isAccepted = true;
+        $this->Duels->save($toAccept);
     }
 
 }
