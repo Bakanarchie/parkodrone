@@ -36,16 +36,16 @@
                                     Outils administratifs
                                     <div class="menu"style="margin-top: 10px">';
                         if(!($assocActu->nom == "Park'O'Drone")){
-                            echo '<div class="item">'.$this->Html->link('Bannir','/admin/ban/'.$assocActu->id, ['style'=>'color: black; margin-top:5px']).'</div>';
+                            echo $this->Html->link('<div class="item" style="color: black; margin-top:5px">Bannir</div>','/admin/ban/'.$assocActu->id, ['escape'=>false]);
                         }
-                        echo '<div class="item">Ajouter temps</div>';
-                        echo '<div class="item">'.$this->Html->link('Ajouter Score','/admin/ajouterscore/'.$assocActu->id,['style'=>'color: black']).'</div>';
+                        echo $this->Html->link('<div class="item" style="color: black;">Ajouter Temps</div>','/admin/ajoutertemps/'.$assocActu->id,['escape'=>false]);
+                        echo $this->Html->link('<div class="item" style="color: black;">Ajouter Score</div>','/admin/ajouterscore/'.$assocActu->id,['escape'=>false]);
                         if(!($assocActu->nom == "Park'O'Drone")){
                             if($assocActu->groupe == "admin"){
-                                echo '<div class="item">'.$this->Html->link('Rétrograder','/admin/retrograde/'.$assocActu->id,['style'=>'color: black']).'</div>';
+                                echo $this->Html->link('<div class="item" style="color: black;">Rétrograder</div>','/admin/retrograde/'.$assocActu->id,['escape'=>false]);
                             }
                             else{
-                                echo '<div class="item">'.$this->Html->link('Promouvoir','/admin/promote/'.$assocActu->id, ['style'=>'color: black'] ).'</div>';
+                                echo $this->Html->link('<div class="item" style="color: black;">Promouvoir</div>','/admin/promote/'.$assocActu->id,['escape'=>false]);
                             }
                         }
                         echo '</div>

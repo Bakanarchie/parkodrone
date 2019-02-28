@@ -363,4 +363,8 @@ class AssociationsController extends AppController
             $this->set(compact('assocActu'));
         }
     }
+
+    public function addResultForm($id){
+
+    }
 }
