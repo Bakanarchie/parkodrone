@@ -71,13 +71,8 @@
 ?>
 
     <script>
-
-
-
         var content = <?= $jsonString ?>
         ;
-
-        console.log(content);
         $('.ui.search')
             .search({
                 source : content,
@@ -95,21 +90,78 @@
                 'value' => $id
             ]
         );
-        echo $this->Form->control(
-            'Duels.duelDate',
-            [
-                'class' => 'ui fluid input',
-                'type' => 'date',
-                'lang' => 'fr',
-                'dateFormat' => 'DMY',
-                'minYear' => date('Y'),
-                'maxYear' => date('Y') + 5,
-            ]
-        );
+
+
+        ?>
+            <br/>
+            <div>
+                <label>Sélectionnez une date :</label>
+                <table id="calendar">
+                    <colgroup span="7"></colgroup>
+                    <tr>
+                        <th colspan="7" id="head">
+                            <button id="prev" class="ui white button">⬅</button>
+                            <h1 id="currMonth"></h1>
+                            <button id="next" class="ui white button">➡</button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="day">
+                            Lun
+                        </td>
+                        <td class="day">
+                            Mar
+                        </td>
+                        <td class="day">
+                            Mer
+                        </td>
+                        <td class="day">
+                            Jeu
+                        </td>
+                        <td class="day">
+                            Ven
+                        </td>
+                        <td class="day">
+                            Sam
+                        </td>
+                        <td class="day">
+                            Dim
+                        </td>
+                    </tr>
+                    <tr id="line1">
+
+                    </tr>
+                    <tr id="line2">
+
+                    </tr>
+                    <tr id="line3">
+
+                    </tr>
+                    <tr id="line4">
+
+                    </tr>
+                    <tr id="line5">
+
+                    </tr>
+                    <tr id="line6">
+
+                    </tr>
+                </table>
+                <p id="displayDate"></p>
+                <input type="hidden" id="inputDate" name="DateCompet">
+            </div>
+
+
+
+
+
+            <br/>
+    <?php
         echo $this->Form->control(
             'Duels.message',
             [
                 'class' => 'ui input',
+                'label' => 'Votre message :'
 
             ]
         );
@@ -119,6 +171,9 @@
         </div>
     </div>
 </div>
+
+<?php echo $this->Html->script("script.js") ?>
+<?= $this->Html->css('calendar.css') ?>
 
 
 
