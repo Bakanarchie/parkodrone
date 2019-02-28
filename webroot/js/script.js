@@ -76,6 +76,7 @@ function updateCalendar(){
             while(colN < currDay){
                 newLine = document.createElement('td');
                 $(newLine).addClass('unselectable');
+                $(newLine).addClass('gray');
                 $(newLine).attr('id', 'l'+lineN+'c'+colN);
                 currLine.append(newLine);
                 colN++
@@ -147,7 +148,7 @@ $(document).ready(function () {
     $('#calendar').on('click', 'td', function () {
         var clicked = $(this);
         if(!clicked.hasClass('unselectable')){
-            var nbGris = $('#line1 .unselectable').length;
+            var nbGris = $('#line1 .gray').length;
             var temp = $(this).attr('id');
             currMonth = $("#currMonth");
             temp = temp.split('');
