@@ -43,6 +43,7 @@ CREATE TABLE competitions(
 CREATE TABLE achievements(
 	id int not null auto_increment,
     titre text,
+    description text,
     PRIMARY KEY(id)
 );
 
@@ -169,3 +170,20 @@ INSERT INTO competitions VALUES(null, "Compétition Test Over", "Ambérieux", "2
 
 
 /*INSERT INTO results VALUES(null, */
+
+INSERT INTO achievements VALUES
+(null, "We are the champions!", "Remporter sa première course"),
+(null, "Je te choisis!", "Coopérer avec une autre équipe pour la première fois"),
+(null, "Le pouvoir de l'amitié", "Coopérer avec une autre équipe 10 fois"),
+(null, "L'ange gardien de la route", "Coopérer avec une autre équipe 50 fois"),
+(null, "L'heure du du-du-du-duel !", "Provoquer ou accepter son premier duel"),
+(null, "Fallait pas me doubler !", "Provoquer ou accepter 10 duels"),
+(null, "Tête brulée", "Provoquer ou accepter 50 duels"),
+(null, "Premier pas", "Participer à sa première compétition"),
+(null, "Fous du volant", "Participer à 10 compétitions"),
+(null, "Accros au bitume", "Participer à 50 compétitions"),
+(null, "Rentrer dans l'histoire", "Avoir été premier du classement général, la récompense ultime!"),
+(null, "Conducteur Débutant", "Obtenir un total de 1000 points"),
+(null, "Pilote Confirmé", "Obtenir un total de 5000 points"),
+(null, "As du volant", "Obtenir un total de 25000 points"),
+(null, "Battu à son propre jeu", "Battre Park'o'Drone lors d'une course");

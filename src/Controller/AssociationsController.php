@@ -367,4 +367,14 @@ class AssociationsController extends AppController
     public function addResultForm($id){
 
     }
+
+    public function checkdb(){
+        $sess = $this->getRequest()->getSession();
+        if($sess->read('currUser') != null){
+            $assocActu = $this->Associations->get($sess->read('currUser'));
+            $sess->write('isAdmin', false);
+            if($assocActu->isAdmin) $sess->write('isAdmin', true);
+        }
+        return null;
+    }
 }

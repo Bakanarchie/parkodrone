@@ -114,5 +114,29 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 
         </div>
     </footer>
+    <script>
+        $(document).ready(function () {
+           window.setInterval(toto, 1000);
+        });
+    </script>
+<script>
+    function toto(){
+        var temp = '<?= $this->request->getParam('_csrfToken'); ?>';
+        $.ajax({
+            url: '<?= $this->Url->build(['controller'=>'Associations', 'action'=>'checkdb']) ?>',
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('X-CSRF-Token', temp);
+            },
+            type: 'post',
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        })
+    }
+
+</script>
 </body>
 </html>
