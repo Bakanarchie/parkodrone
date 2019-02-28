@@ -6,7 +6,11 @@
         </tr>
         </thead>
         <?php
-            foreach($duelsContain as $duelTemp){
+        if(empty($duelsToAccept)){
+            echo '<tr><td><h4 class="ui header"><div class="content" >Rien à afficher ici :(</div></h4></td></tr>';
+        }
+        else{
+            foreach($duelsToAccept as $duelTemp){
                 if(!$duelTemp->isAccepted){
                     echo '<tr><td>';
                     foreach($duelTemp->associations as $assocAssociated){
@@ -20,6 +24,8 @@
                     echo '</div></h4></td></tr>';
                 }
             }
+        }
+
 
         ?>
     </table>
@@ -30,20 +36,26 @@
         </tr>
         </thead >
         <?php
-        foreach($duelsContain as $duelTemp){
-            if($duelTemp->isAccepted){
-                if(!$duelTemp->isOver){
-                    echo '<tr><td>';
-                    foreach($duelTemp->associations as $assocAssociated){
-                        if($assocAssociated->id != $currAssoc->id) $assocTemp = $assocAssociated;
+        if(empty($duelsNotOver)){
+            echo '<tr><td><h4 class="ui header"><div class="content" >Rien à afficher ici :(</div></h4></td></tr>';
+        }
+        else{
+            foreach($duelsNotOver as $duelTemp){
+                if($duelTemp->isAccepted){
+                    if(!$duelTemp->isOver){
+                        echo '<tr><td>';
+                        foreach($duelTemp->associations as $assocAssociated){
+                            if($assocAssociated->id != $currAssoc->id) $assocTemp = $assocAssociated;
+                        }
+                        echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
+
+                        echo '</div></h4></td></tr>';
                     }
-                    echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
 
-                    echo '</div></h4></td></tr>';
                 }
-
             }
         }
+
 
         ?>
     </table>
@@ -56,20 +68,26 @@
         </tr>
         </thead>
         <?php
-        foreach($duelsContain as $duelTemp){
-            if($duelTemp->isAccepted){
-                if($duelTemp->isOver){
-                    echo '<tr><td>';
-                    foreach($duelTemp->associations as $assocAssociated){
-                        if($assocAssociated->id != $currAssoc->id) $assocTemp = $assocAssociated;
+        if(empty($duelsOver)){
+            echo '<tr><td><h4 class="ui header"><div class="content" >Rien à afficher ici :(</div></h4></td></tr>';
+        }
+        else{
+            foreach($duelsOver as $duelTemp){
+                if($duelTemp->isAccepted){
+                    if($duelTemp->isOver){
+                        echo '<tr><td>';
+                        foreach($duelTemp->associations as $assocAssociated){
+                            if($assocAssociated->id != $currAssoc->id) $assocTemp = $assocAssociated;
+                        }
+                        echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
+
+                        echo '</div></h4></td></tr>';
                     }
-                    echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
 
-                    echo '</div></h4></td></tr>';
                 }
-
             }
         }
+
 
         ?>
     </table>

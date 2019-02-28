@@ -119,12 +119,27 @@ class DuelsController extends AppController
     public function viewAll(){
         $currAssoc = $this->Duels->Associations->find()->select()->where(['id'=>$this->getRequest()->getSession()->read('currUser')])->contain(['Duels'])->first();
         $duels = $currAssoc->duels;
-        $duelsContain = array();
+        $duelsToAccept = array();
+        $duelsNotOver = array();
+        $duelsOver = array();
         foreach ($duels as $duelTemp){
-            $duelsContain[] = $this->Duels->find()->select()->where(['id'=>$duelTemp->id])->contain(['Associations'])->first();
+            if($duelTemp->isAccepted){
+                if($duelTemp->isOver){
+                    $duelsOver[] = $this->Duels->find()->select()->where(['id'=>$duelTemp->id])->contain(['Associations'])->first();
+                }
+                else{
+                    $duelsNotOver[] = $this->Duels->find()->select()->where(['id'=>$duelTemp->id])->contain(['Associations'])->first();
+                }
+            }
+            else{
+                $duelsToAccept[] = $this->Duels->find()->select()->where(['id'=>$duelTemp->id])->contain(['Associations'])->first();
+            }
+
         }
         $this->set(compact('currAssoc'));
-        $this->set(compact('duelsContain'));
+        $this->set(compact('duelsToAccept'));
+        $this->set(compact('duelsNotOver'));
+        $this->set(compact('duelsOver'));
     }
 
     public function accept($duelId){
