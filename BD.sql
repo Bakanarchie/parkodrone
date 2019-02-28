@@ -83,6 +83,7 @@ CREATE TABLE duels(
     duelDate datetime,
     isOver boolean,
     isAccepted boolean,
+    initiatorId int,
     message text,
     PRIMARY KEY(id)
 );

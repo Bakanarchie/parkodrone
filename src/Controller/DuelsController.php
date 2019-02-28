@@ -134,4 +134,10 @@ class DuelsController extends AppController
         $this->redirect($this->referer());
     }
 
+    public function decline($duelId){
+        $toAccept = $this->Duels->get($duelId);
+        $this->Duels->delete($toAccept);
+        $this->redirect($this->referer());
+    }
+
 }
