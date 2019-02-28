@@ -28,7 +28,6 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') ?>
     <?= $this->Html->css('addition.css') ?>
-
     <?= $this->Html->script("https://code.jquery.com/jquery-3.2.1.min.js") ?>
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js') ?>
 
@@ -47,31 +46,41 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 </style>
 <body style="margin-top: 0px ; background-image: url(../img/bg.png)" >
     <div class="ui vertically fitted three item  stackable compact inverted secondary menu" style="background-color: #101011 ; margin-bottom: 0px; ">
-        <div class="left yellow item " >
+        <div class="item one column wide" >
             <?= $this->Html->link($this->Html->image('logo.png', ['class'=>'ui image', 'style'=>'height:60px ; width:270px', 'alt'=>'Logo du site']),'/',['escape'=>false]) ?>
         </div>
-        <div class=" yellow item">
+        <div class="item four column wide">
             <?= $this->Form->create(null, ['url'=>['controller'=>'associations', 'action'=>'search'], 'class'=>'ui fluid action input', 'style'=>'margin-bottom:3px']) ?>
             <input class="ui action input" placeholder="Rechercher une entreprise, une compétition..."  name="content">
             <button class="ui gray button icon"><i class="search icon"></i></button>
             <?= $this->Form->end(); ?>
         </div>
-        <div class="right yellow item" style="background-color: #101011 ; border-color: #101011 ; margin-bottom: 10px ; vertical-align: top" >
+        <div  class="item fluid eight column wide" style="background-color: #101011 ; border-color: #101011 ; margin-bottom: 5px ; vertical-align: top; margin-left: 10px" >
                 <?php
 
                 if($this->request->getSession()->read('currUser') != null){
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOTRE PROFIL</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOUS DECONNECTER</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOS DUELS</button>', ['controller'=>'duels', 'action'=>'viewAll'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui compact inverted basic yellow button" style="color: white ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOTRE PROFIL</button>', '/profil/'.$this->request->getSession()->read('currUser'), ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui compact inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOS DUELS</button>',  ['controller'=>'duels', 'action'=>'viewAll'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui compact inverted basic yellow button" style="color: white  margin-left: 10px ;background-color: #101011 ;font-family: Oswald; border-color: #101011">VOUS DECONNECTER</button>', ['controller'=>'associations', 'action'=>'disconnect'], ['escape'=>false]);
+
                 }
                 else{
-                    echo $this->Html->link('<button class="ui inverted basic yellow  button" ; style="font-family: Oswald;">VOUS CONNECTER</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
-                    echo $this->Html->link('<button class="ui inverted basic yellow button" style="margin-left: 10px; font-family: Oswald;">VOUS INSCRIRE</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui compact inverted basic yellow  button" ; style="font-family: Oswald;">VOUS CONNECTER</button>', ['controller'=>'associations', 'action'=>'connectForm'], ['escape'=>false]);
+                    echo $this->Html->link('<button class="ui compact inverted basic yellow button" style="margin-left: 10px; font-family: Oswald;">VOUS INSCRIRE</button>', ['controller'=>'associations', 'action'=>'registerForm'], ['escape'=>false]);
                 }
 
                 ?>
         </div>
     </div>
+
+    <?php
+    if($this->request->getSession()->read('isAdmin') == 1){
+        echo '<div style="background-color: #101011 ; border-color: #101011 ; vertical-align: top; padding: 5px">';
+        echo $this->Html->link('<button class="ui compact  fluid inverted basic yellow button" style="color: white ;background-color: #101011 ;font-family: Oswald; border-color: #101011">PANEL ADMINISTRATEUR</button>', '/admin/', ['escape'=>false]);
+        echo '</div>';
+    }
+    ?>
+
 
     <div>
         <div class="ui container">
@@ -101,7 +110,7 @@ $cakeDescription = 'Park\'o\'Drone : Site Communautaire';
 
 
     <footer>
-        <div class="container fluid" style="background-color: #101011 ;height: 50px">
+        <div style="background-color: #101011 ;height: 50px">
 
         </div>
     </footer>

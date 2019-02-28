@@ -1,6 +1,7 @@
 
+
 <div  class="fluid container" style="background-image: url(../img/whitebg.png)">
-<div  class="fluid container" style="width: 100% ; height: auto; background-image: url(../img/whoosh.gif); background-size: 100% 100%; margin-bottom: 5%; margin-top: 14px">
+    <div  class="fluid container" style="width: 100% ; height: auto; background-image: url(../img/whoosh.gif); background-size: 100% 100%; margin-bottom: 5%; margin-top: 14px">
 
         <div class="ui grid container">
 
@@ -35,77 +36,86 @@
 
 
 
-    <div class="row">
-        <div class="ui black button  fluid" >
-            <p style="font-family: Oswald;font-size: 5">COMPARER LES DEUX CAMPS</p>
+        <div class="row">
+            <div class="ui black button  fluid" >
+                <p style="font-family: Oswald;font-size: 5">COMPARER LES DEUX CAMPS</p>
+            </div>
         </div>
+        <div class="container yellow fluid " style="background-color: #fff600 ; height: 5px"></div>
     </div>
-    <div class="container yellow fluid " style="background-color: #fff600 ; height: 5px"></div>
-</div>
 
-    <div class="ui fluid container">
-        <div class="ui container">
+    <div>
+        <div>
             <?= $this->Html->link('<button class="ui black button">'."Retour à la page d'accueil".'</button>', '/', ['escape'=>false]) ?>
-        <?php
-        echo $this->Form->create(
-            $newDefi,
-            [
-                'class'=>'ui form',
-                'url'=>[
-                    'action'=>'defy'
+            <?php
+            echo $this->Form->create(
+                $newDefi,
+                [
+                    'class'=>'ui form',
+                    'url'=>[
+                        'action'=>'defy'
+                    ]
                 ]
-            ]
-        );
-  echo '<div class="ui search">';
-
-        echo $this->Form->control(
-            'ally',
-            [
-                'class' => 'ui prompt input',
-                'label' => '',
-                'placeholder'=>'Faire appel à un allié'
-            ]
-        );
-       echo' <div class="results"></div>
+            );
+            echo '<div class="ui search">';
+            echo $this->Form->control(
+                'ally',
+                [
+                    'class' => 'ui prompt input',
+                    'label' => '',
+                    'placeholder'=>'Faire appel à un allié'
+                ]
+            );
+            echo' <div class="results"></div>
     </div>'
-?>
+            ?>
 
-    <script>
-        var content = <?= $jsonString ?>
-        ;
-        $('.ui.search')
-            .search({
-                source : content,
-                searchFields   : [
-                    'title'
-                ],
-                fullTextSearch: false
-            })
-        ;
-    </script>
-  <?php
-        echo $this->Form->hidden(
-            'idAssoc2',
-            [
-                'value' => $id
-            ]
-        );
-
-
-        ?>
+            <script>
+                var content = <?= $jsonString ?>
+                ;
+                $('.ui.search')
+                    .search({
+                        source : content,
+                        searchFields   : [
+                            'title'
+                        ],
+                        fullTextSearch: false
+                    })
+                ;
+            </script>
+            <?php
+            echo $this->Form->hidden(
+                'idAssoc2',
+                [
+                    'value' => $id
+                ]
+            );
+            ?>
             <br/>
             <div>
                 <label>Sélectionnez une date :</label>
-                <table id="calendar">
-                    <colgroup span="7"></colgroup>
-                    <tr>
-                        <th colspan="7" id="head">
-                            <button id="prev" class="ui white button">⬅</button>
+                <table  id="calendar">
+                    <colgroup span="7">
+                        <col style="width: 14%" />
+                        <col style="width: 14%" />
+                        <col style="width: 14%" />
+                        <col style="width: 14%" />
+                        <col style="width: 14%" />
+                        <col style="width: 14%" />
+                        <col style="width: 14%" />
+                    </colgroup>
+                    <tr style="text-align: center; background:white">
+                        <td colspan="1" id="prev">
+                            <i class="angle double left icon"></i>
+                        </td>
+                        <td colspan="5" id="head">
                             <h1 id="currMonth"></h1>
-                            <button id="next" class="ui white button">➡</button>
-                        </th>
+                        </td>
+                        <td colspan="1" id="next">
+                            <i class="angle double right icon"></i>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr >
                         <td class="day">
                             Lun
                         </td>
@@ -156,24 +166,22 @@
 
 
             <br/>
-    <?php
-        echo $this->Form->control(
-            'Duels.message',
-            [
-                'class' => 'ui input',
-                'label' => 'Votre message :'
-
-            ]
-        );
-        echo $this->Form->submit('DEFIER !', ['class'=>"ui black button fluid", 'style'=>'font-family: Oswald;font-size: x-large']);
-        echo $this->Form->end();
-        ?>
+            <?php
+            echo $this->Form->control(
+                'Duels.message',
+                [
+                    'class' => 'ui input',
+                    'label' => 'Votre message :'
+                ]
+            );
+            echo $this->Form->submit('DEFIER !', ['class'=>"ui black button fluid", 'style'=>'font-family: Oswald;font-size: x-large']);
+            echo $this->Form->end();
+            ?>
         </div>
     </div>
 </div>
 
 <?php echo $this->Html->script("script.js") ?>
 <?= $this->Html->css('calendar.css') ?>
-
 
 
