@@ -107,6 +107,15 @@ CREATE TABLE alliances(
     FOREIGN KEY (association_id_2) REFERENCES associations(id)
 );
 
+CREATE TABLE alliances_duels(
+id int not null auto_increment,
+	alliance_id int not null,
+    duel_id int not null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (alliance_id) REFERENCES alliances(id),
+    FOREIGN KEY (duel_id) REFERENCES duels(id)
+);
+
 CREATE TABLE results(
 	id int not null auto_increment,
     competition_id int,
