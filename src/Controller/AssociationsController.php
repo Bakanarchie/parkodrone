@@ -41,7 +41,34 @@ class AssociationsController extends AppController
 
     public function registerToComp($idComp){
         if($this->request->getSession()->read('currUser') != null){
-            $this->Associations->Competitions->link($this->Associations->get($this->request->getSession()->read('currUser')), [$this->Associations->Competitions->get($idComp)]);
+            $actuAsso = $this->Associations->get($this->request->getSession()->read('currUser'));
+            $assostat = $this->Associations->Statistics->find()->where(['association_id'=>$actuAsso->id])->first();
+            if ($assostat == null){
+                $newstat = $this->Associations->Statistics->newEntity();
+                $newstat->association_id = $actuAsso->id;
+                $newstat->ratio = 0.0;
+                $newstat->nbPremier = 0;
+                $newstat->nbPodium = 0;
+                $newstat->nbVictoire = 0;
+                $newstat->nbDefaite = 0;
+                $newstat->nbCompet = 1;
+                $newstat->nbDuel = 0;
+
+                if(!$this->Associations->Statistics->save($newstat)){
+                    $this->Flash->error('Erreur lors des calculs des statisiques!');
+                    $this->redirect($this->referer());
+                }
+            }
+            else{
+                $newstat = $this->Associations->Statistics->get($assostat->id);
+                $newstat->nbCompet += 1;
+
+                if(!$this->Associations->Statistics->save($newstat)){
+                    $this->Flash->error('Erreur lors de la mise à jour des statisiques!');
+                    $this->redirect($this->referer());
+                }
+            }
+            $this->Associations->Competitions->link($actuAsso, [$this->Associations->Competitions->get($idComp)]);
             $this->redirect('/');
         }
         else{
@@ -52,7 +79,16 @@ class AssociationsController extends AppController
 
     public function  unregisterFromComp($idComp){
         if($this->request->getSession()->read('currUser') != null){
-            $this->Associations->Competitions->unlink($this->Associations->get($this->request->getSession()->read('currUser')), [$this->Associations->Competitions->get($idComp)]);
+            $assoactu = $this->Associations->get($this->request->getSession()->read('currUser'));
+            $assostat = $this->Associations->Statistics->find()->where(['association_id'=>$assoactu->id])->first();
+            $assostat = $this->Associations->Statistics->get($assostat->id);
+
+            if(!$this->Associations->Statistics->delete($assostat)){
+                $this->Flash->error('Erreur lors de la mise à jour des statistiques');
+                $this->redirect($this->referer());
+            }
+
+            $this->Associations->Competitions->unlink($assoactu, [$this->Associations->Competitions->get($idComp)]);
             $this->redirect('/');
         }
         else{
@@ -362,9 +398,5 @@ class AssociationsController extends AppController
         else{
             $this->set(compact('assocActu'));
         }
-    }
-
-    public function addResultForm($id){
-
     }
 }
