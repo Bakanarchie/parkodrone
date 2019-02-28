@@ -112,8 +112,6 @@ class DuelsController extends AppController
                     $this->redirect('/');
                 }
             }
-
-
         }
     }
 
