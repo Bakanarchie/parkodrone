@@ -1,3 +1,8 @@
+.calendar{
+    font-size: large;
+    color: white;
+}
+
 #head.calendar{
     width: 100%;
 }
@@ -20,15 +25,19 @@ td.calendar{
 
 
 td.calendar:hover{
-    background:#ffd93f;
+    background: #615d2f;
+    color: yellow;
 }
 
 td.calendar.unselectable:hover{
-    background:#494949;
+    background: #3a3a3a;
+    color: #c9c7c8;
 }
 
 .day{
     background: #222222;
+    color: white;
+    text-align: center;
 }
 
 .day:hover{
