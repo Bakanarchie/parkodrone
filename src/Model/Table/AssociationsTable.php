@@ -20,6 +20,7 @@ class AssociationsTable extends Table
         $this->belongsToMany('Competitions');
         $this->belongsToMany('Achievements');
         $this->belongsToMany('Duels');
+        $this->hasOne('Statistics');
         $this->hasMany('Results', [
                                                 'dependent' => true,
                                                 'cascadeCallbacks' => true,
