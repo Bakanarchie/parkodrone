@@ -131,6 +131,7 @@ class DuelsController extends AppController
         $toAccept = $this->Duels->get($duelId);
         $toAccept->isAccepted = true;
         $this->Duels->save($toAccept);
+        $this->redirect($this->referer());
     }
 
 }

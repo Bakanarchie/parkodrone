@@ -14,7 +14,8 @@
                     }
                     echo '<h4 class="ui header"><div class="content" >'.$this->Html->link($assocTemp->nom, '/profil/'.$assocTemp->id);
                     if($duelTemp->initiatorId != $currAssoc->id){
-
+                        echo $this->Html->link('<button class="ui inverted basic green  button" ; style="font-family: Oswald;">ACCEPTER</button>', ['controller'=>'duels', 'action'=>'accept'], ['escape'=>false], $duelTemp->id);
+                        echo $this->Html->link('<button class="ui inverted basic red button" style="margin-left: 10px; font-family: Oswald;">REFUSER</button>', ['controller'=>'duels', 'action'=>'decline'], ['escape'=>false], $duelTemp->id);
                     }
                     echo '</div></h4></td></tr>';
                 }
