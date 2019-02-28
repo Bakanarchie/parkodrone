@@ -66,6 +66,7 @@ class DuelsController extends AppController
             }
             $data['duelDate'] = FrozenTime::createFromFormat('Y-m-d H:i:s', $data['duelDate'], 'Europe/Paris');
             $data['isOver'] = false;
+            $data['isAccepted'] = false;
             if($data['idAssoc2'] == $this->request->getSession()->read('currUser')){
                 $this->redirect($this->referer());
                 $this->Flash->error('Vous ne pouvez pas vous défier vous-même.');
