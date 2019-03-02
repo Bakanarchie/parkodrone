@@ -227,6 +227,22 @@ class AssociationsController extends AppController
             $this->redirect('/');
         }
         else{
+            if(!(substr( $assocActu->website, 0, 7 ) === "http://") && !(substr( $assocActu->website, 0, 8 ) === "https://")){
+                $assocActu->website = "http://".$assocActu->website;
+                $this->Associations->save($assocActu);
+            }
+            if((substr( $assocActu->website, 0, 15 ) === "http://https://")){
+                $tempSite = substr( $assocActu->website, 16);
+                $assocActu->website = "http://".$assocActu->website;
+                $this->Associations->save($assocActu);
+            }
+            else{
+                if((substr( $assocActu->website, 0, 15 ) === "https://http://")){
+                    $tempSite = substr( $assocActu->website, 16);
+                    $assocActu->website = "https://".$assocActu->website;
+                    $this->Associations->save($assocActu);
+                }
+            }
             $this->set(compact('assocActu'));
         }
     }
