@@ -9,7 +9,7 @@
 namespace App\Controller;
 
 
-class StatisticsController
+class StatisticsController extends AppController
 {
 
 }

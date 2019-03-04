@@ -429,4 +429,8 @@ class AssociationsController extends AppController
         }
         return null;
     }
+	
+	public function mentionsLegales(){
+		
+	}
 }
