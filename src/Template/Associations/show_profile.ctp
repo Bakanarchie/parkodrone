@@ -121,7 +121,7 @@
                                     <th colspan="4" ; style="background-image:url(../img/banner.png)"><p style="font-size:large; font-family: Oswald, sans-serif ; color:#fefeff">DERNIÈRES COMPÉTITIONS</p></th>
                                 </tr>
                                 </thead >
-                                <tr><td>Not supported yet.</td></tr>
+                                <tr><td>Cette fonctionnalité n'est pas encore prise en charge.</td></tr>
                             </table>
 
 

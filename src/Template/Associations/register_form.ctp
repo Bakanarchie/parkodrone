@@ -82,8 +82,11 @@ echo $this->Form->control(
         'style'=>'margin-bottom:20px'
     ]
 );
+?>
+    <label>Photo de profil de votre entreprise :</label>
+    <?php
 
-  echo $this->Form->file('file', ['label'=>'Logo de votre entreprise :']);
+  echo $this->Form->file('file');
   
 echo $this->Form->button(
     '<p style="font-family: Oswald">Confirmer l\'inscription</p>',
