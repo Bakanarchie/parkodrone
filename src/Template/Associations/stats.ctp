@@ -6,8 +6,9 @@
         $('#barre').progress();
     }
 </script>
-
+    <?= $this->Html->link('<br><button class="ui simple compact black button">Retour au profil</button>', $ref, ['escape'=>false]) ?>
 <div style="display: flex; background-image: url(../../webroot/img/whitebg.png); margin-left: 1%; margin-right: 1%" >
+
     <div style="padding: 1%; margin-right: 5px">
         <?= $this->Html->image($assocActu->filename, ['class'=>'ui small image']); ?>
     </div>
@@ -75,17 +76,15 @@
                     <td>
                         <p>Nombre de participations</p>
                         <p>Duels provoqués</p>
-                        <p>Nombres de coopérations </p>
+                        <p>Nombre de coopérations </p>
                         <p>Victoires</p>
-                        <p>Points remportés</p>
                         <p>Taux de victoire</p>
                     </td>
                     <td>
-                        <p>0</p>
-                        <p>0</p>
-                        <p>0</p>
-                        <p>0</p>
-                        <p>0000 PTS</p>
+                        <p><?= count($duelsAssoc) ?></p>
+                        <p><?= count($duelprovoc) ?></p>
+                        <p><?=  "Pas encore implémenté." //count($allyAssoc) ?></p>
+                        <p>Pas encore implémenté.</p>
                         <p>00.0%</p>
 
                     </td>
@@ -93,7 +92,7 @@
                 <tfoot class="full-width">
                 <tr>
                     <td colspan="2">
-                        <div class="ui grey progress" data-percent="65" id="barre">
+                        <div class="ui grey progress" data-percent="0" id="barre">
                             <div class="bar">
                                 <div class="progress"></div>
                             </div>
@@ -116,19 +115,17 @@
                         <p>Nombre de participations</p>
                         <p>Victoires</p>
                         <p>Podiums</p>
-                        <p>Place moyenne</p>
-                        <p>Points remportés</p>
+                        <p>Place</p>
                     </td>
                     <td>
-                        <p>0</p>
+                        <p><?= count($ccompAssoc) ?></p>
                         <p>0</p>
                         <p>0</p>
                         <?php
 if($assocActu->classement == 1)
     echo'<p>'.$assocActu->classement.'er</p>';
 else
-    echo'<p>'.$assocActu->classement.' ème</p>';
-echo '<p>'.$assocActu->score.' PTS</p>';?>
+    echo'<p>'.$assocActu->classement.' ème</p>';?>
                     </td>
                     <td>
 

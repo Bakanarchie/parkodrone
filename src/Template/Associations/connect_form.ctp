@@ -31,7 +31,7 @@ echo $this->Form->control(
     'Nom',
     [
         'class'=>'ui input',
-        'label'=>'Le nom de votre Entreprise : ',
+        'label'=>'Le nom de votre entreprise : ',
         'maxlength'=>'100',
         'style'=>'margin-bottom:10px'
     ]
@@ -41,7 +41,7 @@ echo $this->Form->control(
     'MDP',
     [
         'class'=>'ui input',
-        'label'=>'Votre Mot de Passe : ',
+        'label'=>'Votre mot de passe : ',
         'type'=>'password',
         'maxlength'=>'64',
         'style'=>'margin-bottom:20px'
@@ -60,15 +60,6 @@ echo  $this->Form->end();
 ?>
 
 
-<script>
-    $('.message .close')
-        .on('click', function() {
-            $(this)
-                .closest('.message')
-                .transition('fade')
-            ;
-        })
-    ;
-</script>
+
     <br>
     </div></div></div>

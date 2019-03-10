@@ -99,16 +99,27 @@ class AssociationsController extends AppController
 
     public function connectForm()
     {
-        $assoc = $this->Associations->newEntity();
+        $data = $this->request->getSession()->read("lastData");
+        if(!empty($data)){
+            $data['MDP'] = $data['tempPass'];
+            $assoc = $this->Associations->newEntity($data);
+            $this->request->getSession()->delete('lastData');
+        }
+        else{
+            $assoc = $this->Associations->newEntity();
+        }
+
         $this->set(compact('assoc'));
     }
 
     public function connect()
     {
         $data = $this->getRequest()->getData();
+        $data['tempPass'] = $data['mdp'];
         foreach($data as $key=>$dat){
             preg_replace('<script>', '', $data[$key]);
         }
+        $data['tempPass'] = $data['MDP'];
         $data['MDP'] = hash("sha256", $data['MDP']);
         $assocTemp = $this->Associations->find()
             ->select()
@@ -120,6 +131,7 @@ class AssociationsController extends AppController
             )
             ->first();
         if($assocTemp != null){
+            $this->request->getSession()->delete('lastData');
             $this->request->getSession()->write('currUser', $assocTemp->id);
             if(trim(strtolower($assocTemp->groupe)) == 'admin'){
                 $this->request->getSession()->write('isAdmin', true);
@@ -137,6 +149,7 @@ class AssociationsController extends AppController
         }
         else{
             $this->Flash->error('La combinaison nom/mot de passe n\'existe pas.');
+            $this->request->getSession()->write('lastData', $data);
             $this->redirect($this->referer());
         }
     }
@@ -148,28 +161,42 @@ class AssociationsController extends AppController
     }
 
     public function registerForm(){
-        $assoc = $this->Associations->newEntity();
+        $data = $this->request->getSession()->read("lastData");
+        if(!empty($data)){
+            $data['mdp'] = $data['tempPass'];
+            $assoc = $this->Associations->newEntity($data);
+            $this->request->getSession()->delete('lastData');
+        }
+        else{
+            $assoc = $this->Associations->newEntity();
+        }
+
         $this->set(compact('assoc'));
     }
 
     public function register(){
         $data = $this->getRequest()->getData();
+        $data['tempPass'] = $data['mdp'];
         foreach($data as $key=>$dat){
             if($key != 'file')
                 $data[$key] = htmlspecialchars($data[$key]);
         }
         if((trim($data['mdp']) != trim($data['confmdp'])) || empty($data['mdp'])){
-            $this->Flash->error('Erreur lors de la confirmation de votre mot de passe.');
+            $data['tempPass'] = "";
+            $this->Flash->error('Votre mot de passe est invalide.');
+            $this->request->getSession()->write('lastData', $data);
             $this->redirect($this->referer());
         }
         else{
             if(strlen($data['nom']) < 4){
                 $this->Flash->error('Erreur : Veuillez entrer plus de quatre caractères dans le champ nom.');
+                $this->request->getSession()->write('lastData', $data);
                 $this->redirect($this->referer());
             }
             else{
                 if($data['file']['type'] != 'image/jpeg' && $data['file']['type'] != 'image/png'){
                     $this->Flash->error('Veuillez choisir un image de type .jpg ou .jpeg ou .png');
+                    $this->request->getSession()->write('lastData', $data);
                     $this->redirect($this->referer());
                 }
                 else{
@@ -182,19 +209,21 @@ class AssociationsController extends AppController
                     $assoc_new = $this->Associations->find()->select()->where(['LOWER(nom)'=>strtolower($data['nom'])])->first();
                     if($assoc_new == null){
                         if(!$this->Associations->save($toSave)){
-                            dd($toSave);
-                            $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre mot de passe.');
+                            $this->Flash->error('Il y a eu une erreur lors de la sauvegarde de votre compte.');
+                            $this->request->getSession()->write('lastData', $data);
                             $this->redirect($this->referer());
                         }
                         else{
                             $assoc_new = $this->Associations->find()->select()->where(['nom'=>$data['nom']])->first();
                             $this->request->getSession()->write('currUser', $assoc_new->id);
                             $this->request->getSession()->write('isAdmin', false);
+                            $this->request->getSession()->delete('lastData');
                             $this->redirect('/');
                         }
                     }
                     else{
                         $this->Flash->error('Erreur : Cette entreprise existe déjà.');
+                        $this->request->getSession()->write('lastData', $data);
                         $this->redirect($this->referer());
                     }
                 }
@@ -401,13 +430,29 @@ class AssociationsController extends AppController
     }
 
     public function stats($id){
-        $assocActu = $this->Associations->get($id);
+        $assocActu = $this->Associations->find()->select()->where(["id"=>$id])->contain(['Competitions', "Duels"])->first();
+        $ccompAssoc = $assocActu->competitions;
+        //$allyAssoc = $assocActu->alliances;
+        $duelsAssoc = $assocActu->duels;
+        $duelprovoc = array();
+        foreach ($duelsAssoc as $duelTemp){
+            if($duelTemp->initiatorId == $id){
+                $duelprovoc[] = $duelTemp;
+            }
+        }
+        $this->set(compact('duelprovoc'));
+        $this->set(compact('ccompAssoc'));
+        $this->set(compact('duelsAssoc'));
+        $ref = $this->referer();
+        $this->set(compact('ref'));
+        //$this->set(compact('allyAssoc'));
         $compResults = $this->Associations->Results->find()->where(['association_id'=>$id, 'isDuel'=>false])->toArray();
         $duelResults = $this->Associations->Results->find()->where(['association_id'=>$id, 'isDuel'=>true])->toArray();
         if($compResults != null)
-            $this->set->compact('compResults');
+            $this->set(compact('compResults'));
         if($duelResults != null)
-            $this->set->compact('duelResults');
+            $this->set->compact(('duelResults'));
+
         if($assocActu == null){
             $this->redirect('/');
         }
@@ -429,8 +474,4 @@ class AssociationsController extends AppController
         }
         return null;
     }
-	
-	public function mentionsLegales(){
-		
-	}
 }

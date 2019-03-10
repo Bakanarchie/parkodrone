@@ -18,7 +18,7 @@
                         </div>
                     <?php
                     if(trim($assocActu->website) != ""){
-                        echo $this->Html->link('<br><button class="ui simple compact black button">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank']);
+                        echo $this->Html->link('<br><button class="ui simple compact black button" id="website">Site web</button>', $assocActu->website, ['escape'=>false, 'target'=>'_blank']);
                     } ?>
                     <?php
                     if($this->request->getSession()->read('isAdmin')){
@@ -172,3 +172,12 @@
     <br>
     </div>
 
+<script>
+    $("#website").on('click', function (event) {
+       var website = "<?= $assocActu->website ?>";
+       if(website == "http://"){
+           event.preventDefault();
+            alert("Cette entreprise n'a pas de site web.");
+       }
+    });
+</script>

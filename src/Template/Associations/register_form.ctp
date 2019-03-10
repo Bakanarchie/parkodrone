@@ -19,7 +19,7 @@ echo $this->Form->control(
     'nom',
     [
         'class'=>'ui input',
-        'label'=>'Nom de votre entreprise :',
+        'label'=>'Le nom de votre entreprise :',
         'maxlength'=>'100',
         'style'=>'margin-bottom:5px'
     ]
@@ -31,7 +31,6 @@ echo $this->Form->textarea(
     'description',
     [
         'class'=>'ui input',
-        'label'=>'Décrivez-vous en quelques mots :',
         'maxlength'=>'800',
         'style'=>'height:150px ; margin-bottom:5px'
     ]
@@ -63,7 +62,7 @@ echo $this->Form->control(
     'mdp',
     [
         'class'=>'ui input',
-        'label'=>'Votre Mot de Passe :',
+        'label'=>'Votre mot de passe :',
         'type'=>'password',
         'maxlength'=>'64',
         'size'=>'15',

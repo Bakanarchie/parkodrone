@@ -55,9 +55,14 @@ class AppController extends Controller
 
     public function beforeRender(Event $event)
     {
-        return parent::beforeRender($event);
+
+        $sess = $this->getRequest()->getSession();
         $this->loadModel('Associations');
-        $assocSearch = $this->Associations->find('all')->toArray();
-        $this->set('assocSearch', $assocSearch);
+        if($sess->read('currUser') != null){
+            $assocActu = $this->Associations->get($sess->read('currUser'));
+            $sess->write('isAdmin', false);
+            if($assocActu->groupe == "admin") $sess->write('isAdmin', true);
+        }
+        return parent::beforeRender($event);
     }
 }

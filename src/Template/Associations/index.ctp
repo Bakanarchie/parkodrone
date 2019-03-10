@@ -146,7 +146,7 @@
                                     echo '<a href="./associations/registerToComp/'.$compTemp->id.'"><button class="ui black button">Inscrire mon équipe</button></a>';
                                 }
                                 else{
-                                    echo '<a href="./associations/unregisterFromComp/'.$compTemp->id.'"><button class="ui black button icon"><i class="check icon"></i></button></a>';
+                                    echo '<a href="./associations/unregisterFromComp/'.$compTemp->id.'"><button class="ui black button icon">Désinscrire mon équipe</button></a>';
                                 }
                                 if($this->request->getSession()->read('isAdmin')){
                                    echo '<a href="./competitions/finishCompetpg/'.$compTemp->id.'"><button class="ui black button icon">Terminer</button></a>';
